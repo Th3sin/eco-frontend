@@ -1,0 +1,185 @@
+.registro-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #173a3b;
+}
+
+.back-button img {
+  width: 60px;
+  border: 5px solid #ffffff; 
+  background-color: white;
+  border-radius: 50px;
+  transition: transform 0.3s ease;
+}
+
+.back-button img:hover {
+  transform: scale(1.2);
+}
+
+.registro-container h1 {
+  color: rgb(255, 255, 255);
+  font-size: 35px;
+  position: absolute;
+  top: 50px; 
+  z-index: 1;
+}
+
+.entidades-container {
+  display: flex;
+  justify-content: center; 
+  gap: 20px; 
+  position: relative;
+  z-index: 1; 
+}
+
+.lista-entidades {
+  display: flex;
+  justify-content: center;
+  gap: 30px; 
+}
+
+.item-entidade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 200px; 
+}
+
+.entidade-botao {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  background: rgba(221, 228, 225, 0.721); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  border-radius: 10px; 
+  padding: 20px; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; 
+}
+
+.entidade-botao:hover {
+  transform: scale(1.1); 
+  background: rgb(255, 255, 255);
+}
+
+.entidade-botao img {
+  width: 110px;
+  margin-bottom: 10px;
+}
+
+.entidade-botao a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.entidade-botao h2 {
+  text-align: center;
+  color: rgb(43, 43, 43);
+  font-family: Verdana;
+  font-size: 16px;
+}
+
+/* AQUI É O CSS DO FORMULÁRIO SIMPLIFICADO DE CADASTRO */
+
+.formulario-cadastro {
+  width: 450px;
+  height: 450px;
+  background-color: #eff0f5;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.formulario-cadastro h2 {
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 30px;
+  color: #218962;
+}
+
+.formulario-cadastro label  {
+  margin-right: 60px;
+  padding-left: 1px;
+  font-size: 17px;
+  color: #173a3b;
+}
+
+.formulario-cadastro input {
+  padding: 7px;
+  width: 100%;
+  height: 35px;
+  border: 1px solid #999;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
+
+.formulario-cadastro input:focus,
+.formulario-cadastro input:focus {
+  border: 2px solid #218962;
+}
+
+.formulario-cadastro input::placeholder,
+.formulario-cadastro input::placeholder {
+  font-size: 15px;
+  text-align: left;
+}
+
+.formulario-cadastro button[type="submit"] {
+  margin-top: 30px;
+  width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  background: #218962;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  font-size: 16px;
+  color: #fff;
+}
+
+.formulario-cadastro button[type="submit"]:hover {
+  background: #173a3b;
+}
+
+.input-container {
+  position: relative;
+}
+
+.eyeIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  font-size: 17px;
+  z-index: 2;
+}
+
+.sign-in-link {
+  display: flex;
+  justify-content: center;
+}
+
+.sign-in-link a {
+  text-decoration: none;
+  margin-left: 4px;
+  color: #218962;
+}
+
+.sign-in-link a:hover {
+  text-decoration: underline;
+}

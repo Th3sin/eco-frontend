@@ -1,0 +1,1 @@
+// Funções que fazem chamadas à API

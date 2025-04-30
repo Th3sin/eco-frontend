@@ -1,0 +1,25 @@
+.container-detalhes {
+    padding: 2rem;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .detalhes-card {
+    border: 1px solid #ccc;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .detalhes-card p {
+    margin: 0.5rem 0;
+  }
+  
+  .btn-voltar {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }  

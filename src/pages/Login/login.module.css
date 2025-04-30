@@ -1,0 +1,237 @@
+.containerElementosLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.backButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.backButton img {
+  width: 60px;
+  border: 5px solid #ffffff; 
+  background-color: white;
+  border-radius: 50px;
+  transition: transform 0.3s ease;
+}
+
+.backButton img:hover {
+  transform: scale(1.2);
+}
+
+.containerLogin {
+  width: 370px;
+  height: 395px;
+  background-color: #eff0f5;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.logoEcoplus {
+  text-align: center;
+  margin: -65px 0px;
+}
+
+.logoEcoplus img {
+  width: 93px;
+  margin-bottom: 70px;
+  /* box-shadow: 0px -5px 4px 0px rgba(21, 20, 20, 0.2); */
+  border: 10px solid #eff0f5; 
+  border-radius: 50px;
+}
+
+.containerLogin h1 {
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 30px;
+  color: #218962;
+}
+
+.containerLogin label {
+  margin-right: 60px;
+  padding-left: 1px;
+  font-size: 15px;
+  color: #173a3b;
+}
+
+.containerLogin input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-left: 2px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #2a5152;
+  border-radius: 3px;
+  background-color: #fff;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.containerLogin input[type="checkbox"]:checked {
+  background-color: #173a3b;
+  border-color: #173a3b;
+}
+
+.containerLogin input[type="checkbox"]:checked::after {
+  content: '✓';
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+.containerLogin label:has(input[type="checkbox"]:checked) {
+  color: #656d65;
+}
+
+.containerLogin label:has(input[type="checkbox"]) {
+  font-size: 13.8px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-top: 2px;
+}
+
+.recallForget {
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.recallForget a {
+  color: #218962;
+  margin-left: 3px;
+  text-decoration: none;
+  font-size: 14.5px;
+}
+
+.recallForget a:hover {
+  color: #173a3b;
+  text-decoration: underline;
+}
+
+.containerLogin input[type="email"],
+.containerLogin input[type="password"] {
+  padding: 7px;
+  width: 100%;
+  height: 35px;
+  border: 1px solid #999;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
+  
+.containerLogin input[type="email"]:focus,
+.containerLogin input[type="password"]:focus {
+  border: 2px solid #218962;
+}
+
+.containerLogin input[type="email"]::placeholder,
+.containerLogin input[type="password"]::placeholder {
+  font-size: 14px;
+  text-align: left;
+}
+
+.containerLogin button[type="submit"] {
+  margin-top: 35px;
+  margin-bottom: 7.5px;
+  width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  background: #218962;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  font-size: 16px;
+  color: #fff;
+}
+
+.containerLogin button[type="submit"]:hover {
+  background: #173a3b;
+}
+
+.signupLink {
+  margin-top: 13px;
+}
+
+.signupLink p {
+  text-align: center;
+  font-size: 15px;
+}
+
+.signupLink a {
+  color: #218962;
+  margin-left: 3px;
+  text-decoration: none;
+  font-size: 14.5px;
+}
+
+.signupLink a:hover {
+  text-decoration: underline;
+  color: #173a3b;
+}
+
+.containerElementosLogin {
+  background-color: #173a3b;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+} 
+
+/*personalização do exibir senha*/
+
+.passwordWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.inputSenha {
+  padding-right: 40px; 
+  width: 100%;
+  height: 35px;
+  padding: 7px;
+  border: 1px solid #999;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 3px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+.inputSenha:focus {
+  border: 2px solid #218962;
+}
+
+.eyeIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  font-size: 17px;
+  z-index: 2;
+}
