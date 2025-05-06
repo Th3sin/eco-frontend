@@ -29,7 +29,7 @@ const [mostrarApresentacao, setMostrarApresentacao] = useState(false);
 useEffect(() => {
     const timer = setTimeout(() => {
         setMostrarApresentacao(true);
-    }, 1500); // 1.5 segundos após título aparecer
+    }, 2500); // 1.5 segundos após título aparecer
 
     return () => clearTimeout(timer);
 }, []);
@@ -39,8 +39,8 @@ useEffect(() => {
         <div className="container-home">
             <div className="banner-container">
                 <video autoPlay loop muted className="background-video">
-                    <source src="/video/projeto-eco-video.mp4" type="video/mp4" />
-                    banner
+                    <source src="/video/eco-video.mp4" type="video/mp4" />
+                        banner
                 </video>
 
                 <section className="banner-informations">
@@ -55,13 +55,14 @@ useEffect(() => {
                     </div>
 
                     <div className="apresentacao">
-    <h2>Conexão Sustentável</h2>
-    <div className={`apresentacao-slide ${mostrarApresentacao ? 'slide-in' : ''}`}>
-        {apresentacao[0].content}
-    </div>
+                        <h2>Conexão Sustentável</h2>
+                        <div className={`apresentacao-slide 
+                            ${mostrarApresentacao ? 
+                            'slide-in' : ''}`}>
+                            {apresentacao[0].content}
+                        </div>
 
-</div>
-
+                    </div>
 
                 </section>
             </div>

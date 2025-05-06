@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import styles from '../Destinadora/empresaDestinadora.module.css'
-// import InformacoesPessoais from '../../../components/Formularios/InformacoesPessoais';
-// import Endereco from '../../../components/Formularios/Endereco';
 
 const EmpresaDestinadoraCadastro = () => {
   

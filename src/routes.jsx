@@ -70,6 +70,7 @@ function RoutesApp() {
                     <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
                     <Route path="/NovaSolicitacao" element={<NovaSolicitacao />} />
                     <Route path="/Login" element={<Login />} />
+
                 </Route>
             </Routes>
         </BrowserRouter>

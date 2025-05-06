@@ -59,34 +59,34 @@ function Header() {
 
     <header className={`${isHome ? 'with-transition transparent' : ''} ${scrolled ? 'scrolled' : ''}`}>
       <nav>
-        <div className='user-profile-picture'>
-          <img
-            src={UserPic} alt='Foto de perfil do usuário' title='Clique para acessar as funcionalidades do seu perfil' />
-        </div>
-
-        <div className="logo-header">
-          <Link to="/Home">
-            <img src={Logo} alt="Logo Ecoplus" title="Bem-vindo" />
-          </Link>
-        </div>
-
-        <div className='user-name'>
-          <p>EMPRESA G</p>
-        </div>
-
-        <div className="links-header">
-
-        <Link to="/Home" className="abas">Home</Link>
-          
-          <div className='dropdown'>
-        <Link to="NovaSolicitacao" className='abas'>Serviços</Link>
+          <div className='user-profile-picture'>
+            <img
+              src={UserPic} alt='Foto de perfil do usuário' title='Clique para acessar as funcionalidades do seu perfil' />
           </div>
 
-        <Link to="/" className="abas">Entre</Link>
+          <div className="logo-header">
+            <Link to="/Home">
+              <img src={Logo} alt="Logo Ecoplus" title="Bem-vindo" />
+            </Link>
+          </div>
 
-        <Link to="/HistoricoSolicitacoes" className="abas">EM ANDAMENTO</Link>
+          <div className='user-name'>
+            <p>EMPRESA G</p>
+          </div>
 
-        </div>
+          <div className="links-header">
+
+          <div className='dropdown'>
+          <Link to="NovaSolicitacao" className='abas'>FORMULARIO</Link>
+          </div>
+
+          <Link to="/" className="abas">Entre</Link>
+
+          <Link to="/HistoricoSolicitacoes" className="abas">ANDAMENTO</Link>
+          <Link to="/CadastroEmpresa" className="abas">ANDAMENTO</Link>
+          <Link to="/Endereco" className="abas">ANDAMENTO</Link>
+
+          </div>
       </nav>
     </header>
   );

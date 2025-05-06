@@ -45,7 +45,12 @@ const SlideBannerHome = () => {
   };
 
   return (
+
     <div className="slide-carousel">
+      <video autoPlay loop muted className="slides-background">
+        <source src="/video/sobre.mp4" type="video/mp4" />
+          banner
+      </video>
       <div className="slide">{slides[index].content}</div>
       <div className="controls">
 
