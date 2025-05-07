@@ -1,21 +1,24 @@
-.slides-background {
+.background-image-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-image: url("../../img/Texture-dark-plants.jpg"); 
+  border-radius: 20px;
+  background-size: cover; 
+  background-position: center;
   z-index: -1;
-  pointer-events: none;
-  border: solid rgb(255, 255, 255) 15px;
-  border-radius: 30px;
+  pointer-events: none; 
 }
 
 .slide-carousel {
-  backdrop-filter: blur(4px);
+  position: relative;
+  border: solid rgb(52, 180, 80) 10px;
+  border-radius: 20px;
   width: 100%;
-  max-width: 1200px;
-  height: 450px;
+  max-width: 1000px;
+  height: 400px;
   padding: 1rem;
   margin: auto;
   text-align: center;
@@ -33,7 +36,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .controls {
@@ -45,7 +48,7 @@
 .controls button {
   padding: 0.5rem 1.5rem;
   font-weight: bold;
-  background-color: #186247;
+  background-color: rgb(52, 180, 80);
   color: white;
   border: none;
   border-radius: 8px;
@@ -62,6 +65,7 @@
 }
 
 .card p {
+  color: #ffffff;
   margin: 0.5rem 0;
 }
 
@@ -76,7 +80,8 @@
   max-width: 700px;
   margin: auto;
   font-size: 1rem;
-  background-color: transparent; 
+  background-color: transparent;
+  color: #ffffff;
 }
 
 .links-section p {

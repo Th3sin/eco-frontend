@@ -10,9 +10,6 @@ import sharpSymbol from "../../img/residuoPerfurocortante.png";
 function Informativo() {
     return (
         <div className={styles.secaoResiduos}>
-            <div className={styles.secaoResiduosTitle}>
-                <h1>Nosso Blog</h1>
-            </div>
             <div className={styles.containerBotoes}>
                 <div className={styles.containerResiduo}>
                     <button>

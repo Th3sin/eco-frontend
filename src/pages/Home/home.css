@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
-
 .container-home {
     font-family: 'Arial', sans-serif;
     color: #000000;
@@ -22,8 +20,6 @@
     height: 100vh;
     overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .background-video {
@@ -48,62 +44,96 @@
     z-index: 1;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     justify-content: center;
-    align-items: center;
-    text-align: center;
     color: white;
-    font-family: 'Tahoma';
-    padding: 1rem;
-    max-width: 1100px;
-    margin: auto;
+    max-width: 1150px;
+    margin: 0;
+    padding-left: 280px;
 }
 
-.banner-informations h1 {
-    font-size: 2rem;
-    animation: slideIn 2s ease-out; 
+.titulo-pagina-home h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    font-weight: normal;
+}
+
+.titulo-img {
+    height: 60px;
+    width: auto;
 }
 
 .banner-informations h2 {
-    font-size: 2rem;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    color: aquamarine;
+    color: rgb(64, 195, 83);
+    animation: slideIn 1s ease-out; 
 }
 
-.banner-informations span {
-    font-size: 2rem;
-    background-color: azure;
+.banner-informations p {
+    margin: 0.5rem 0;
+    animation: slideIn 1.5s ease-out; 
+    font-size: 18px;
+    margin-top: 1rem;
 }
 
-/* APRESENTAÇÃO */
-.apresentacao {
-    display: flex;
-    max-width: 800px;
-    width: 100%;
-    font-size: 1.5rem;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 1rem;
-    margin: auto;
+.botao-saiba-mais {
+    align-self: flex-end; 
+    background-color: transparent;    
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: solid 1px aquamarine;
+}
+
+.botao-saiba-mais:hover {
+    transform: scale(1.05);
+}
+
+.botao-saiba-mais:active {
+    transform: scale(0.98);
+}
+
+/* COMPONENTES */ 
+
+.sobre {
+    margin-top: 100px;
+}
+
+.blog {
+    margin-top: 150px;
+}
+
+.blog h3, 
+.blog p {
     text-align: center;
+    margin-bottom: 20px;
 }
 
-.apresentacao-slide {
-    opacity: 0;
-    transform: translateX(100px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+.mapa {
+    margin-top: 150px;
 }
-
-.apresentacao-slide.slide-in {
-    opacity: 1;
-    transform: translateX(0);
+.mapa h3,
+.mapa p {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 /* ENTIDADES */
 .entidades {
     text-align: center;
-    height: 400px;
+    margin-top: 150px;
+}
+
+.entidades p {
+    margin-top: 35px;
 }
 
 .cards-ent-container {
@@ -115,24 +145,22 @@
 }
 
 .card-entidade {
-    height: 450px;
-    background-color: white;
     width: 300px;
-    border-radius: 8px;
-    border: 3px solid green;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
+    height: 440px;
+    position: relative;
+    padding: 20px;
+    background: rgb(132, 159, 134);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+}
+
+.card-entidade:hover {
+    border: 5px solid green;
 }
 
 .card-entidade img {
     height: 200px;
-}
-
-.card-entidade span {
-    font-size: 15px;
-    color: black;
+    border-radius: 25px;
 }
 
 /* Responsividade */
@@ -141,10 +169,6 @@
         padding: 30px 100px;
     }
 
-    .apresentacao {
-        width: 80%;
-        font-size: 22px;
-    }
 }
 
 @media (max-width: 992px) {
@@ -167,11 +191,6 @@
         font-size: 24px;
     }
 
-    .apresentacao {
-        width: 90%;
-        font-size: 20px;
-        align-items: center;
-    }
 }
 
 @media (max-width: 768px) {
@@ -187,15 +206,6 @@
         font-size: 20px;
     }
 
-    .background-video {
-        height: 100%;
-        border: none;
-        border-radius: 0;
-    }
-
-    .apresentacao {
-        font-size: 18px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -206,8 +216,30 @@
     .banner-informations h2 {
         font-size: 18px;
     }
+}
 
-    .apresentacao {
-        font-size: 16px;
-    }
+.navegacao-interna {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.navegacao-interna button {
+    width: 200px;
+    height: 140px;
+    background-color: rgb(218, 217, 242);
+    border-radius: 10px;
+    border: solid 1px green;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.navegacao-interna a {
+    font-size: 15px;
+}
+
+.navegacao-interna button:hover {
+    transform: scale(1.05);
+    color: rgb(48, 20, 132);
 }

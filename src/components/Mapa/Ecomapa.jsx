@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import styles from "./ecomapa.module.css";
-import { tipoResiduo, materiais } from '../../data/materiais';  // Corrija o caminho conforme necessário
-import { Link } from 'react-router-dom';
+import { tipoResiduo, materiais } from '../../data/materiais'; 
 
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
 
@@ -49,7 +48,6 @@ function Ecomapa() {
         <div className={styles.paginaDescarteMaterial}>
             <div className={styles.containerDescarte}>
                 <div className={styles.formMaterial}>
-                    <h1>Encontre os pontos de recebimentos mais próximos de você:</h1>
 
                     {/* CEP */}
                     <div className={styles.materialInputs}>

@@ -1,39 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Link, useLocation } from 'react-router-dom';
 import "./home.css";
 import Ecomapa from '../../components/Mapa/Ecomapa';
 import Informativo from '../Descarte/Informativo';
 import Footer from '../../components/Layout/Footer'
+import ecoTitulo from '../../img/ecotitulo.png'
 import picgera from "../../img/factory.jpg";
 import picdest from "../../img/image1.jpg";
 import SlideBannerHome from "../../components/Layout/SlideBannerHome";
 
 function Home() {
-
-const apresentacao = [
-    {
-          id: 1,
-          content: (
-    
-            <div className="card-descricao">
-              <p>
-                Aqui nós conectamos grandes geradores de resíduos às destinadoras corretas promovendo o descarte correto, seguro e sustentável. </p>
-                <p>Unimos tecnologia e responsabilidade para facilitar a gestão de resíduos, reduzir impactos ambientais e fortalecer o compromisso com um futuro mais verde e consciente.
-              </p>
-            </div>
-          ),
-        },
-]
-
-const [mostrarApresentacao, setMostrarApresentacao] = useState(false);
-
-useEffect(() => {
-    const timer = setTimeout(() => {
-        setMostrarApresentacao(true);
-    }, 2500); // 1.5 segundos após título aparecer
-
-    return () => clearTimeout(timer);
-}, []);
-
 
     return (
         <div className="container-home">
@@ -45,58 +21,77 @@ useEffect(() => {
 
                 <section className="banner-informations">
                     <div className="titulo-pagina-home">
-                        <h1> Bem-vindo ao {" "}
-                            <span style={{ color: '#173a3b' }}>E</span>
-                            <span style={{ color: '#2a5152' }}>C</span>
-                            <span style={{ color: '#218962' }}>O</span>
-                            <span style={{ color: '#51de5a' }}>+</span>
+                        <h1>
+                        Somos o Grupo <img src={ecoTitulo} alt="Eco+" className="titulo-img" />
                         </h1>
-                        
                     </div>
-
-                    <div className="apresentacao">
-                        <h2>Conexão Sustentável</h2>
-                        <div className={`apresentacao-slide 
-                            ${mostrarApresentacao ? 
-                            'slide-in' : ''}`}>
-                            {apresentacao[0].content}
-                        </div>
-
+                    <div>
+                        <h2>Conectando Negócios à Sustentabilidade</h2>
+                            <p> Nossa plataforma conecta empresas geradoras de resíduos a destinadoras especializadas, promovendo práticas sustentáveis que geram impacto positivo para o meio ambiente e para os negócios. </p>
                     </div>
-
+                    <div>
+                        <button class="botao-saiba-mais">Saiba Mais</button>
+                    </div>
                 </section>
+
             </div>
 
-            <SlideBannerHome /> {/* Componente */}
+        {/* APENAS PARA NAVEGAÇÃO INTERNA ENTRE AS PÁGINAS QUE ESTÃO SENDO DESENVOLVIDAS */}
+        <section className="navegacao-interna">
+            <p><b>Páginas em desenvolvimento</b></p>
 
-            <section className="entidades" id="entidades">
-                <h3>Trabalhamos com:</h3>
-                <div className="cards-ent-container">
-                    <div className="card-entidade">
-                        <h4>Geradores</h4>
-                        <div>
-                            <img src={picgera} alt="Imagem representando geradores" />
-                        </div>
-                        <span>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro in obcaecati voluptate tempore esse. Quas, nostrum. Dolorem voluptatibus optio nulla eligendi autem excepturi iste, nostrum adipisci earum est molestiae cum amet iusto, similique aspernatur consequatur obcaecati.
-                        </span>
-                    </div>
+            <div>
+                <Link to="/HistoricoSolicitacoes"><button>Solicitações de Coleta p/ Destinador</button></Link>
+                <Link to="/coletas-agendadas"><button>Coletas Agendadas</button></Link>
+                <Link to="/historico"><button>Histórico de Solicitações p/ Gerador</button></Link>
+                <Link to="/solicitacoes/1"><button>Tela de Detalhes das Coletas (ver mais)</button></Link>
+                <Link to="/Perfil"><button>Escolha Perfil Gerador ou Destinador</button></Link>
+            </div>
 
-                    <div className="card-entidade">
-                        <h4>Destinadores</h4>
-                        <img src={picdest} alt="Imagem representando destinadores" />
-                        <span>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro in obcaecati voluptate tempore esse. Quas, nostrum. Dolorem voluptatibus optio nulla eligendi autem excepturi iste, nostrum adipisci earum est molestiae cum amet iusto, similique aspernatur consequatur obcaecati.
-                        </span>
-                    </div>
-                </div>
+            <div>
+                <Link to="/cadastro/gerador"><button>Formulário de Cadastro Gerador</button></Link>
+                <Link to="/cadastro/destinador"><button>Formulário de Cadastro Destinador</button></Link>
+                <Link to="/ColetaForm"><button>Formulário de Solicitação de Coleta</button></Link>
+                <Link to="#"><button>Tela Acompanhamento de Coleta com Mapa</button></Link>
+                <Link to="/informacoes"><button>Página com Informações Sobre Coletas e Resíduos</button></Link>
+            </div>
+        </section>
+        {/*_______________________________________________________________________________*/}
+
+
+            <section className="sobre" id="sobre">
+                <SlideBannerHome /> {/* Componente */}
             </section>
 
+            {/* <section className="entidades" id="entidades">
+                <h3>Trabalhamos com:</h3>
+                    <div className="cards-ent-container">
+
+                    <div className="card-entidade">
+                      <h4>Geradores</h4>
+                      <img src={picgera} alt="Imagem representando geradores" />
+                        <p>Geradores são empresas que produzem resíduos e precisam de soluções seguras e legais para o descarte. Com a plataforma, é possível solicitar coletas com poucos cliques e monitorar o andamento em tempo real.</p>
+                    </div>
+
+                    <div className="card-entidade">
+                      <h4>Destinadores</h4>
+                      <img src={picdest} alt="Imagem representando destinadores" />
+                        <p>Destinadores são empresas responsáveis pela destinação correta desses resíduos. Elas podem visualizar pedidos de coleta próximos, além de gerenciar rotas e o histórico de coletas de forma eficiente.</p>
+                    </div>
+
+                </div>
+
+            </section> */}
+
             <section className="mapa" id="mapa">
+                <h3>Encontre pontos de coleta próximos</h3>
+                <p>Utilize o mapa abaixo para localizar destinadoras cadastradas por tipo de resíduo e distância.</p>
                 <Ecomapa />
             </section>
 
             <section className="blog" id="blog">
+                <h3>Informações e Dicas</h3>
+                <p>Confira conteúdos sobre descarte correto, legislação ambiental e práticas sustentáveis.</p>
                 <Informativo />
             </section>
 

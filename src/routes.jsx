@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from './components/Header/Header'; 
-import Footer from './components/Layout/Footer';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Ecomapa from './components/Mapa/Ecomapa';
 import Registro from './pages/Registros/Registro';
+import Perfil from "./pages/Registros/Perfil";
 import EmpresaDestinadoraCadastro from './pages/Registros/Destinadora/EmpresaDestinadoraCadastro';
 import CadastroEmpresa from './pages/Registros/Geradora/CadastroEmpresa';
 import Endereco from "./components/Formularios/Endereco";
@@ -15,9 +15,8 @@ import Radioativo from "./pages/Descarte/Grupos/Radioativo";
 import Perfurocortante from "./pages/Descarte/Grupos/Perfurocortante";
 import Comum from "./pages/Descarte/Grupos/Comum";
 import Informativo from "./pages/Descarte/Informativo";
-import NovaSolicitacao from "./pages/Coleta/Pedidos/NovaSolicitacao";
 import HistoricoSolicitacoes from "./pages/Coleta/Historico/HistoricoSolicitacoes";
-import SlideBannerHome from "./components/Layout/SlideBannerHome";
+import ColetaForm from "./pages/Coleta/Pedidos/ColetaForm";
 
 function Layout() {
     const location = useLocation();
@@ -27,6 +26,7 @@ function Layout() {
         const noHeaderRoutes = [
             "/Login",
             "/Registro",
+            "/Perfil",
             "/CadastroEmpresaColetora",
             "/CadastroEmpresa",
             "/Background"
@@ -60,15 +60,15 @@ function RoutesApp() {
                     <Route path="/Radioativo" element={<Radioativo />} />
                     <Route path="/Comum" element={<Comum />} />
                     <Route path="/Perfurocortante" element={<Perfurocortante />} />
-                    <Route path="/SlideBannerHome" element={<SlideBannerHome />} />
+                    <Route path="/ColetaForm" element={<ColetaForm />} />
 
                     {/* Páginas sem Header */}
                     <Route path="/Registro" element={<Registro />} />
+                    <Route path="/Perfil" element={<Perfil />} />
                     <Route path="/CadastroEmpresaColetora" element={<EmpresaDestinadoraCadastro />} />
                     <Route path="/Cadastroempresa" element={<CadastroEmpresa />} />
                     <Route path="/Endereco" element={<Endereco />} />
                     <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
-                    <Route path="/NovaSolicitacao" element={<NovaSolicitacao />} />
                     <Route path="/Login" element={<Login />} />
 
                 </Route>

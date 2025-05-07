@@ -18,7 +18,7 @@ function Header() {
     const handleScroll = () => {
       
       const banner = document.querySelector('.banner');
-      const bannerHeight = banner ? banner.offsetHeight : 300;
+      const bannerHeight = banner ? banner.offsetHeight : 500; //altura para surgimento do background-collor
 
       if (window.scrollY > bannerHeight) {
 
@@ -76,15 +76,10 @@ function Header() {
 
           <div className="links-header">
 
-          <div className='dropdown'>
-          <Link to="NovaSolicitacao" className='abas'>FORMULARIO</Link>
-          </div>
-
-          <Link to="/" className="abas">Entre</Link>
-
-          <Link to="/HistoricoSolicitacoes" className="abas">ANDAMENTO</Link>
-          <Link to="/CadastroEmpresa" className="abas">ANDAMENTO</Link>
-          <Link to="/Endereco" className="abas">ANDAMENTO</Link>
+            <Link to="/" className="abas">Entre</Link>
+            <Link to="/" className="abas">Entre</Link>
+            <Link to="/" className="abas">Entre</Link>
+            <Link to="/" className="abas">Entre</Link>
 
           </div>
       </nav>

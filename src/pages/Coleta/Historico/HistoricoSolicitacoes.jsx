@@ -1,8 +1,7 @@
 // Página com lista de <ColetaCard
-
 import { Link } from 'react-router-dom';
 import React from 'react';
-import './historicocostts.css';
+import './historico.css';
 
 const HistoricoSolicitacoes = () => {
   // Mock de dados
