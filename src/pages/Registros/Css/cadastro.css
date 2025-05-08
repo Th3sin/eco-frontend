@@ -1,0 +1,29 @@
+.container-formulario button {
+    width: 400px;
+    height: 40px;
+    background-color: aquamarine;
+}
+
+.campo {
+    width: 400px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+  
+.campo label {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.campo input {
+    height: 40px;
+}
+  
+.campo select {
+    padding-left: 13px;
+    box-sizing: border-box;
+    height: 40px;
+    border-radius: 3px;
+    font-size: 14.5px;
+}  

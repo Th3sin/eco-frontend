@@ -2,25 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    margin: 0;
-    margin-top: 50px;
 }
 
 .container-solicitacao form {
-    max-height: 90vh;
+    max-height: 60vh; /* Faz surgir a barra de scroll*/
     overflow-y: auto;
-    background-color: #eff0f5;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 50px;
-    box-sizing: border-box;
 }
 
 .form-group {
@@ -32,12 +18,6 @@
 .form-group label {
     font-size: 15px;
     margin-bottom: 5px;
-}
-
-.dados-pessoais,
-.dados-endereco,
-.dados-residuo {
-    margin-bottom: 40px;
 }
 
 .container-solicitacao button {
@@ -150,28 +130,15 @@ select[name="classeResiduo"] option[value=""] {
     margin-bottom: 5px;
     font-size: 14px;
     resize: vertical; 
-    min-height: 80px;      /* altura mínima */
-    max-height: 200px;     /* altura máxima */
+    min-height: 80px;   
+    max-height: 200px;     
 }
 
 .form-group textarea:focus {
     border: 2px solid #218962;
 }
 
-.form-group input[type="file"] {
-    padding: 6px;
-    font-size: 14px;
-    border: 1px solid #999;
-    border-radius: 5px;
-    margin-top: 3px;
-    margin-bottom: 5px;
-    background-color: #fff;
-    width: 100%;
-    height: 40px;
-}
-
-.form-group input[type="date"],
-.form-group input[type="time"] {
+.form-group input[type="date"] {
     padding: 7px;
     width: 100%;
     height: 35px;

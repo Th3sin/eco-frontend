@@ -17,7 +17,7 @@
 .banner-container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 680px;
     overflow: hidden;
     display: flex;
 }
@@ -44,7 +44,6 @@
     z-index: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: center;
     color: white;
     max-width: 1150px;
@@ -101,10 +100,101 @@
     transform: scale(0.98);
 }
 
-/* COMPONENTES */ 
+.seta-para-baixo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px; 
+}
 
-.sobre {
+.seta-video {
+    position: absolute;
+    width: 70px;
+    height: auto;
+    cursor: pointer;
+}
+
+.informacoes-formulario {
+    height: 450px;
+    background-color: rgb(149, 198, 159);
     margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.informacoes-formulario p {
+    font-size: 22px;
+}
+
+.informacoes-descarte {
+    flex: 1 1 400px;
+    max-width: 800px;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.informativo {
+    width: 600px;
+}
+
+.informativo-descarte h2 {
+    font-size: 1.8rem;
+    margin-bottom: 4.5rem;
+    display: inline-block;
+    border-bottom: 2px solid #112b2c; 
+    padding-bottom: 4px; 
+}
+
+.etapa {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.titulo {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.formulario-coleta {
+    flex: 1 1 400px;
+    max-width: 550px;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px 10px rgba(0, 0, 0, 0.05);
+    transform: translateY(-40px); /* Sobe 40px acima do container */
+}
+
+.simbolo-seta {
+    text-align: center;
+}
+
+.simbolo-seta span {
+    font-size: 45px;
+    color: rgb(0, 0, 0);
+}
+
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .informacoes-formulario {
+      flex-direction: column;
+      padding: 1rem;
+    }
+  
+    .informacoes-descarte,
+    .formulario-coleta {
+      max-width: 100%;
+    }
+  }
+
+/* COMPONENTES IMPORTADOS */ 
+.navegacao-home {
+    margin-top: 150px;
 }
 
 .blog {
@@ -113,6 +203,7 @@
 
 .blog h3, 
 .blog p {
+    font-size: 25px;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -123,6 +214,7 @@
 .mapa h3,
 .mapa p {
     text-align: center;
+    font-size: 25px;
     margin-bottom: 20px;
 }
 
@@ -217,6 +309,25 @@
         font-size: 18px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .navegacao-interna {
     margin-top: 100px;

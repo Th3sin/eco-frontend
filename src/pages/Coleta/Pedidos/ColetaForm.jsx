@@ -203,9 +203,9 @@ function ColetaForm() {
                     </div>
 
                 </div>
-                        {/* Preferência data e hora*/}
+                        {/* Escolha data */}
                 <div className='dados-data'>
-                    <h3>Selecione o dia e hora da retirada:</h3>
+                    <h3>Selecione um dia para retirada:</h3>
                     <div className="form-group">
                         <label>Data da Coleta</label>
                         <input
@@ -215,21 +215,10 @@ function ColetaForm() {
                             onChange={handleInputChange}
                             required />
                     </div>
-
-                    <div className="form-group">
-                        <label>Hora da Coleta</label>
-                        <input
-                            type="time"
-                            name="horaColeta"
-                            value={formData.horaColeta}
-                            onChange={handleInputChange}
-                            required />
-                    </div>
                 </div>
 
                 <div className='botoes-solicitacao'>
-                    <button type="submit">ENVIAR PEDIDO</button>
-                    <button type="reset" name="cancel" onClick="window.location.reload();">Cancelar</button>
+                    <button type="submit">AGENDAR MINHA COLETA</button>
                 </div>
                 
             </form>

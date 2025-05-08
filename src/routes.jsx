@@ -6,8 +6,8 @@ import Login from './pages/Login/Login';
 import Ecomapa from './components/Mapa/Ecomapa';
 import Registro from './pages/Registros/Registro';
 import Perfil from "./pages/Registros/Perfil";
-import EmpresaDestinadoraCadastro from './pages/Registros/Destinadora/EmpresaDestinadoraCadastro';
-import CadastroEmpresa from './pages/Registros/Geradora/CadastroEmpresa';
+import CadastroDestinador from './pages/Registros/Destinadora/CadastroDestinador';
+import CadastroGerador from './pages/Registros/Geradora/CadastroGerador';
 import Endereco from "./components/Formularios/Endereco";
 import Infectante from "./pages/Descarte/Grupos/Infectante";
 import Quimico from "./pages/Descarte/Grupos/Quimico";
@@ -27,8 +27,8 @@ function Layout() {
             "/Login",
             "/Registro",
             "/Perfil",
-            "/CadastroEmpresaColetora",
-            "/CadastroEmpresa",
+            "/CadastroDestinador",
+            "/CadastroGerador",
             "/Background"
         ];
 
@@ -65,8 +65,8 @@ function RoutesApp() {
                     {/* Páginas sem Header */}
                     <Route path="/Registro" element={<Registro />} />
                     <Route path="/Perfil" element={<Perfil />} />
-                    <Route path="/CadastroEmpresaColetora" element={<EmpresaDestinadoraCadastro />} />
-                    <Route path="/Cadastroempresa" element={<CadastroEmpresa />} />
+                    <Route path="/CadastroDestinador" element={<CadastroDestinador />} />
+                    <Route path="/CadastroGerador" element={<CadastroGerador />} />
                     <Route path="/Endereco" element={<Endereco />} />
                     <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
                     <Route path="/Login" element={<Login />} />
