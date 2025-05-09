@@ -55,26 +55,29 @@ function Home() {
             <div className="informacoes-formulario">
                 <section className="informacoes-descarte">
                     <div className="informativo-descarte">
-                      <h2>Um passo para regularizar seu descarte</h2>
-
-                      <div className="etapa">
-                        <div>
-                          <p className="titulo">1. Preencha o Formulário</p>
-                          <p>Envie suas informações de contato e não se preocupe, suas informações estarão seguras.</p>
-                        </div>
-                      </div>
-
-                      <div className="simbolo-seta">
-                        <span>↓</span>
-                      </div>
+                      <h2>Você está a um passo de regularizar seu descarte</h2>
 
                       <div className="etapa">
                             <div>
-                                <p className="titulo">2. Receba uma ligação</p>
-                                <p>Um dos nossos especialistas irá entrar em contato através de uma ligação com detalhes que realmente importam para você.</p>
+                                <p className="titulo">1. Preencha o formulário</p>
+                                <p>Envie suas informações de contato com tranquilidade. Seus dados estarão protegidos.</p>
                             </div>
                         </div>
-                      </div>
+
+                        <div className="etapa">
+                            <div>
+                                <p className="titulo">2. Aguarde a notificação</p>
+                                <p>Você será avisado assim que uma empresa destinadora aceitar sua solicitação.</p>
+                            </div>
+                        </div>
+
+                        <div className="etapa">
+                            <div>
+                                <p className="titulo">3. Fique atento</p>
+                                <p>Um representante da empresa destinadora entrará em contato com você por telefone.</p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
                 <section className="formulario-coleta">
@@ -137,7 +140,7 @@ function Home() {
             <div>
                 <Link to="/CadastroGerador"><button>Formulário de Cadastro Gerador</button></Link>
                 <Link to="/CadastroDestinador"><button>Formulário de Cadastro Destinador</button></Link>
-                <Link to="/ColetaForm"><button>Formulário de Solicitação de Coleta</button></Link>
+                <Link to="/SolicitarColeta"><button>Formulário de Solicitação de Coleta</button></Link>
                 <Link to="#"><button>Tela Acompanhamento de Coleta com Mapa</button></Link>
                 <Link to="#"><button>Página com Informações Sobre Coletas e Resíduos</button></Link>
             </div>

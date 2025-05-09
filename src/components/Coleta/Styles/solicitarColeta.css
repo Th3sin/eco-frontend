@@ -1,0 +1,134 @@
+.solicitar-coleta-container {
+  background-color: rgb(163, 170, 220);
+  margin-top: 75px; /* altura do header */
+  padding: 30px;
+  /* width: 90%; */
+}
+
+.solicitar-coleta-titulo {
+  color: #1b461d;
+  margin-bottom: 25px;
+}
+
+/* Elementos do formulário */
+.solicitar-coleta-card { 
+  background-color: antiquewhite;
+}
+
+/* Barra de etapas */
+.solicitar-coleta-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  background-color: green;
+}
+
+/* Títulos das etapas */
+.solicitar-coleta-step {
+  flex: 1;
+  text-align: center;
+  color: #bbb;
+  font-weight: bold;
+}
+
+.solicitar-coleta-step-active {
+  color: #000000;
+}
+
+/*
+.solicitar-coleta-form-section {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.solicitar-coleta-form-left {
+  flex: 1 1 60%;
+}
+
+.solicitar-coleta-form-right {
+  flex: 1 1 35%;
+}
+
+.solicitar-coleta-form-group {
+  margin-bottom: 20px;
+}
+
+.solicitar-coleta-form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.solicitar-coleta-form-group input,
+.solicitar-coleta-form-group select,
+.solicitar-coleta-form-group textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #90caf9;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.solicitar-coleta-form-group small {
+  color: #666;
+  font-size: 12px;
+}
+
+.solicitar-coleta-alert-box {
+  background-color: #2e7d32;
+  color: white;
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 300px;
+}
+
+.solicitar-coleta-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.solicitar-coleta-btn-avancar {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 100px;
+}
+
+.solicitar-coleta-btn-avancar:hover {
+  background-color: #27692d;
+}
+
+.solicitar-coleta-form-full {
+  width: 60%;
+}
+
+.solicitar-coleta-form-full textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  margin-top: 10px;
+  border: 1px solid #90f9b6;
+  border-radius: 4px;
+}
+
+.solicitar-coleta-actions button {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.solicitar-coleta-actions button:hover {
+  background-color: #27692d;
+} */

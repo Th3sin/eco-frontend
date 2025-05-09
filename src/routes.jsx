@@ -17,6 +17,7 @@ import Comum from "./pages/Descarte/Grupos/Comum";
 import Informativo from "./pages/Descarte/Informativo";
 import HistoricoSolicitacoes from "./pages/Coleta/Historico/HistoricoSolicitacoes";
 import ColetaForm from "./pages/Coleta/Pedidos/ColetaForm";
+import SolicitarColeta from "./components/Coleta/Solicitacao/SolicitarColeta";
 
 function Layout() {
     const location = useLocation();
@@ -61,6 +62,8 @@ function RoutesApp() {
                     <Route path="/Comum" element={<Comum />} />
                     <Route path="/Perfurocortante" element={<Perfurocortante />} />
                     <Route path="/ColetaForm" element={<ColetaForm />} />
+                    <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
+                    <Route path="/SolicitarColeta" element={<SolicitarColeta />} />
 
                     {/* Páginas sem Header */}
                     <Route path="/Registro" element={<Registro />} />
@@ -68,7 +71,6 @@ function RoutesApp() {
                     <Route path="/CadastroDestinador" element={<CadastroDestinador />} />
                     <Route path="/CadastroGerador" element={<CadastroGerador />} />
                     <Route path="/Endereco" element={<Endereco />} />
-                    <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
                     <Route path="/Login" element={<Login />} />
 
                 </Route>

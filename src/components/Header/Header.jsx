@@ -76,7 +76,7 @@ function Header() {
 
           <div className="links-header">
 
-            <Link to="/" className="abas">Entre</Link>
+            <Link to="/" className="abas" title="Acesse seu perfil" >Entre</Link>
             <Link to="/" className="abas">Entre</Link>
             <Link to="/" className="abas">Entre</Link>
             <Link to="/" className="abas">Entre</Link>

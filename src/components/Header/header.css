@@ -1,6 +1,7 @@
 header {
     position: fixed;
     top: 0;
+    height: 75px;
     width: 100%;
     z-index: 1000;
     background-color: transparent;
@@ -48,6 +49,7 @@ header.scrolled {
 nav {
     backdrop-filter: blur(3px);
     width: 98.1%;
+    height: 75px;
     margin: 0 auto;
     padding: 16px;
     display: flex;

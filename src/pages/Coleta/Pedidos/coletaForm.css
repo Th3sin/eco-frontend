@@ -5,8 +5,9 @@
 }
 
 .container-solicitacao form {
-    max-height: 60vh; /* Faz surgir a barra de scroll*/
+    max-height: 466px;
     overflow-y: auto;
+    height: auto; 
 }
 
 .form-group {
