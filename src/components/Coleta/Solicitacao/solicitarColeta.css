@@ -1,0 +1,245 @@
+.coleta-container {
+  margin-top: 75px;
+  padding: 20px;
+}
+
+.coleta-etapa-titulo {
+  font-size: 1.25rem;
+  color: #000000;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.coleta-titulo {
+  margin-bottom: 20px;
+}
+
+/* Barra de etapas */
+.coleta-steps {
+  height: 35px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border-top-right-radius: 0%;
+  background-color: green;
+}
+
+.coleta-step {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.coleta-step.active {
+  background-color: #77c15e74;
+  color: #fff;
+}
+
+/* Layout em duas colunas (formulário e alerta lado a lado) */
+.coleta-form-section {
+  display: flex;
+  gap: 30px;
+  padding-left: 20px;
+}
+
+.coleta-form-group {
+  margin-bottom: 20px;
+}
+
+.coleta-form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.coleta-form-left input,
+.coleta-form-left select,
+.coleta-form-left textarea,
+.coleta-form-full input,
+.coleta-form-full select,
+.coleta-form-full textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.coleta-form-left input:focus,
+.coleta-form-left select:focus,
+.coleta-form-left textarea:focus,
+.coleta-form-full input:focus,
+.coleta-form-full select:focus,
+.coleta-form-full textarea:focus {
+  border-color: #007bff;
+}
+
+.coleta-form-full {
+  display: flex;
+  flex-direction: column;
+  min-width: 600px; 
+}
+
+.coleta-form-group textarea,
+.coleta-form-full textarea {
+  resize: vertical;
+  height: 120px;
+  min-height: 100px;
+  max-height: 210px;
+}
+
+.coleta-form-group small {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+  font-size: 12px;
+}
+
+/* Botões */
+.coleta-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.coleta-actions button,
+.coleta-btn-avancar,
+.coleta-btn-voltar {
+  background-color: #3e6cd9;
+  color: white;
+  border: none;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-weight: bold;
+  width: 100px;
+}
+
+.coleta-actions button:hover,
+.coleta-btn-avancar:hover {
+  background-color: #2b60dc;
+}
+
+.coleta-form-row {
+  display: flex;
+  flex-direction: row-reverse; 
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: nowrap;
+}
+
+.coleta-form-left {
+  flex: 1 1 auto;
+  min-width: 600px; 
+  flex-shrink: 0;
+}
+
+.coleta-form-alert {
+  max-width: 300px;
+  flex-shrink: 1;
+  flex-grow: 0;
+}
+
+.coleta-alert-box {
+  width: 340px;
+  background-color: #2e7d32;
+  color: white;
+  margin-left: 140px;
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.coleta-alert-box p {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  font-weight: normal; 
+  color: #434343;
+  margin-top: 15px;
+}
+
+.custom-file-upload:hover {
+  border-color: #007bff;;
+}
+
+.preview-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.preview {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.preview button {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+}
+
+.botao-enviar-pedido button {
+  color: white;
+  background-color: green;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.botao-enviar-pedido button:hover {
+  background-color: rgb(7, 76, 7);
+}
+
+.coleta-btn-enviar {
+  border: none;
+  padding: 10px 25px;
+  margin-top: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
