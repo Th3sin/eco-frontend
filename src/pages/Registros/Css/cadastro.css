@@ -21,9 +21,15 @@
 }
   
 .campo select {
-    padding-left: 13px;
+    padding-left: 0px;
     box-sizing: border-box;
     height: 40px;
     border-radius: 3px;
     font-size: 14.5px;
 }  
+
+.container-formulario button {
+    color: #000000;
+    border: none;
+    background-color: rgba(22, 222, 45, 0.493);
+}

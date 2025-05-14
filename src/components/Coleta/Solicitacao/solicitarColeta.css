@@ -104,8 +104,19 @@
 
 /* Botões */
 .coleta-actions {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: end;
+  padding: 0 10px;
+}
+
+.coleta-card {
+  position: relative;
+  padding-bottom: 100px; /* espaço para os botões */
 }
 
 .coleta-actions button,
@@ -125,7 +136,7 @@
 
 .coleta-actions button:hover,
 .coleta-btn-avancar:hover {
-  background-color: #2b60dc;
+  background-color: #1952d6;
 }
 
 .coleta-form-row {
@@ -161,7 +172,6 @@
 }
 
 .coleta-alert-box p {
-  margin-bottom: 10px;
   font-size: 16px;
 }
 
@@ -225,13 +235,15 @@ input[type="file"] {
 
 .botao-enviar-pedido button {
   color: white;
+  width: 120px;
+  height: auto;
   background-color: green;
   font-size: 15px;
   font-weight: bold;
 }
 
 .botao-enviar-pedido button:hover {
-  background-color: rgb(7, 76, 7);
+  background-color: rgb(131, 9, 23);
 }
 
 .coleta-btn-enviar {

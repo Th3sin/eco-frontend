@@ -1,5 +1,3 @@
-// src/components/Mapa/Ecomapa.jsx
-
 import React, { useState } from "react";
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import styles from "./ecomapa.module.css";

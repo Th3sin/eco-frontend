@@ -9,6 +9,7 @@
   height: 100vh;
   overflow: hidden;
   margin: 0;
+  background-color: #112b2c;
 }
 
 .backButton {
@@ -193,15 +194,6 @@
   text-decoration: underline;
   color: #173a3b;
 }
-
-.containerElementosLogin {
-  background-color: #173a3b;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-} 
-
-/*personalização do exibir senha*/
 
 .passwordWrapper {
   position: relative;

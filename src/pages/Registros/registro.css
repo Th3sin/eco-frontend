@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #173a3b;
+  background-color: #112b2c;
 }
 
 .back-button img {
@@ -170,6 +170,7 @@
 }
 
 .sign-in-link {
+  margin-top: 12px;
   display: flex;
   justify-content: center;
 }

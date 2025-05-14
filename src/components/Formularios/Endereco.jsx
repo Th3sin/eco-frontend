@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { buscarEnderecoPorCEP } from '../../services/viacep.service'; //import do serviço API
-import "./endereco.css";
 
 function Endereco() {
 
@@ -51,27 +50,19 @@ function Endereco() {
 
   return (
     <div className="container-endereco">
-      <h3>Endereço</h3>
-      <p>Digite o CEP para que os campos sejam preenchidos:</p>
-      <br />
 
-      <div>
+      <div className='coleta-form-group'>
         <label>CEP:</label>
-        <input 
-          type="text" 
-          value={formatarCEP(cep)} 
-          onChange={(e) => setCep(e.target.value)} 
-          maxLength="9" 
-          placeholder="Digite seu CEP"
+        <input type="text" value={formatarCEP(cep)} onChange={(e) => setCep(e.target.value)} maxLength="9" placeholder="Digite seu CEP"
         />
       </div>
 
-      <div>
+      <div className='coleta-form-group'>
         <label>Logradouro:</label>
         <input type="text" value={logradouro} readOnly />
       </div>
 
-      <div>
+      <div className='coleta-form-group'>
         <label>Número:</label>
         <input 
           type='number' 
@@ -80,7 +71,7 @@ function Endereco() {
         />
       </div>
 
-      <div>
+      <div className='coleta-form-group'>
         <label>Complemento</label>
         <input 
           type="text" 
@@ -91,17 +82,17 @@ function Endereco() {
         />
       </div>
 
-      <div>
+      <div className='coleta-form-group'>
         <label>Bairro/Distrito:</label>
         <input type="text" value={bairro} readOnly />
       </div>
 
-      <div>
+      <div className='coleta-form-group'>
         <label>Cidade:</label>
         <input type="text" value={cidade} readOnly />
       </div>
 
-      <div>
+      <div className='coleta-form-group'>
         <label>Estado:</label>
         <input type="text" value={estado} readOnly />
       </div>

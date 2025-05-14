@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./solicitarColeta.css";
 import Endereco from "../../Formularios/Endereco";
 import InputMask from 'react-input-mask'; // < importante para formatacao do campo de telefone
+// npm install react-input-mask
+
  
 function SolicitarColeta() {
   const [step, setStep] = useState(1);  //cria um estado chamado step com valor inicial 1, e uma função setStep para atualizá-lo.
@@ -43,6 +45,7 @@ const handleEnviar = () => {
               <div className="coleta-form-alert">
                   <div className="coleta-alert-box">
                     <p><strong>Alguma dúvida?</strong> Não deixe de checar nossas instruções.</p>
+                      <br />
                     <p><strong>Data:</strong> A coleta deve ser agendada com no mínimo 48h de antecedência.</p>
                   </div>
               </div>
@@ -109,14 +112,15 @@ const handleEnviar = () => {
                 <small>Nome ou descrição dos resíduos.</small>
               </div>
  
-              {/*SELECAO CLASSE DO MATERIAL*/}
+              {/* SELEÇÃO CLASSE DO MATERIAL */}
               <div className="coleta-form-group">
-                <label>Classe</label>
-                <select name="coleta-select">
-                  <option>Selecione</option>
-                  <option>CLASSE I (Perigosos)</option>
-                  <option>CLASSE II A (Não Inertes)</option>
-                  <option>CLASSE II B (Inertes)</option>
+                <label htmlFor="classe">Classe</label>
+                <select id="classe" name="classe" required>
+                  <option value="">Selecione</option>
+                  <option value="Classe I">Classe I (Perigosos)</option>
+                  <option value="Classe II">Classe II (Não Perigosos)</option>
+                  <option value="Classe IIA">Classe IIA (Não Inertes)</option>
+                  <option value="Classe IIB">Classe IIB (Inertes)</option>
                 </select>
                 <small>Classe do resíduo a ser descartado.</small>
               </div>
@@ -170,7 +174,7 @@ const handleEnviar = () => {
                 <Endereco />
                 <div className="coleta-form-group">
                   <label>Observação</label>
-                  <textarea name="observacoes" placeholder="Inclua observações que ajudem a empresa responsável pela coleta." rows="10">
+                  <textarea name="observacoes" placeholder="Inclua observações que ajudem a empresa responsável pela retirada do resíduo." rows="10">
                   </textarea>
                 </div>
            

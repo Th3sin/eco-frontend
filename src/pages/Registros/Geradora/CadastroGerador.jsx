@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import '../Css/cadastro.css';
+import InputMask from 'react-input-mask'; // npm install react-input-mask
+import axios from 'axios'; 
+import '../Css/cadastro.css'; 
 
 function CadastroGerador() {
   const [formData, setFormData] = useState({ nome: '', email: '', telefone: '', cnpj: '', razaoSocial: '', ramo: '', cargo: '', residuoGerado: '', senha: '', confirmarSenha: '',
@@ -20,7 +22,7 @@ function CadastroGerador() {
 
   return (
     <div className='container-formulario'>
-      <h2>Preencha os Campos:</h2>
+      <h2>Preencha todos os campos</h2>
       <form onSubmit={handleSubmit}>
         
         <div className="campo">
@@ -35,12 +37,12 @@ function CadastroGerador() {
         
         <div className="campo">
           <label htmlFor="tel"> Telefone: </label>
-          <input type='tel' id="tel" name="telefone" value={formData.telefone} onChange={handleChange} placeholder="Digite seu Telefone" required />
+          <InputMask mask="(99) 99999-9999" id="tel" name="telefone" value={formData.telefone} onChange={handleChange} placeholder="Digite seu Telefone" required />
         </div>
 
         <div className="campo">
-          <label htmlFor="cnpj"> CNPJ: </label>
-          <input type="text" id="cnpj" name="cnpj" value={formData.cnpj} onChange={handleChange} placeholder="Digite o CNPJ" />
+          <label htmlFor="cnpj">CNPJ:</label>
+          <InputMask mask="99.999.999/9999-99" id="cnpj" name="cnpj" value={formData.cnpj} onChange={handleChange} placeholder="Digite o CNPJ" required />
         </div>
         
         <div className="campo">

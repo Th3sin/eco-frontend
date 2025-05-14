@@ -163,13 +163,12 @@
 }
 
 .formulario-coleta {
+    padding: 20px;
     flex: 1 1 400px;
-    max-width: 480px;
+    max-width: 400px;
     background-color: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px 10px rgba(0, 0, 0, 0.05);
-    transform: translateY(-40px);
+    border-radius: 10px;
+    border: solid black 0.5px;
 }
 
   /* Responsivo */

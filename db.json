@@ -6,5 +6,30 @@
       "email": "canon@medical.com",
       "senha": "123456789"
     }
+  ],
+
+  "destinadoras": [
+    {
+      
+    }
+  ],
+
+  "geradoras": [
+    {
+
+    }
+  ],
+
+  "residuos": [
+    {
+
+    }
+  ],
+
+  "coletas": [
+    {
+
+    }
   ]
+
 }
