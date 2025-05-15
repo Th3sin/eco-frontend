@@ -5,9 +5,9 @@ import Ecomapa from '../../components/Mapa/Ecomapa';
 import Informativo from '../Descarte/Informativo';
 import Footer from '../../components/Layout/Footer'
 import ecoTitulo from '../../img/ecotitulo.png'
-// import picgera from "../../img/factory.jpg";
-// import picdest from "../../img/image1.jpg";
-import SlideBannerHome from "../../components/Layout/SlideBannerHome";
+import picgera from "../../img/factory.jpg";
+import picdest from "../../img/image1.jpg";
+// import SlideBannerHome from "../../components/Layout/SlideBannerHome";
 import ColetaForm from "../Coleta/Pedidos/ColetaForm";
 
 function Home() {
@@ -55,25 +55,25 @@ function Home() {
             <div className="informacoes-formulario">
                 <section className="informacoes-descarte">
                     <div className="informativo-descarte">
-                      <h2>Você está a um passo de regularizar seu descarte</h2>
+                      <h2 className="titulo-metade-linha">Você está a um passo de regularizar seu descarte</h2>
 
                       <div className="etapa">
                             <div>
-                                <p className="titulo">1. Preencha o formulário</p>
+                                <p className="titulo"><span>✓</span> Preencha o formulário</p>
                                 <p>Envie suas informações de contato com tranquilidade. Seus dados estarão protegidos.</p>
                             </div>
                         </div>
 
                         <div className="etapa">
                             <div>
-                                <p className="titulo">2. Aguarde a notificação</p>
+                                <p className="titulo"><span>✓</span> Aguarde a notificação</p>
                                 <p>Você será avisado assim que uma empresa destinadora aceitar sua solicitação.</p>
                             </div>
                         </div>
 
                         <div className="etapa">
                             <div>
-                                <p className="titulo">3. Fique atento</p>
+                                <p className="titulo"><span>✓</span> Fique atento</p>
                                 <p>Um representante da empresa destinadora entrará em contato com você por telefone.</p>
                             </div>
                         </div>
@@ -85,44 +85,56 @@ function Home() {
                 </section>
             </div>
 
-            <section className="navegacao-home" id="navegacao">
-                <SlideBannerHome /> {/* Componente */}
+            <section className="entidades" id="entidades">
+                <h3 className="titulo-metade-linha-ent">Quem são os atuantes no sistema?</h3>
+                <div className="cards-ent-container">
+
+                    {/* Geradores */}
+                    <div className="card-entidade linha">
+                        <img src={picgera} alt="Imagem representando geradores" className="imagem" />
+                        <div className="texto">
+                          <h4 className="titulo-gerador">Geradores</h4>
+                          <p className="texto-gerador">
+                            Geradores são empresas e organizações que produzem resíduos como resultado de suas atividades diárias, incluindo comércios, indústrias, hospitais, instituições públicas e privadas. 
+                            Eles têm a responsabilidade legal de garantir que seus resíduos sejam descartados de forma correta e ambientalmente segura, evitando impactos negativos ao meio ambiente e à saúde pública.
+                            <br /><br />
+                            Com a plataforma, essas empresas podem solicitar coletas de resíduos de maneira rápida e simples, acompanhar o status das solicitações em tempo real e comprovar que seus resíduos obtiveram destinação adequada.
+                            Isso facilita a conformidade com as normas ambientais e auxilia na gestão interna de resíduos, promovendo práticas sustentáveis e reduzindo riscos operacionais.</p>
+                        </div>
+                    </div>
+
+                    {/* Destinadores */}
+                    <div className="card-entidade linha">
+                      <div className="texto">
+                        <h4 className="titulo-destinador">Destinadores</h4>
+                        <p className="texto-destinador">
+                          Destinadores são empresas especializadas no transporte, tratamento e destinação final de resíduos sólidos, atuando conforme as legislações ambientais vigentes. 
+                            Essas empresas desempenham um papel essencial na cadeia de gerenciamento de resíduos, assegurando que materiais potencialmente poluentes ou perigosos sejam tratados de forma segura e ambientalmente adequada.
+                            <br /><br />
+                            Por meio da plataforma, destinadoras têm acesso a solicitações de coleta próximas, podendo otimizar rotas, reduzir custos operacionais e acompanhar todo o histórico de coletas com praticidade.
+                            Além disso, muitas dessas empresas também são responsáveis por emitir certificados de destinação final (CDF), que comprovam a regularidade do processo perante órgãos ambientais.
+                        </p>
+                    </div>
+                      <img src={picdest} alt="Imagem representando destinadores" className="imagem" />
+                    </div>
+
+                    </div>
             </section>
 
+            {/* <section className="navegacao-home" id="navegacao">
+                <SlideBannerHome /> {/* Componente 
+            </section> */}
+
             <section className="mapa" id="mapa">
-                <h3>Encontre pontos de coleta próximos</h3>
-                <p>Utilize o mapa abaixo para localizar destinadoras cadastradas por tipo de resíduo e distância.</p>
+                <h3 className="titulo-metade-linha-mapa">Encontre Destinadoras próximas</h3>
                 <Ecomapa />
             </section>
 
             <section className="blog" id="blog">
-                <h3>Informações e Dicas</h3>
+                <h3 className="titulo-metade-linha-blog">Informações e Dicas</h3>
                 <p>Confira conteúdos sobre descarte correto, legislação ambiental e práticas sustentáveis.</p>
                 <Informativo />
             </section>
-
-
-{/* <section className="entidades" id="entidades">
-                <h3>Trabalhamos com:</h3>
-                    <div className="cards-ent-container">
-
-                    <div className="card-entidade">
-                      <h4>Geradores</h4>
-                      <img src={picgera} alt="Imagem representando geradores" />
-                        <p>Geradores são empresas que produzem resíduos e precisam de soluções seguras e legais para o descarte. Com a plataforma, é possível solicitar coletas com poucos cliques e monitorar o andamento em tempo real.</p>
-                    </div>
-
-                    <div className="card-entidade">
-                      <h4>Destinadores</h4>
-                      <img src={picdest} alt="Imagem representando destinadores" />
-                        <p>Destinadores são empresas responsáveis pela destinação correta desses resíduos. Elas podem visualizar pedidos de coleta próximos, além de gerenciar rotas e o histórico de coletas de forma eficiente.</p>
-                    </div>
-
-                </div>
-
-            </section> */}
-
-
 
 
 {/* APENAS PARA NAVEGAÇÃO INTERNA ENTRE AS PÁGINAS QUE ESTÃO SENDO DESENVOLVIDAS */}

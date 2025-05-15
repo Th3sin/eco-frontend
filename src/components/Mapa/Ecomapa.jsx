@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import styles from "./ecomapa.module.css";
 import { tipoResiduo, materiais } from '../../data/materiais'; 
+import InputMask from 'react-input-mask'; //npm install react-input-mask 
 
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
 
@@ -33,8 +34,8 @@ function Ecomapa() {
     };
 
     const mapContainerStyle = {
-        width: "800px",
-        height: "500px",
+        width: "1000px",
+        height: "550px",
     };
 
     const defaultCenter = {
@@ -45,76 +46,67 @@ function Ecomapa() {
     return (
         <div className={styles.paginaDescarteMaterial}>
             <div className={styles.containerDescarte}>
-                <div className={styles.formMaterial}>
 
-                    {/* CEP */}
-                    <div className={styles.materialInputs}>
-                        <label htmlFor="cep" className={styles.label}>CEP</label>
-                        <input 
-                            type="text" 
-                            name="cep" 
-                            value={formatarCEP(formData.cep)} 
-                            onChange={handleChange} 
-                            maxLength="9" 
-                            placeholder="_____-___" 
-                            required 
-                        />
-                    </div>
-
-                    {/* Distância */}
-                    <div className={styles.materialInputs}>
-                        <label htmlFor="distancia" className={styles.label}>Distância</label>
-                        <select 
-                            name="distancia" 
-                            className={`${styles.selectField} ${styles.selecioneDistancia}`}  
-                            value={formData.distancia} 
-                            onChange={handleChange} >
-                            {[3, 7, 10, 15, 20, 25, 30].map((dist) => (
-                                <option key={dist} value={dist}>{dist} (km)</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {/* Tipo do Resíduo */}
-                    <div className={styles.materialInputs}>
-                        <label htmlFor="residuo" className={styles.label}>Tipo do Resíduo</label>
-                        <select 
-                            name="residuo" 
-                            className={`${styles.selectField} ${styles.selecioneTipoResiduo}`}  
-                            value={formData.residuo} 
-                            onChange={handleChange}
-                        >
-                            <option value="" disabled>Selecione o tipo do resíduo</option>
-                            {tipoResiduo.map((residuo, index) => (
-                                <option key={index} value={residuo}>{residuo}</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {/* Botão */}
-                    <button 
-                        className={styles.botaoEncontrar} 
-                        onClick={handleFindPoints}
-                    >
-                        ENCONTRAR PONTOS
-                    </button>
-                </div>
-
-                {/* Mapa */}
-                <div className={styles.mapBox}>
-                    {!isLoaded ? (
-                        <div>Carregando Mapa...</div>
-                    ) : (
-                        <GoogleMap 
-                            mapContainerStyle={mapContainerStyle} 
-                            center={defaultCenter} 
-                            zoom={10} 
-                        />
-                    )}
-                </div>
+             {/* Caixa do mapa */}
+             <div className={styles.boxMapa}>
+               {!isLoaded ? (
+                 <div>Carregando Mapa...</div>
+               ) : (
+                 <GoogleMap 
+                   mapContainerStyle={mapContainerStyle} 
+                   center={defaultCenter} 
+                   zoom={10} 
+                 />
+               )}
             </div>
-
+        
+            {/* Caixa do formulário */}
+            <div className={styles.boxFormulario}>
+              <p className={styles.textoIntroducao}>
+                Utilize o mapa ao lado para localizar destinadoras cadastradas por tipo de resíduo e distância.
+              </p>
+               
+              <div className={styles.grupoInputs}>
+                {/* CEP */}
+                <label>CEP</label>
+                <InputMask mask="99999-999" value={formData.cep} onChange={handleChange}>
+                  {(inputProps) => (
+                    <input {...inputProps} type="text" name="cep" placeholder="_____-___" required />
+                  )}
+                </InputMask>
+                
+                {/* Distância */}
+                <div className={styles.materialInputs}>
+                  <label htmlFor="distancia" className={styles.label}>Distância</label>
+                  <select name="distancia" value={formData.distancia} onChange={handleChange}>
+                    {[3, 7, 10, 15, 20, 25, 30].map((dist) => (
+                      <option key={dist} value={dist}>{dist} km</option>
+                    ))}
+                  </select>
+                </div>
+                  
+                {/* Tipo de Resíduo */}
+                <div className={styles.materialInputs}>
+                  <label htmlFor="residuo" className={styles.label}>Tipo do Resíduo</label>
+                  <select name="residuo" value={formData.residuo} onChange={handleChange}>
+                    <option value="" disabled>Selecione o tipo do resíduo</option>
+                    {tipoResiduo.map((residuo, index) => (
+                      <option key={index} value={residuo}>{residuo}</option>
+                    ))}
+                  </select>
+                </div>
+                  
+                {/* Botão */}
+                <button className={styles.botaoEncontrar} onClick={handleFindPoints}>
+                  ENCONTRAR PONTOS
+                </button>
+              </div>
+          </div>
+              
         </div>
+    </div>
+
+
     );
 }
 

@@ -116,7 +116,7 @@
 
 .informacoes-formulario {
     height: 450px;
-    background-color: rgb(149, 198, 159);
+    background-color: rgba(72, 188, 95, 0.775);
     margin-top: 100px;
     display: flex;
     flex-wrap: wrap;
@@ -142,11 +142,26 @@
 
 .informativo-descarte h2 {
     font-size: 1.8rem;
-    color: #112c15;
+    color: #000000;
     margin-bottom: 2.5rem;
     display: inline-block;
-    border-bottom: 2.5px solid #112c2b;
-    padding-bottom: 2px; 
+}
+
+.titulo-metade-linha {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.titulo-metade-linha::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 44%;
+    height: 3px;
+    background-color: #932020; 
 }
 
 .etapa {
@@ -154,6 +169,10 @@
     align-items: flex-start;
     gap: 1rem;
     margin-bottom: 1.5rem;
+}
+
+.etapa span {
+    color: red;
 }
 
 .titulo {
@@ -166,6 +185,7 @@
     padding: 20px;
     flex: 1 1 400px;
     max-width: 400px;
+    height: 450px;
     background-color: white;
     border-radius: 10px;
     border: solid black 0.5px;
@@ -189,62 +209,151 @@
     margin-top: 150px;
 }
 
+/*SEÇÃO INFORMATIVA*/
 .blog {
-    margin-top: 150px;
+    margin-left: 40px;
+    margin-top: 130px;
 }
-
-.blog h3, 
 .blog p {
     font-size: 25px;
-    text-align: center;
     margin-bottom: 20px;
+}
+.blog h3 {
+    font-size: 35px;
+    color: rgb(0, 0, 0);
+}
+.titulo-metade-linha-blog {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.titulo-metade-linha-blog::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 90%;
+    height: 3px;
+    background-color: #23901b; 
 }
 
 .mapa {
-    margin-top: 150px;
+    margin-left: 40px;
+    margin-top: 100px;
 }
-.mapa h3,
-.mapa p {
-    text-align: center;
-    font-size: 25px;
-    margin-bottom: 20px;
+.mapa h3 {
+    font-size: 35px;
+    color: rgb(0, 0, 0);
+}
+
+.titulo-metade-linha-mapa {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.titulo-metade-linha-mapa::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 69%;
+    height: 3px;
+    background-color: #23901b; 
 }
 
 /* ENTIDADES */
 .entidades {
-    text-align: center;
-    margin-top: 150px;
+    padding: 40px;
 }
 
-.entidades p {
-    margin-top: 35px;
+.entidades h3 {
+    margin-top: 100px;
+    font-size: 35px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 30px;
+}
+
+.titulo-metade-linha-ent {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.titulo-metade-linha-ent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 63%;
+    height: 3.5px;
+    background-color: #23901b; 
 }
 
 .cards-ent-container {
+    font-size: 23px;
     display: flex;
+    flex-direction: column;
     gap: 2rem;
+}
+
+.card-entidade.linha {
+    border-radius: 10px;
+    padding: 23px;
+    background-color: #272a272e;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 1.5rem;
+    gap: 2rem;
+    width: 100%;
 }
 
-.card-entidade {
-    width: 300px;
-    height: 440px;
-    position: relative;
-    padding: 20px;
-    background: rgb(132, 159, 134);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    border-radius: 25px;
+.card-entidade .imagem {
+    width: 230px;
+    height: auto;
+    border-radius: 10px;
 }
 
-.card-entidade:hover {
-    border: 5px solid green;
+.card-entidade .texto {
+    flex: 1;
+    min-width: 250px;
+}   
+
+.titulo-destinador {
+    color: green;
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-left: 29px;
+}
+.titulo-gerador {
+    color: green;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.texto-destinador {
+    text-align: justify;
+    margin-left: 29px;
+}
+.texto-gerador {
+    text-align: justify;
+    margin-right: 50px;
 }
 
-.card-entidade img {
-    height: 200px;
-    border-radius: 25px;
+@media (max-width: 768px) {
+  .card-entidade.linha {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .card-entidade .imagem {
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 /* Responsividade */
@@ -313,29 +422,20 @@
 
 
 
-
-
-
-
-
-
-
-
 .navegacao-interna {
     margin-top: 100px;
+    flex-direction: column;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    gap: 2.5rem;
 }
 
 .navegacao-interna button {
     width: 200px;
-    height: 140px;
+    height: 100px;
     background-color: rgb(218, 217, 242);
     border-radius: 10px;
     border: solid 1px green;
-    margin-left: 10px;
-    margin-top: 20px;
 }
 
 .navegacao-interna a {
