@@ -1,9 +1,9 @@
 // src/data/materiais.js
 
 export const tipoResiduo = [ 
-    "Orgânico", "Eletrônico", "Hospitalar", "Entulhos", "Têxteis", 
-    "Perfurocortante", "Químico", "Radioativo", "Plástico", "Vidro", 
-    "Metais", "Papel", "Agroindustrial", "Inerte" 
+  "Orgânico", "Eletrônico", "Hospitalar", "Entulhos", "Têxteis", 
+  "Perfurocortante", "Químico", "Radioativo", "Plástico", "Vidro", 
+  "Metais", "Papel", "Agroindustrial", "Inerte" 
 ];
 
 export const materiais = {

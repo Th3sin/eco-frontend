@@ -86,7 +86,7 @@ function Home() {
             </div>
 
             <section className="entidades" id="entidades">
-                <h3 className="titulo-metade-linha-ent">Quem são os atuantes no sistema?</h3>
+                <h3 className="titulo-metade-linha-ent">Quem atua no sistema?</h3>
                 <div className="cards-ent-container">
 
                     {/* Geradores */}
@@ -134,7 +134,7 @@ function Home() {
                 <h3 className="titulo-metade-linha-blog">Informações e Dicas</h3>
                 <p>Confira conteúdos sobre descarte correto, legislação ambiental e práticas sustentáveis.</p>
                 <Informativo />
-            </section>
+            </section>    
 
 
 {/* APENAS PARA NAVEGAÇÃO INTERNA ENTRE AS PÁGINAS QUE ESTÃO SENDO DESENVOLVIDAS */}

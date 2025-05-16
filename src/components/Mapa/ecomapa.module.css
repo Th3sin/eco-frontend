@@ -7,7 +7,7 @@
 }
 
 .boxMapa {
-  flex: 1 1 65%; 
+  flex: 1 1 75%; 
   min-width: 600px; 
   background-color: #112b2c;
   padding: 1rem;
@@ -18,7 +18,7 @@
 }
 
 .boxFormulario {
-  flex: 1 1 30%; 
+  flex: 1 1 32%; 
   min-width: 350px;
   background-color: #6c767640;
   padding: 2rem;
