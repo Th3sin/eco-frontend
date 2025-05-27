@@ -18,6 +18,9 @@ import Informativo from "./pages/Descarte/Informativo";
 import HistoricoSolicitacoes from "./pages/Coleta/Historico/HistoricoSolicitacoes";
 import ColetaForm from "./pages/Coleta/Pedidos/ColetaForm";
 import SolicitarColeta from "./components/Coleta/Solicitacao/SolicitarColeta";
+import PainelColeta from "./pages/Coleta/Painel/PainelColeta";
+import CadastroResiduo from "./pages/Registros/Material/CadastroResiduo"
+import AcompanhamentoColetas from "./pages/Coleta/Painel/AcompanhamentoColetas";
 
 function Layout() {
     const location = useLocation();
@@ -30,7 +33,7 @@ function Layout() {
             "/Perfil",
             "/CadastroDestinador",
             "/CadastroGerador",
-            "/Background"
+            "/CadastroResiduo"
         ];
 
         setShowHeader(!noHeaderRoutes.includes(location.pathname));
@@ -64,6 +67,8 @@ function RoutesApp() {
                     <Route path="/ColetaForm" element={<ColetaForm />} />
                     <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
                     <Route path="/SolicitarColeta" element={<SolicitarColeta />} />
+                    <Route path="/PainelColeta" element={<PainelColeta />} />
+                    <Route path="/AcompanhamentoColetas" element={<AcompanhamentoColetas />} />
 
                     {/* Páginas sem Header */}
                     <Route path="/Registro" element={<Registro />} />
@@ -72,6 +77,7 @@ function RoutesApp() {
                     <Route path="/CadastroGerador" element={<CadastroGerador />} />
                     <Route path="/Endereco" element={<Endereco />} />
                     <Route path="/Login" element={<Login />} />
+                    <Route path="/CadastroResiduo" element={<CadastroResiduo />} />
 
                 </Route>
             </Routes>

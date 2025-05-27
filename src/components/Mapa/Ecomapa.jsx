@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'; //npm install @react-google-maps/api
 import styles from "./ecomapa.module.css";
 import { tipoResiduo, materiais } from '../../data/materiais'; 
 import InputMask from 'react-input-mask'; //npm install react-input-mask 

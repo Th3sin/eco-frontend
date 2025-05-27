@@ -1,27 +1,100 @@
 .footer {
     color: white;
     margin-top: 100px;
+    font-family: Arial, sans-serif;
 }
  
 .informacoes-site {
     background-color: #112b2c;
-    height: 300px;
+    min-height: 300px;
+    padding: 40px 20px;
 }
  
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-logo img {
+    width: 100px;
+}
+
+.footer-nav,
+.footer-contact,
+.footer-social {
+    flex: 1 1 180px;
+    display: block; 
+}
+
+.footer-nav h3,
+.footer-contact h3,
+.footer-social h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 2px solid #279a27; 
+    padding-bottom: 6px;
+}
+
+.footer-nav ul,
+.footer-social ul {
+    display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+    
+}
+
+.footer-nav li,
+.footer-social li {
+    margin-bottom: 10px;
+}
+
+.footer-nav a,
+.footer-social a,
+.footer-contact a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover,
+.footer-social a:hover,
+.footer-contact a:hover {
+    color: #279a27;
+    text-decoration: underline;
+}
+
+.footer-contact address {
+    font-style: normal;
+    line-height: 1.6;
+}
+
 .faixa-copyright {
     background-color: rgb(39, 122, 39);
     height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
 }
- 
-.footer table {
-    border-spacing: 80px 10px;
-    margin: 0 auto;
-}
- 
-.footer th {
-    text-align: start;
-}
- 
-.footer img {
-    width: 100px;
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-nav,
+    .footer-contact,
+    .footer-social {
+        flex: none;
+        width: 100%;
+        max-width: 400px;
+    }
 }

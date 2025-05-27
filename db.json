@@ -7,29 +7,23 @@
       "senha": "123456789"
     }
   ],
-
-  "destinadoras": [
+  "solicitacoes": [
     {
-      
-    }
-  ],
-
-  "geradoras": [
+      "id": "0593"
+    },
     {
-
-    }
-  ],
-
-  "residuos": [
-    {
-
-    }
-  ],
-
-  "coletas": [
-    {
-
+      "id": "7f8a",
+      "nomeEmpresa": "Química Soluções Ltda",
+      "telefone": "(11) 98765-4321",
+      "dataColeta": "2025-06-01",
+      "turno": "Manhã",
+      "observacaoEtapa1": "Carga retida por semanas devido a entraves burocráticos do cliente final. Alto risco de contaminação.",
+      "nomeResiduo": "Solventes Orgânicos Expirados",
+      "classeResiduo": "Classe I",
+      "grupoResiduo": "Grupo B (Químico)",
+      "quantidade": "140 KG",
+      "observacaoFinal": "Carga armazenada no galpão localizado na Rua Industrial, 123, Distrito Industrial, aguardando liberação para coleta.",
+      "imagensBase64": []
     }
   ]
-
 }

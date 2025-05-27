@@ -68,15 +68,12 @@
   margin-right: 60px;
   padding-left: 1px;
   font-size: 15px;
-  color: #173a3b;
+  color: #143031;
 }
 
 .containerLogin input[type="checkbox"] {
-  width: 10px;
-  height: 10px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  width: 17px;
+  height: 17px;
   margin-left: 2px;
   border: 2px solid #2a5152;
   border-radius: 3px;
@@ -84,21 +81,6 @@
   position: relative;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
-}
-
-.containerLogin input[type="checkbox"]:checked {
-  background-color: #173a3b;
-  border-color: #173a3b;
-}
-
-.containerLogin input[type="checkbox"]:checked::after {
-  content: '✓';
-  color: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
 }
 
 .containerLogin label:has(input[type="checkbox"]:checked) {
