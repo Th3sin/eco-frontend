@@ -1,0 +1,23 @@
+.instrucoes-container {
+  max-width: 800px;
+  margin-top: 80px;
+  padding: 0 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  line-height: 1.6;
+}
+
+.instrucoes-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+.instrucoes-section {
+  margin-bottom: 30px;
+}
+
+.instrucoes-subtitle {
+  color: #34495e;
+  margin-bottom: 12px;
+}

@@ -76,10 +76,10 @@ function Header() {
 
           <div className="links-header">
 
-            <Link to="/" className="abas" title="Acesse seu perfil" >Entre</Link>
-            <Link to="/" className="abas">Entre</Link>
-            <Link to="/" className="abas">Entre</Link>
-            <Link to="/" className="abas">Entre</Link>
+            <Link to="/" className="abas" title="Acesse sua conta" >Entre</Link>
+            <Link to="/SolicitarColeta" title="Serviços e Soluções" className="abas">Serviços</Link>
+            <Link to="/Instrucoes" className="abas">Instruções</Link>
+            <Link to="/" className="abas">Blog</Link>
 
           </div>
       </nav>

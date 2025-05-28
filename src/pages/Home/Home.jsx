@@ -162,6 +162,7 @@ function Home() {
                 <Link to="/PainelColeta"><button>Painel de Coletas (Coletora)</button></Link>
                 <Link to="/Perfil"><button>Escolha Perfil Gerador ou Destinador</button></Link>
                 <Link to="/CadastroResiduo"><button>Formulário cadastro Resíduo</button></Link>
+                <Link to="/Instrucoes"><button>Manual para Usuário</button></Link>
             </div>
 
             <div>

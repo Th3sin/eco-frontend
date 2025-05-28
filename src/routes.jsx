@@ -21,6 +21,7 @@ import SolicitarColeta from "./components/Coleta/Solicitacao/SolicitarColeta";
 import PainelColeta from "./pages/Coleta/Painel/PainelColeta";
 import CadastroResiduo from "./pages/Registros/Material/CadastroResiduo"
 import AcompanhamentoColetas from "./pages/Coleta/Painel/AcompanhamentoColetas";
+import Instrucoes from "./components/Coleta/Manual/Instrucoes";
 
 function Layout() {
     const location = useLocation();
@@ -69,6 +70,7 @@ function RoutesApp() {
                     <Route path="/SolicitarColeta" element={<SolicitarColeta />} />
                     <Route path="/PainelColeta" element={<PainelColeta />} />
                     <Route path="/AcompanhamentoColetas" element={<AcompanhamentoColetas />} />
+                    <Route path="/Instrucoes" element={<Instrucoes />} />
 
                     {/* Páginas sem Header */}
                     <Route path="/Registro" element={<Registro />} />
