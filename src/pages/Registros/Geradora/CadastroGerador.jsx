@@ -46,11 +46,6 @@ function CadastroGerador() {
         </div>
         
         <div className="campo">
-          <label htmlFor="razaosocial"> Razão Social: </label>
-          <input type="text" id="razaosocial" name="razaoSocial" value={formData.razaoSocial} onChange={handleChange} placeholder="Informe a Razão Social" required />
-        </div>
-        
-        <div className="campo">
           <select name="ramo" value={formData.ramo} onChange={handleChange} required>
             <option value=""> Selecione o ramo de atividade </option>
             <option value="industrial">Industrial</option>
@@ -59,7 +54,7 @@ function CadastroGerador() {
           </select>
         </div>
 
-        <div className="campo">
+        {/* <div className="campo">
           <select name="cargo" value={formData.cargo} onChange={handleChange} required>
             <option value="">Selecione o cargo </option>
             <option value="ceo">CEO</option>
@@ -67,7 +62,7 @@ function CadastroGerador() {
             <option value="proprietario">Proprietário</option>
             <option value="representante_ambiental">Representante Ambiental</option>
           </select>
-        </div>
+        </div> */}
        
         <div className="campo">
           <label htmlFor="residuoGerado">Resíduo Gerado:</label>

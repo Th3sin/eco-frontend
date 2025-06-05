@@ -80,3 +80,54 @@ span {
     font-size: 20px;
     color: white;
 }
+
+/* MENU SUSPENSO */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  font-size: 17px;
+  padding: 10px 15px;
+  margin-right: 5px;
+  color: white;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #112b2c;
+  min-width: 200px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  margin-top: 6px;
+  overflow: hidden;
+  border: 1px solid #0d1f20;
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 12px 18px;
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #1a3a3c;
+  padding-left: 24px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}

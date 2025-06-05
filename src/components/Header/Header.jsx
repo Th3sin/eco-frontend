@@ -77,7 +77,16 @@ function Header() {
           <div className="links-header">
 
             <Link to="/" className="abas" title="Acesse sua conta" >Entre</Link>
-            <Link to="/SolicitarColeta" title="Serviços e Soluções" className="abas">Serviços</Link>
+
+             {/* Dropdown de Serviços */}
+            <div className="dropdown">
+              <span className="abas dropdown-toggle">Serviços</span>
+              <ul className="dropdown-menu">
+                <li><Link to="/Ecomapa">Buscar Destinadoras</Link></li>
+                <li><Link to="/SolicitarColeta">Solicitar Coleta</Link></li>
+              </ul>
+            </div>
+
             <Link to="/Instrucoes" className="abas">Instruções</Link>
             <Link to="/" className="abas">Blog</Link>
 

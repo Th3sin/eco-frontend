@@ -8,11 +8,10 @@
   background-color: #112b2c;
 }
 
-/* AQUI É O CSS DO FORMULÁRIO SIMPLIFICADO DE CADASTRO */
-
+/* Formulário */
 .formulario-cadastro {
   width: 450px;
-  height: 500px;
+  height: 530px;
   background-color: #eff0f5;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.2);
@@ -22,41 +21,52 @@
 }
 
 .formulario-cadastro h2 {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   text-align: center;
   font-size: 30px;
   color: #218962;
 }
 
-.formulario-cadastro label  {
-  margin-right: 60px;
-  padding-left: 1px;
+.formulario-cadastro label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
   font-size: 17px;
   color: #173a3b;
 }
 
-.formulario-cadastro input {
-  padding: 7px;
+.formulario-cadastro input,
+.formulario-cadastro select {
   width: 100%;
   height: 35px;
+  padding: 7px;
+  font-size: 15px;
+  font-family: inherit;
   border: 1px solid #999;
   border-radius: 5px;
   outline: none;
-  margin-top: 3px;
-  margin-bottom: 5px;
+  background-color: #fff;
+  color: #333;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
 .formulario-cadastro input:focus,
-.formulario-cadastro input:focus {
+.formulario-cadastro select:focus {
   border: 2px solid #218962;
+  box-shadow: 0 0 5px rgba(33, 137, 98, 0.3);
 }
 
-.formulario-cadastro input::placeholder,
 .formulario-cadastro input::placeholder {
   font-size: 15px;
   text-align: left;
 }
 
+.formulario-cadastro select option {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Botão de envio */
 .formulario-cadastro button[type="submit"] {
   margin-top: 30px;
   width: 100%;
@@ -74,6 +84,7 @@
   background: #173a3b;
 }
 
+/* Campo com ícone de olho */
 .input-container {
   position: relative;
 }
@@ -89,6 +100,7 @@
   z-index: 2;
 }
 
+/* Link de login */
 .sign-in-link {
   margin-top: 12px;
   display: flex;

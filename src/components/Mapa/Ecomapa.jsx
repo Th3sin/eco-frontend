@@ -1,113 +1,184 @@
 import React, { useState } from "react";
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'; //npm install @react-google-maps/api
-import styles from "./ecomapa.module.css";
-import { tipoResiduo, materiais } from '../../data/materiais'; 
-import InputMask from 'react-input-mask'; //npm install react-input-mask 
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import InputMask from "react-input-mask";
+import axios from "axios";
+import "./buscaMapa.css";
+import { tipoResiduo } from "../../data/materiais";
 
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
 
-const formatarCEP = (cep) => {
-    const numeros = cep.replace(/\D/g, '').slice(0, 8); 
-    return numeros.length > 5 ? numeros.replace(/(\d{5})(\d{1,3})/, '$1-$2') : numeros;
-};
+const Ecomapa = () => {
+  /* ---------- estado do formulário ---------- */
+  const [formData, setFormData] = useState({
+    cep: "",
+    distancia: "3",
+    classe: "",
+    residuo: ""
+  });
 
-function Ecomapa() {
-    const [formData, setFormData] = useState({
-        cep: "",
-        distancia: "3",
-        porteMaterial: "3",
-        material: "",
-        residuo: ""  
-    });
+  /* ---------- estado das destinadoras ---------- */
+  const [destinadoras, setDestinadoras] = useState([]);
+  const [loadingDest, setLoadingDest] = useState(false);
 
-    const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: apiKey
-    });
+  /* ---------- map config ---------- */
+  const { isLoaded } = useJsApiLoader({ googleMapsApiKey: apiKey });
+  const mapContainerStyle = { width: "100%", height: "300px" };
+  const defaultCenter = { lat: -23.5123429, lng: -46.889781 };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+  /* ---------- handlers ---------- */
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-    const handleFindPoints = () => {
-        alert("Busca iniciada!");
-    };
+  const handleSearch = async () => {
+    if (!formData.classe || !formData.residuo) return;
 
-    const mapContainerStyle = {
-        width: "1000px",
-        height: "550px",
-    };
+    try {
+      setLoadingDest(true);
+      setDestinadoras([]);
 
-    const defaultCenter = {
-        lat: -23.5123429,
-        lng: -46.889781,
-    };
+      /* chamada à API */
+      const response = await axios.get(
+        "http://localhost:8080/api/v1/destinadoras",
+        {
+          params: {
+            classe: formData.classe,
+            tipo: formData.residuo
+          },
+          headers: { Accept: "application/json" }
+        }
+      );
 
-    return (
-        <div className={styles.paginaDescarteMaterial}>
-            <div className={styles.containerDescarte}>
+      setDestinadoras(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar destinadoras:", error);
+      setDestinadoras([]);
+    } finally {
+      setLoadingDest(false);
+    }
+  };
 
-             {/* Caixa do mapa */}
-             <div className={styles.boxMapa}>
-               {!isLoaded ? (
-                 <div>Carregando Mapa...</div>
-               ) : (
-                 <GoogleMap 
-                   mapContainerStyle={mapContainerStyle} 
-                   center={defaultCenter} 
-                   zoom={10} 
-                 />
-               )}
-            </div>
+  /* ---------- render ---------- */
+  return (
+    <div className="container">
+      <div className="busca-section">
         
-            {/* Caixa do formulário */}
-            <div className={styles.boxFormulario}>
-              <p className={styles.textoIntroducao}>
-                Utilize o mapa ao lado para localizar destinadoras cadastradas por tipo de resíduo e distância.
-              </p>
-               
-              <div className={styles.grupoInputs}>
-                {/* CEP */}
-                <label>CEP</label>
-                <InputMask mask="99999-999" value={formData.cep} onChange={handleChange}>
+        {/* formulário */}
+        <div className="form-area">
+          <h2 className="section-title">Buscar Destinadoras</h2>
+          <p className="section-description">
+            Selecione classe e tipo de resíduo para localizar destinadoras cadastradas.
+          </p>
+
+          <div className="form-fields">
+            {/* CEP (sem efeito na busca) */}
+            <div className="form-group">
+              <label>CEP</label>
+              <InputMask mask="99999-999" value={formData.cep} onChange={handleChange}>
                   {(inputProps) => (
-                    <input {...inputProps} type="text" name="cep" placeholder="_____-___" required />
+                    <input
+                      {...inputProps}
+                      type="text"
+                      name="cep"
+                      placeholder="_____-___"
+                      required
+                      className="input-text"
+                    />
                   )}
-                </InputMask>
-                
-                {/* Distância */}
-                <div className={styles.materialInputs}>
-                  <label htmlFor="distancia" className={styles.label}>Distância</label>
-                  <select name="distancia" value={formData.distancia} onChange={handleChange}>
-                    {[3, 7, 10, 15, 20, 25, 30].map((dist) => (
-                      <option key={dist} value={dist}>{dist} km</option>
-                    ))}
-                  </select>
-                </div>
-                  
-                {/* Tipo de Resíduo */}
-                <div className={styles.materialInputs}>
-                  <label htmlFor="residuo" className={styles.label}>Tipo do Resíduo</label>
-                  <select name="residuo" value={formData.residuo} onChange={handleChange}>
-                    <option value="" disabled>Selecione o tipo do resíduo</option>
-                    {tipoResiduo.map((residuo, index) => (
-                      <option key={index} value={residuo}>{residuo}</option>
-                    ))}
-                  </select>
-                </div>
-                  
-                {/* Botão */}
-                <button className={styles.botaoEncontrar} onClick={handleFindPoints}>
-                  ENCONTRAR PONTOS
-                </button>
-              </div>
+              </InputMask>
+
+
+            </div>
+
+            {/* (sem efeito na busca) */}
+            <div className="form-group">
+              <label>Distância</label>
+              <select name="distancia" value={formData.distancia} onChange={handleChange}>
+                {[3, 7, 10, 15, 20, 25, 30].map((dist) => (
+                  <option key={dist} value={dist}>
+                    {dist} km
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Classe */}
+            <div className="form-group">
+              <label>Classe</label>
+              <select name="classe" value={formData.classe} onChange={handleChange}>
+                <option value="" disabled>
+                  Selecione a classe
+                </option>
+                <option value="Classe I (Perigosos)">Classe I (Perigosos)</option>
+                <option value="Classe II (Não Perigosos)">Classe II (Não Perigosos)</option>
+              </select>
+            </div>
+
+            {/* Tipo de resíduo */}
+            <div className="form-group">
+              <label>Tipo de Resíduo</label>
+              <select name="residuo" value={formData.residuo} onChange={handleChange}>
+                <option value="" disabled>
+                  Selecione o tipo do resíduo
+                </option>
+                {tipoResiduo.map((res, idx) => (
+                  <option key={idx} value={res}>
+                    {res}
+                  </option>
+                ))}
+              </select>
+            </div>
+
           </div>
-              
+
+          <button className="search-button" onClick={handleSearch}>
+            Buscar
+          </button>
         </div>
+
+        {/* mapa apenas visual */}
+        <div className="map-area">
+          {isLoaded ? (
+            <GoogleMap
+              mapContainerStyle={mapContainerStyle}
+              center={defaultCenter}
+              zoom={10}
+            />
+          ) : (
+            <div>Carregando Mapa...</div>
+          )}
+        </div>
+      </div>
+
+      {/* resultados */}
+      <div className="result-section">
+        <h3 className="result-title">Destinadoras Encontradas</h3>
+
+        {loadingDest ? (
+          <p>Carregando destinadoras...</p>
+        ) : destinadoras.length ? (
+          <div className="card-list">
+            {destinadoras.map((dest, index) => (
+              <div key={index} className="card">
+                <div className="card-header">
+                  <h4>{dest.nome}</h4>
+                  <span className="status-dot" />
+                </div>
+                <p>Telefone: {dest.telefone}</p>
+                <p>E-mail: {dest.email}</p>
+                <p>Resíduo aceito: {dest.tipo_residuo}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          
+          <p>Nenhuma destinadora encontrada.</p>
+          
+        )}
+      </div>
     </div>
-
-
-    );
-}
+  );
+};
 
 export default Ecomapa;

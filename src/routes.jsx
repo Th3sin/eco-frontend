@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Header from './components/Header/Header'; 
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
-import Ecomapa from './components/Mapa/Ecomapa';
 import Perfil from "./pages/Registros/Perfil";
 import CadastroDestinador from './pages/Registros/Destinadora/CadastroDestinador';
 import CadastroGerador from './pages/Registros/Geradora/CadastroGerador';
@@ -22,6 +21,7 @@ import CadastroResiduo from "./pages/Registros/Material/CadastroResiduo"
 import AcompanhamentoColetas from "./pages/Coleta/Painel/AcompanhamentoColetas";
 import Instrucoes from "./components/Coleta/Manual/Instrucoes";
 import Registro from "./pages/Registros/Registro";
+import Ecomapa from "./components/Mapa/Ecomapa";
 
 function Layout() {
     const location = useLocation();
@@ -71,6 +71,7 @@ function RoutesApp() {
                     <Route path="/PainelColeta" element={<PainelColeta />} />
                     <Route path="/AcompanhamentoColetas" element={<AcompanhamentoColetas />} />
                     <Route path="/Instrucoes" element={<Instrucoes />} />
+                    <Route path="/Ecomapa" element={<Ecomapa />} />
 
                     {/* Páginas sem Header */}
                     <Route path="/Registro" element={<Registro />} />

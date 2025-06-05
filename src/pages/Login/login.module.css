@@ -31,7 +31,6 @@
 .logoEcoplus img {
   width: 93px;
   margin-bottom: 70px;
-  /* box-shadow: 0px -5px 4px 0px rgba(21, 20, 20, 0.2); */
   border: 10px solid #eff0f5; 
   border-radius: 50px;
 }
@@ -50,32 +49,6 @@
   color: #143031;
 }
 
-.containerLogin input[type="checkbox"] {
-  width: 17px;
-  height: 17px;
-  margin-left: 2px;
-  border: 2px solid #2a5152;
-  border-radius: 3px;
-  background-color: #fff;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-.containerLogin label:has(input[type="checkbox"]:checked) {
-  color: #656d65;
-}
-
-.containerLogin label:has(input[type="checkbox"]) {
-  font-size: 13.5px;
-  margin-top: 4px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding-top: 2px;
-}
-
-.containerLogin input[type="email"],
 .containerLogin input[type="password"] {
   padding: 7px;
   width: 100%;
@@ -86,20 +59,17 @@
   margin-top: 3px;
   margin-bottom: 5px;
 }
-  
-.containerLogin input[type="email"]:focus,
 .containerLogin input[type="password"]:focus {
   border: 2px solid #218962;
 }
 
-.containerLogin input[type="email"]::placeholder,
 .containerLogin input[type="password"]::placeholder {
   font-size: 14px;
   text-align: left;
 }
 
 .containerLogin button[type="submit"] {
-  margin-top: 15px;
+  margin-top: 30px;
   width: 100%;
   padding: 10px 0;
   cursor: pointer;
@@ -165,13 +135,29 @@
   transform: translateY(-50%);
   cursor: pointer;
   color: #666;
-  font-size: 17px;
   z-index: 2;
 }
 
-.errorMessage {
-  color: #ff0004;           
-  font-size: 15px;
-  text-align: center;
-  font-weight: 600;
+.inputEmail {
+  padding-right: 10px;
+  width: 100%;
+  height: 35px;
+  padding: 7px;
+  border: 1px solid #999;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 3px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  transition: border 0.2s ease-in-out;
+}
+
+.inputEmail:focus {
+  border: 2px solid #218962;
+}
+
+.inputEmail::placeholder {
+  font-size: 14px;
+  color: #aaa;
+  text-align: left;
 }

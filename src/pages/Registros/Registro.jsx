@@ -62,7 +62,7 @@ const Registro = () => {
   return (
     <div className="registro-container">
       <div className="formulario-cadastro" id="formulario-cadastro">
-        <h2>Seja bem-vindo!</h2>
+        <h2>Acesse sua conta</h2>
         <form onSubmit={handleSubmit}>
 
           <label htmlFor="nome">Nome</label>
@@ -85,7 +85,7 @@ const Registro = () => {
             required
           />
 
-            <label htmlFor="perfil">Escolha seu perfil</label>
+          <label htmlFor="perfil">Escolha seu perfil</label>
           <select 
             id="perfil"
             value={perfil}

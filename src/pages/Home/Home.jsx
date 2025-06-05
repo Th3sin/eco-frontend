@@ -1,8 +1,6 @@
 import React from "react";
 import { Link, useLocation } from 'react-router-dom';
 import "./home.css";
-import Ecomapa from '../../components/Mapa/Ecomapa';
-import Informativo from '../Descarte/Informativo';
 import Footer from '../../components/Layout/Footer'
 import ecoTitulo from '../../img/ecotitulo.png'
 import picgera from "../../img/fabrica-exemplo.jpg";
@@ -115,15 +113,6 @@ function Home() {
                 </div>
             </section>
 
-            {/* <section className="navegacao-home" id="navegacao">
-                <SlideBannerHome /> {/* Componente 
-            </section> */}
-
-            <section className="mapa" id="mapa">
-                <h3 className="titulo-metade-linha-mapa">Encontre Destinadoras próximas</h3>
-                <Ecomapa />
-            </section>
-
             {/*BLOG*/}
             <section className="blog" id="blog">
                 <h3 className="titulo-metade-linha-blog">Informações e Dicas</h3>
@@ -170,6 +159,7 @@ function Home() {
                 <Link to="/CadastroDestinador"><button>Formulário de Cadastro Destinador</button></Link>
                 <Link to="/SolicitarColeta"><button>Formulário de Solicitação de Coleta</button></Link>
                 <Link to="/AcompanhamentoColetas"><button>Tela Acompanhamento de Coleta com Mapa</button></Link>
+                <Link to="/BuscaMapa"><button>Mapa de busca Destinadoras</button></Link>
             </div>
         </section>
         {/*_______________________________________________________________________________*/}

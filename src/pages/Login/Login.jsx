@@ -18,10 +18,9 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
 
     if (!username || !password) {
-      setError("Por favor, preencha todos os campos.");
+      alert("Por favor, preencha todos os campos.");
       return;
     }
 
@@ -33,7 +32,6 @@ function Login() {
 
       const { access_token, nome, role } = response.data;
 
-      // Armazenamento local (opcional)
       // localStorage.setItem("token", access_token);
       // localStorage.setItem("nome", nome);
       // localStorage.setItem("role", role);
@@ -42,9 +40,9 @@ function Login() {
 
     } catch (err) {
       if (err.response && err.response.status === 401) {
-        setError("Usuário ou senha incorretos.");
+        alert("Usuário ou senha incorretos.");
       } else {
-        setError("Erro ao realizar login");
+        alert("Erro ao realizar login.");
       }
       console.error("Erro de login:", err);
     }
@@ -65,8 +63,10 @@ function Login() {
           <div className={styles.userContainer}>
             <label htmlFor="email">Usuário</label>
             <input
-              type="email"
+              type="text"
+              id="email"
               placeholder="Digite seu e-mail"
+              className={styles.inputEmail}
               value={username}
               onChange={(e) => {
                 setUsername(e.target.value);
@@ -97,8 +97,6 @@ function Login() {
               ></i>
             </div>
           </div>
-
-          {error && <p className={styles.errorMessage}>{error}</p>}
 
           <button type="submit">Entrar</button>
 
