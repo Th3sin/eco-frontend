@@ -24,6 +24,20 @@
       "quantidade": "140 KG",
       "observacaoFinal": "Carga armazenada no galpão localizado na Rua Industrial, 123, Distrito Industrial, aguardando liberação para coleta.",
       "imagensBase64": []
+    },
+    {
+      "id": "8f5f",
+      "nomeEmpresa": "",
+      "telefone": "",
+      "dataColeta": "",
+      "turno": "",
+      "observacaoEtapa1": "",
+      "nomeResiduo": "",
+      "classeResiduo": "",
+      "grupoResiduo": "",
+      "quantidade": "",
+      "observacaoFinal": "",
+      "imagensBase64": []
     }
   ]
 }

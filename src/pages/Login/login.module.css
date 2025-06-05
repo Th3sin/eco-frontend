@@ -12,30 +12,9 @@
   background-color: #112b2c;
 }
 
-.backButton {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 40px;
-  display: flex;
-  align-items: center;
-}
-
-.backButton img {
-  width: 60px;
-  border: 5px solid #ffffff; 
-  background-color: white;
-  border-radius: 50px;
-  transition: transform 0.3s ease;
-}
-
-.backButton img:hover {
-  transform: scale(1.2);
-}
-
 .containerLogin {
   width: 370px;
-  height: 395px;
+  height: 360px;
   background-color: #eff0f5;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.2);
@@ -96,25 +75,6 @@
   padding-top: 2px;
 }
 
-.recallForget {
-  margin-top: 2px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.recallForget a {
-  color: #218962;
-  margin-left: 3px;
-  text-decoration: none;
-  font-size: 14.5px;
-}
-
-.recallForget a:hover {
-  color: #173a3b;
-  text-decoration: underline;
-}
-
 .containerLogin input[type="email"],
 .containerLogin input[type="password"] {
   padding: 7px;
@@ -139,8 +99,7 @@
 }
 
 .containerLogin button[type="submit"] {
-  margin-top: 35px;
-  margin-bottom: 7.5px;
+  margin-top: 15px;
   width: 100%;
   padding: 10px 0;
   cursor: pointer;
@@ -157,7 +116,7 @@
 }
 
 .signupLink {
-  margin-top: 4px;
+  margin-top: 10px;
 }
 
 .signupLink p {
@@ -208,4 +167,11 @@
   color: #666;
   font-size: 17px;
   z-index: 2;
+}
+
+.errorMessage {
+  color: #ff0004;           
+  font-size: 15px;
+  text-align: center;
+  font-weight: 600;
 }

@@ -1,5 +1,5 @@
 import "./footer.css";
-import logo from "../../img/ecopluspro.png";
+import logo from "../../img/ecotitulo.png";
 
 function Footer() {
   return (

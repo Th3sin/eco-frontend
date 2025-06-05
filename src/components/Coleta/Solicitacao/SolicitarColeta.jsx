@@ -15,6 +15,20 @@ function SolicitarColeta() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [imagesBase64, setImagesBase64] = useState([]);
 
+    const [endereco, setEndereco] = useState({
+      cep: '',
+      logradouro: '',
+      numero: '',
+      complemento: '',
+      bairro: '',
+      cidade: '',
+      estado: ''
+    });
+
+    const handleEnderecoChange = (campo) => {
+      setEndereco((prev) => ({ ...prev, ...campo }));
+    };
+
   // Outros estados do formulário
   const [nomeEmpresa, setNomeEmpresa] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -105,6 +119,13 @@ function SolicitarColeta() {
         grupoResiduo,
         quantidade,
         observacaoFinal,
+        cep,
+        logradouro,
+        numero,
+        complemento,
+        bairro,
+        cidade,
+        estado,
         imagensBase64: imagesBase64,
       };
 
@@ -283,7 +304,8 @@ function SolicitarColeta() {
               <div className="coleta-form-full">
                 <h3 className="coleta-etapa-titulo">Etapa 3: Informar Endereço</h3>
  
-                <Endereco />
+                <Endereco/>
+
                 <div className="coleta-form-group">
                   <label>Observação</label>
                   <textarea name="observacoes" value={observacaoFinal} onChange={(e) => 
@@ -336,3 +358,5 @@ export default SolicitarColeta;
 {/* RODAR ESTA BAGAÇA: npx json-server --watch db.json --port 3000 */}
 
 {/* http://localhost:3000/solicitacoes */}
+
+{/* npm install json-server */}

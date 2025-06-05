@@ -8,91 +8,11 @@
   background-color: #112b2c;
 }
 
-.back-button img {
-  width: 60px;
-  border: 5px solid #ffffff; 
-  background-color: white;
-  border-radius: 50px;
-  transition: transform 0.3s ease;
-}
-
-.back-button img:hover {
-  transform: scale(1.2);
-}
-
-.registro-container h1 {
-  color: rgb(255, 255, 255);
-  font-size: 35px;
-  position: absolute;
-  top: 50px; 
-  z-index: 1;
-}
-
-.entidades-container {
-  display: flex;
-  justify-content: center; 
-  gap: 20px; 
-  position: relative;
-  z-index: 1; 
-}
-
-.lista-entidades {
-  display: flex;
-  justify-content: center;
-  gap: 30px; 
-}
-
-.item-entidade {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  width: 200px; 
-}
-
-.entidade-botao {
-  width: 200px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  background: rgba(221, 228, 225, 0.721); 
-  border: 1px solid rgba(255, 255, 255, 0.3); 
-  border-radius: 10px; 
-  padding: 20px; 
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; 
-}
-
-.entidade-botao:hover {
-  transform: scale(1.1); 
-  background: rgb(255, 255, 255);
-}
-
-.entidade-botao img {
-  width: 110px;
-  margin-bottom: 10px;
-}
-
-.entidade-botao a {
-  text-decoration: none;
-  color: #000000;
-}
-
-.entidade-botao h2 {
-  text-align: center;
-  color: rgb(43, 43, 43);
-  font-family: Verdana;
-  font-size: 16px;
-}
-
 /* AQUI É O CSS DO FORMULÁRIO SIMPLIFICADO DE CADASTRO */
 
 .formulario-cadastro {
   width: 450px;
-  height: 450px;
+  height: 500px;
   background-color: #eff0f5;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.2);

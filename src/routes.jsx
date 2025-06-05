@@ -4,7 +4,6 @@ import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Ecomapa from './components/Mapa/Ecomapa';
-import Registro from './pages/Registros/Registro';
 import Perfil from "./pages/Registros/Perfil";
 import CadastroDestinador from './pages/Registros/Destinadora/CadastroDestinador';
 import CadastroGerador from './pages/Registros/Geradora/CadastroGerador';
@@ -22,6 +21,7 @@ import PainelColeta from "./pages/Coleta/Painel/PainelColeta";
 import CadastroResiduo from "./pages/Registros/Material/CadastroResiduo"
 import AcompanhamentoColetas from "./pages/Coleta/Painel/AcompanhamentoColetas";
 import Instrucoes from "./components/Coleta/Manual/Instrucoes";
+import Registro from "./pages/Registros/Registro";
 
 function Layout() {
     const location = useLocation();
