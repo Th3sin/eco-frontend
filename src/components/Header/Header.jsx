@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './header.css';
 import Logo from '../../img/ecoplus05.png';
-import UserPic from '../../img/image1.jpg';
+import UserPic from '../../img/empresa-ficticia-icon.jpg';
 
 function Header() {
 
@@ -71,12 +71,10 @@ function Header() {
           </div>
 
           <div className='user-name'>
-            <p>EMPRESA B</p>
+            <p>RodoSafe Logística Ambiental</p>
           </div>
 
           <div className="links-header">
-
-            <Link to="/" className="abas" title="Acesse sua conta" >Entre</Link>
 
              {/* Dropdown de Serviços */}
             <div className="dropdown">
@@ -87,8 +85,16 @@ function Header() {
               </ul>
             </div>
 
-            <Link to="/Instrucoes" className="abas">Instruções</Link>
-            <Link to="/" className="abas">Blog</Link>
+            <div className="dropdown">
+              <span className="abas dropdown-toggle">Informações</span>
+              <ul className="dropdown-menu">
+                <li><Link to="/">Manual Geradoras</Link></li>
+                <li><Link to="/">Manual Destinadoras</Link></li>
+                <li><Link to="/ManualUsuarios">Manual do Usuário</Link></li>
+              </ul>
+            </div>
+
+            <Link to="/" className="abas" title="Acesse sua conta" >Entre</Link>
 
           </div>
       </nav>

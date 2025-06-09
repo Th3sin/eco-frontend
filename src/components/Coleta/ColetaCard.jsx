@@ -1,1 +1,0 @@
-// Cartão/resumo de cada solicitação

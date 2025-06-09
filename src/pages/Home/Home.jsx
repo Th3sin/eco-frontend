@@ -6,6 +6,11 @@ import ecoTitulo from '../../img/ecotitulo.png'
 import picgera from "../../img/fabrica-exemplo.jpg";
 import picdest from "../../img/centro-exemplo.jpg";
 import ColetaForm from "../Coleta/Pedidos/ColetaForm";
+import DownloadApp from "../../components/Layout/DownloadApp";
+import imageBlog01 from "../../img/blog-image001.jpg";
+import imageBlog02 from "../../img/blog-image002.jpg";
+import imageBlog03 from "../../img/blog-image003.jpg";
+import imageBlog04 from "../../img/blog-image004.jpg"
 
 function Home() {
 
@@ -37,7 +42,8 @@ function Home() {
                             <p> Nossa plataforma conecta empresas geradoras de resíduos a destinadoras especializadas, promovendo práticas sustentáveis que geram impacto positivo para o meio ambiente e para os negócios. </p>
                     </div>
                     <div>
-                        <button class="botao-saiba-mais">Saiba Mais</button>
+                        <Link to="/Sobre"><button class="botao-saiba-mais">
+                            Saiba Mais</button></Link>
                     </div>
                 </section>
             </div>
@@ -48,43 +54,12 @@ function Home() {
                 </video> 
             </div>
 
-            {/*  Seção Informativa + Formulário */}
-            <div className="informacoes-formulario">
-
-                <section className="informacoes-descarte">
-                    <div className="informativo-descarte">
-                      <h2 className="titulo-metade-linha">Você está a um passo de regularizar seu descarte</h2>
-
-                      <div className="etapa">
-                            <div>
-                                <p className="titulo-banner"><span className="emote">🖍</span> Preencha o formulário</p>
-                                <p>Envie suas informações de contato com tranquilidade. Seus dados estarão protegidos.</p>
-                            </div>
-                        </div>
-
-                        <div className="etapa">
-                            <div>
-                                <p className="titulo-banner"><span className="alerta-emote">🛎</span>Aguarde a notificação</p>
-                                <p>Você será avisado assim que uma empresa destinadora aceitar sua solicitação.</p>
-                            </div>
-                        </div>
-
-                        <div className="etapa">
-                            <div>
-                                <p className="titulo-banner"><span className="emote">☎</span> Fique atento</p>
-                                <p>Um representante da empresa destinadora entrará em contato com você por telefone.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section className="formulario-coleta">
-                    <ColetaForm />
-                </section>
-            </div>
+            <section className="secao-formulario">
+                <ColetaForm />
+            </section>
 
             <section className="entidades" id="entidades">
-                <h3 className="titulo-metade-linha-ent">Quem atua no sistema?</h3>
+                <h3 className="titulo-metade-linha">Envolvidos na Logística Reversa</h3>
                 <div className="cards-ent-container">
 
                     {/* Geradores */}
@@ -112,10 +87,10 @@ function Home() {
                 </div>
                 </div>
             </section>
-
+            
             {/*BLOG*/}
             <section className="blog" id="blog">
-                <h3 className="titulo-metade-linha-blog">Informações e Dicas</h3>
+                <h3 className="titulo-metade-linha">Informações e Dicas</h3>
                 <p>Confira conteúdos sobre descarte correto, legislação ambiental e práticas sustentáveis.</p>
 
                 <div class="card-container">
@@ -123,23 +98,38 @@ function Home() {
                 <div class="card">
                   <h3>Guia de Separação de Resíduos</h3>
                   <p>Aprenda como separar corretamente os resíduos recicláveis, orgânicos e perigosos.</p>
-                  <a href="/artigos/guia-separacao">Ler mais →</a>
+                  <img src={imageBlog04} alt="AAAAAA"/>
+                  <Link to="/Residuos">Ler mais →</Link>
                 </div>
 
                 <div class="card">
                   <h3>Manual para Empresas Geradoras</h3>
                   <p>Entenda suas responsabilidades legais e operacionais no gerenciamento de resíduos.</p>
+                  <img src={imageBlog01} alt="AAAAAA"/>
                   <a href="/manuais/empresas-geradoras">Acessar manual →</a>
                 </div>
 
                 <div class="card">
                   <h3>Como Funciona a Logística Reversa</h3>
                   <p>Descubra o papel da logística reversa na sustentabilidade e na economia circular.</p>
+                  <img src={imageBlog03} alt="AAAAAA"/>
                   <a href="/artigos/logistica-reversa">Saiba mais →</a>
                 </div>
+
+                <div class="card">
+                  <h3>Coleta de Resíduos Perigosos</h3>
+                  <p>Normas e procedimentos para o manejo adequado de resíduos perigosos.</p>
+                  <img src={imageBlog02} alt="AAAAAA"/>
+                  <a href="/manuais/empresas-geradoras">Saiba Mais →</a>
                 </div>
 
+            </div>
+
             </section>    
+
+             <section className="app-download">
+                <DownloadApp />
+            </section>
 
 
 {/* APENAS PARA NAVEGAÇÃO INTERNA ENTRE AS PÁGINAS QUE ESTÃO SENDO DESENVOLVIDAS */}
@@ -148,18 +138,14 @@ function Home() {
 
             <div>
                 <Link to="/HistoricoSolicitacoes"><button>Solicitações de Coleta p/ Destinador</button></Link>
+                <Link to="/Endereco"><button>FORMULÁRIO DE ENDEREÇO</button></Link>
                 <Link to="/PainelColeta"><button>Painel de Coletas (Coletora)</button></Link>
-                <Link to="/Perfil"><button>Escolha Perfil Gerador ou Destinador</button></Link>
                 <Link to="/CadastroResiduo"><button>Formulário cadastro Resíduo</button></Link>
-                <Link to="/Instrucoes"><button>Manual para Usuário</button></Link>
             </div>
 
             <div>
                 <Link to="/CadastroGerador"><button>Formulário de Cadastro Gerador</button></Link>
                 <Link to="/CadastroDestinador"><button>Formulário de Cadastro Destinador</button></Link>
-                <Link to="/SolicitarColeta"><button>Formulário de Solicitação de Coleta</button></Link>
-                <Link to="/AcompanhamentoColetas"><button>Tela Acompanhamento de Coleta com Mapa</button></Link>
-                <Link to="/BuscaMapa"><button>Mapa de busca Destinadoras</button></Link>
             </div>
         </section>
         {/*_______________________________________________________________________________*/}

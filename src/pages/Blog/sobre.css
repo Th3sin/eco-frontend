@@ -1,0 +1,43 @@
+.saiba-mais-container {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 75px;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.titulo-sobre {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.descricao-sobre {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.secao-sobre {
+  margin-bottom: 30px;
+}
+
+.secao-sobre h2 {
+  font-size: 1.5em;
+  color: #2a7ae2;
+  margin-bottom: 10px;
+}
+
+.secao-sobre p,
+.secao-sobre ol {
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.rodape-sobre {
+  text-align: center;
+  margin-top: 50px;
+  font-style: italic;
+  color: #666;
+}

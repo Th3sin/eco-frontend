@@ -1,99 +1,91 @@
-.container-solicitacao-resumido {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.informacoes-formulario {
+  width: 99vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-image: url('../../../img/banner-coleta-form.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding: 170px 10% 190px 5%;
 }
 
-.container-solicitacao form {
-    overflow-y: auto;
-    height: auto; 
+.formulario-coleta {
+  background-color: #ffffff;
+  padding: 30px;
+  width: 450px;
+  margin-top: 10px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
 }
 
 .resumo-coleta-form-group {
-    display: flex;
-    width: 320px;
-    flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .resumo-coleta-form-group label {
-    font-size: 15px;
-    margin-top: 10px;
-    margin-bottom: 5px;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
 }
 
-.container-solicitacao-resumido button {
-    width: 100%;
-    padding: 10px 0;
-    cursor: pointer;
-    background: #c61515c1;
-    border: none;
-    border-radius: 8px;
-    outline: none;
-    font-size: 16px;
-    color: #fff;
-    transition: background 0.3s ease;
-}
-
-.container-solicitacao-resumido button:hover {
-    background: #c61515;;
-}
-
-.container-solicitacao-resumido label {
-    margin-right: 60px;
-    padding-left: 1px;
-    font-size: 15px;
-    color: #000000;
-}
-
-.resumo-coleta-form-group input {
-    padding: 7px;
-    width: 100%;
-    height: 35px;
-    border: 1px solid #999;
-    border-radius: 5px;
-    outline: none;
-    box-sizing: border-box;
-}
-.resumo-coleta-form-group input::placeholder {
-    font-size: 14px;
-    text-align: left;
-}
-
-.resumo-coleta-form-group input:focus {
-    border: 2px solid #218962;
-}
-
-select[name="classeResiduo"] {
-    padding: 7px;
-    width: 100%;
-    height: 35px;
-    border: 1px solid #999;
-    border-radius: 5px;
-    outline: none;
-    color: #595959; 
-}
-
-select[name="classeResiduo"]:focus {
-    border: 2px solid #218962;
-}
-
-select[name="classeResiduo"] option[value=""] {
-    color: #999; 
-    font-style: italic; 
+.resumo-coleta-form-group input,
+.resumo-coleta-form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
 .resumo-botoes-solicitacao {
-    margin-top: 40px;
-    text-align: center;
+  margin-top: 20px;
+  text-align: center;
 }
 
-.resumo-coleta-form-group input[type="date"] {
-    padding: 7px;
+.resumo-botoes-solicitacao button {
+  background-color: #43ab46;
+  color: white;
+  padding: 12px 25px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.resumo-botoes-solicitacao button:hover {
+  background-color: #235226;
+}
+
+@media (max-width: 900px) {
+  .informacoes-formulario {
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+  }
+
+  .formulario-wrapper {
+    flex-direction: column;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .formulario-imagem-lateral {
+    position: relative;
     width: 100%;
-    height: 35px;
-    border: 1px solid #999;
-    border-radius: 5px;
-    outline: none;
-    font-size: 14px;
-    color: #595959; 
+    height: 150px;
+    left: 0;
+    margin-bottom: 20px;
+  }
+
+  .formulario-coleta {
+    width: 100%;
+  }
 }

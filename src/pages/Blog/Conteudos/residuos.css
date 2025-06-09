@@ -1,0 +1,72 @@
+.container-blog-residuos {
+    margin-top: 75px;
+    max-width: 900px;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    width: 70vw;
+}
+
+.container-blog-residuos h1 {
+    color: green;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.container-blog-residuos date {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 2rem;
+}
+
+.tipos-residuos {
+  margin-bottom: 2rem;
+}
+
+.container-blog-residuos h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.container-blog-residuos h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  color: #444;
+}
+
+.container-blog-residuos ul {
+  list-style: disc inside;
+  margin-left: 1rem;
+  padding-left: 0;
+}
+
+.container-blog-residuos a {
+  color: #1a73e8;
+  text-decoration: underline;
+}
+
+.container-blog-residuos a:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .container-blog-residuos {
+    padding: 1rem;
+  }
+
+  .container-blog-residuos h1 {
+    font-size: 2rem;
+  }
+
+  .container-blog-residuos h2 {
+    font-size: 1.3rem;
+  }
+
+  .container-blog-residuos h3 {
+    font-size: 1.1rem;
+  }
+}

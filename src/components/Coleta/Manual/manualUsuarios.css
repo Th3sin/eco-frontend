@@ -1,0 +1,157 @@
+.manual-wrapper {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 1.5rem;
+  justify-content: center;
+}
+
+.banner-topo {
+  background-color: #264e3b;
+  color: #ffffff;
+  border-radius: 12px;
+  top: 80px;
+}
+
+.banner-titulo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.banner-card {
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 30px;
+  position: relative;
+  text-align: left;
+  border-radius: 12px;
+  width: 300px;
+}
+
+.banner-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  border-radius: 12px;
+  z-index: 0;
+}
+
+.card-conteudo {
+  position: relative;
+  z-index: 1;
+}
+
+.card-conteudo h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.card-conteudo ul {
+  padding-left: 20px;
+}
+
+.card-conteudo li {
+  margin-bottom: 8px;
+}
+
+.card-conteudo a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.card-conteudo a:hover {
+  text-decoration: underline;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.manual-container {
+  max-width: 900px;
+  flex: 1;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #222;
+  background-color: #fdfdfd;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.manual-container h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #2a7a2a;
+}
+
+.manual-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #4a4a4a;
+}
+
+.manual-container h3 {
+  margin-top: 2rem;
+  border-bottom: 2px solid #2a7a2a;
+  padding-bottom: 0.3rem;
+  color: #2a7a2a;
+}
+
+.manual-container h4 {
+  margin-top: 1.2rem;
+  color: #3d873d;
+}
+
+.manual-container ul,
+.manual-container ol {
+  margin-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.manual-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.icon-table th,
+.icon-table td,
+.problem-table th,
+.problem-table td {
+  border: 1px solid #ccc;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+}
+
+.icon-table th,
+.problem-table th {
+  background-color: #e8f5e9;
+  color: #2a7a2a;
+}
+
+.manual-container p strong {
+  color: #2a7a2a;
+}
+
+.manual-container p {
+  margin-top: 1rem;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+  .manual-wrapper {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .banner-topo {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .manual-container {
+    width: 100%;
+    margin: 0;
+  }
+}

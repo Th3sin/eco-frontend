@@ -1,0 +1,40 @@
+.download-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  align-items: center;
+  gap: 200px; 
+  padding: 60px 15px;
+}
+
+.download-text {
+  max-width: 500px;
+}
+
+.download-text h2 {
+  font-size: 36px;
+  color: #156211;
+  margin-bottom: 20px;
+}
+
+.download-text p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.store-buttons img {
+  height: 50px;
+  margin-right: 15px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.store-buttons img:hover {
+  transform: scale(1.05);
+}
+
+.download-image img {
+  width: 450px;
+  height: auto;
+  border-radius: 12px;
+}

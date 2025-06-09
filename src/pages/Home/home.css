@@ -17,7 +17,7 @@
 .banner-container {
     position: relative;
     width: 100%;
-    height: 610px;
+    height: 630px;
     overflow: hidden;
     display: flex;
 }
@@ -38,7 +38,7 @@
     border-top-right-radius: 0px;
 }
 
-/* INFORMAÇÕES DO BANNER */
+/* INFORMAÇÕES DO BANNER PRINCIPAL */
 .banner-informations {
     position: relative;
     z-index: 1;
@@ -114,127 +114,6 @@
     cursor: pointer;
 }
 
-.informacoes-formulario {
-  position: relative;
-  overflow: visible;
-  border-radius: 5px;
-  height: 500px;
-  margin-top: 100px;
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  align-items: flex-start;
-  color: #000;
-  background-color: #dee3de;
-}
-
-.informacoes-formulario::before {
-    right: 0;            
-    content: "";
-    position: absolute;
-    top: -170px;   
-    width: 500px;   
-    height: 670px;  
-    background-image: url('../../img/folhas-suaves.png'); 
-    background-repeat: no-repeat;
-    background-size: contain;  
-    z-index: 0; 
-    pointer-events: none;
-}   
-
-.informacoes-formulario > * {
-  position: relative;
-  z-index: 1;
-}
-
-.informacoes-formulario p {
-    font-size: 23px;
-    color: #000000;
-}
-
-.informacoes-descarte {
-    flex: 1 1 400px;
-    max-width: 800px;
-    padding-top: 20px;
-    border-radius: 12px;
-}
-
-.informativo {
-    width: 600px;
-}
-
-.informativo-descarte h2 {
-    font-size: 1.8rem;
-    color: #112d0d;
-    margin-bottom: 3rem;
-    display: inline-block;
-}
-
-.titulo-metade-linha {
-  position: relative;
-  display: inline-block;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.titulo-metade-linha::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 44%;
-    height: 3px;
-    background-color: #266c25; 
-}
-
-.etapa {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
-}
-
-.emote {
-    margin-right: 6px;
-    font-size: 20px;
-    color: #193518; 
-}
-
-.alerta-emote {
-  font-size: 30px; 
-  margin-right: 6px;
-  display: inline-block;
-  color: #193518; 
-}
-
-.titulo-banner {
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-}
-
-.formulario-coleta {
-    margin-top: 25px;
-    padding: 20px;
-    flex: 1 1 400px;
-    max-width: 400px;
-    height: 450px;
-    background-color: white;
-    border-radius: 10px;
-    border: solid rgb(21, 41, 24) 0.5px;
-}
-
-  /* Responsivo */
-  @media (max-width: 768px) {
-    .informacoes-formulario {
-      flex-direction: column;
-      padding: 1rem;
-    }
-  
-    .informacoes-descarte,
-    .formulario-coleta {
-      max-width: 100%;
-    }
-  }
-
 /* COMPONENTES IMPORTADOS */ 
 .navegacao-home {
     margin-top: 150px;
@@ -244,7 +123,7 @@
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px;
   justify-content: center;
   padding: 20px;
 }
@@ -255,6 +134,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 20px;
   width: 300px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -286,6 +166,8 @@
 
 .card:hover {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: scale(1.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .blog {
@@ -300,22 +182,6 @@
     font-size: 35px;
     color: rgb(0, 0, 0);
 }
-.titulo-metade-linha-blog {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.titulo-metade-linha-blog::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 90%;
-    height: 3px;
-    background-color: #23901b; 
-}
 
 /* ENTIDADES */
 .entidades {
@@ -323,27 +189,30 @@
 }
 
 .entidades h3 {
-    margin-top: 100px;
+    margin-top: 90px;
     font-size: 35px;
     color: rgb(0, 0, 0);
     margin-bottom: 30px;
 }
 
-.titulo-metade-linha-ent {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+.titulo-metade-linha {
+  position: relative;
+  display: inline-block;
+  font-size: 32px;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
-.titulo-metade-linha-ent::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3.5px;
-    background-color: #23901b; 
+.titulo-metade-linha::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #23901b;
 }
 
 .cards-ent-container {
@@ -384,6 +253,11 @@
     font-size: 30px;
     margin-bottom: 10px;
     margin-left: 29px;
+}
+
+.secao-formulario h2 {
+    margin-left: 40px;
+    margin-top: 70px;
 }
 
 @media (max-width: 768px) {
@@ -452,17 +326,6 @@
         font-size: 18px;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 .navegacao-interna {
     margin-top: 100px;

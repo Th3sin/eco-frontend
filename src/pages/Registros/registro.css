@@ -68,7 +68,7 @@
 
 /* Botão de envio */
 .formulario-cadastro button[type="submit"] {
-  margin-top: 30px;
+  margin-top: 20px;
   width: 100%;
   padding: 10px 0;
   cursor: pointer;

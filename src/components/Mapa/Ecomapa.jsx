@@ -22,7 +22,7 @@ const Ecomapa = () => {
 
   /* ---------- map config ---------- */
   const { isLoaded } = useJsApiLoader({ googleMapsApiKey: apiKey });
-  const mapContainerStyle = { width: "100%", height: "300px" };
+  const mapContainerStyle = { width: "100%", height: "500px" };
   const defaultCenter = { lat: -23.5123429, lng: -46.889781 };
 
   /* ---------- handlers ---------- */

@@ -330,7 +330,6 @@ function SolicitarColeta() {
  
   return (
     <div className="coleta-container">
-      <h1 className="coleta-titulo">Solicitar Coleta</h1>
  
       <div className="coleta-card">
         <div className="coleta-steps">

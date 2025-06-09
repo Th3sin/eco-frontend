@@ -62,7 +62,7 @@ const Registro = () => {
   return (
     <div className="registro-container">
       <div className="formulario-cadastro" id="formulario-cadastro">
-        <h2>Acesse sua conta</h2>
+        <h2>Crie uma conta</h2>
         <form onSubmit={handleSubmit}>
 
           <label htmlFor="nome">Nome</label>

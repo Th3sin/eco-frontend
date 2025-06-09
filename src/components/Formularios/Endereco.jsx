@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { buscarEnderecoPorCEP } from '../../services/viacep.service'; // Importa o serviço API
+import "./endereco.css";
 
 function Endereco() {
   // useState armazena os valores de endereço

@@ -3,25 +3,22 @@ import { useEffect, useState } from "react";
 import Header from './components/Header/Header'; 
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
-import Perfil from "./pages/Registros/Perfil";
 import CadastroDestinador from './pages/Registros/Destinadora/CadastroDestinador';
 import CadastroGerador from './pages/Registros/Geradora/CadastroGerador';
 import Endereco from "./components/Formularios/Endereco";
-import Infectante from "./pages/Descarte/Grupos/Infectante";
-import Quimico from "./pages/Descarte/Grupos/Quimico";
-import Radioativo from "./pages/Descarte/Grupos/Radioativo";
-import Perfurocortante from "./pages/Descarte/Grupos/Perfurocortante";
-import Comum from "./pages/Descarte/Grupos/Comum";
-import Informativo from "./pages/Descarte/Informativo";
 import HistoricoSolicitacoes from "./pages/Coleta/Historico/HistoricoSolicitacoes";
 import ColetaForm from "./pages/Coleta/Pedidos/ColetaForm";
 import SolicitarColeta from "./components/Coleta/Solicitacao/SolicitarColeta";
 import PainelColeta from "./pages/Coleta/Painel/PainelColeta";
 import CadastroResiduo from "./pages/Registros/Material/CadastroResiduo"
-import AcompanhamentoColetas from "./pages/Coleta/Painel/AcompanhamentoColetas";
-import Instrucoes from "./components/Coleta/Manual/Instrucoes";
+import ManualUsuarios from "./components/Coleta/Manual/ManualUsuarios";
 import Registro from "./pages/Registros/Registro";
 import Ecomapa from "./components/Mapa/Ecomapa";
+import ManualDestinador from "./components/Coleta/Manual/ManualEmpresas/ManualDestinador";
+import ManualGerador from "./components/Coleta/Manual/ManualEmpresas/ManualGerador";
+import Admin from "./pages/Admin/AdminPage";
+import Residuos from "./pages/Blog/Conteudos/Residuos";
+import Sobre from "./pages/Blog/Sobre";
 
 function Layout() {
     const location = useLocation();
@@ -34,7 +31,8 @@ function Layout() {
             "/Perfil",
             "/CadastroDestinador",
             "/CadastroGerador",
-            "/CadastroResiduo"
+            "/CadastroResiduo",
+            "/Admin"
         ];
 
         setShowHeader(!noHeaderRoutes.includes(location.pathname));
@@ -59,29 +57,24 @@ function RoutesApp() {
                 <Route element={<Layout />}>
                     <Route path="/Home" element={<Home />} />
                     <Route path="/Ecomapa" element={<Ecomapa />} />
-                    <Route path="/informativo" element={<Informativo />} />
-                    <Route path="/Quimico" element={<Quimico />} />
-                    <Route path="/Infectante" element={<Infectante />} />
-                    <Route path="/Radioativo" element={<Radioativo />} />
-                    <Route path="/Comum" element={<Comum />} />
-                    <Route path="/Perfurocortante" element={<Perfurocortante />} />
                     <Route path="/ColetaForm" element={<ColetaForm />} />
                     <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
                     <Route path="/SolicitarColeta" element={<SolicitarColeta />} />
                     <Route path="/PainelColeta" element={<PainelColeta />} />
-                    <Route path="/AcompanhamentoColetas" element={<AcompanhamentoColetas />} />
-                    <Route path="/Instrucoes" element={<Instrucoes />} />
-                    <Route path="/Ecomapa" element={<Ecomapa />} />
+                    <Route path="/ManualUsuarios" element={<ManualUsuarios />} />
+                    <Route path="/ManualGerador" element={<ManualGerador />} />
+                    <Route path="/ManualDestinador" element={<ManualDestinador />} />
+                    <Route path="/Residuos" element={<Residuos />} />
+                    <Route path="/Sobre" element={<Sobre />} />
 
                     {/* Páginas sem Header */}
                     <Route path="/Registro" element={<Registro />} />
-                    <Route path="/Perfil" element={<Perfil />} />
                     <Route path="/CadastroDestinador" element={<CadastroDestinador />} />
                     <Route path="/CadastroGerador" element={<CadastroGerador />} />
                     <Route path="/Endereco" element={<Endereco />} />
                     <Route path="/Login" element={<Login />} />
                     <Route path="/CadastroResiduo" element={<CadastroResiduo />} />
-
+                    <Route path="/Admin" element={<Admin />} />
                 </Route>
             </Routes>
         </BrowserRouter>

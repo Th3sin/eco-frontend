@@ -9,7 +9,7 @@
     min-height: 300px;
     padding: 40px 20px;
 }
- 
+
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -20,11 +20,16 @@
 }
 
 .footer-logo img {
-    margin-top: 60px;
+    margin-top: 75px;
     width: 100px;
 }
 
-.footer-nav,
+.footer-nav {
+    flex: 1 1 180px;
+    display: block; 
+    margin-top: -15.5px;
+}
+
 .footer-contact,
 .footer-social {
     flex: 1 1 180px;
@@ -46,7 +51,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-    
 }
 
 .footer-nav li,
