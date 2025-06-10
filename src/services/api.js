@@ -1,4 +1,9 @@
-/* API DADOS USUÁRIO */
+//import express from "express";
+//import cors from "cors";
+//import path from "path";
+//import { fileURLToPath } from "url";
+//import fetch from "node-fetch";
+
 /* RODAR NO TERMINAL COM O COMANDO: "npx json-server --watch db.json --port 3000" */
 
 import axios from "axios";

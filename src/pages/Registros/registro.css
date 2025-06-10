@@ -11,7 +11,7 @@
 /* Formulário */
 .formulario-cadastro {
   width: 450px;
-  height: 530px;
+  min-height: 530px;
   background-color: #eff0f5;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.2);
@@ -66,8 +66,8 @@
   color: #333;
 }
 
-/* Botão de envio */
-.formulario-cadastro button[type="submit"] {
+.formulario-cadastro button[type="submit"],
+.formulario-cadastro button[type="button"] {
   margin-top: 20px;
   width: 100%;
   padding: 10px 0;
@@ -78,13 +78,14 @@
   outline: none;
   font-size: 16px;
   color: #fff;
+  transition: background 0.3s ease;
 }
 
-.formulario-cadastro button[type="submit"]:hover {
+.formulario-cadastro button[type="submit"]:hover,
+.formulario-cadastro button[type="button"]:hover {
   background: #173a3b;
 }
 
-/* Campo com ícone de olho */
 .input-container {
   position: relative;
 }
@@ -100,7 +101,6 @@
   z-index: 2;
 }
 
-/* Link de login */
 .sign-in-link {
   margin-top: 12px;
   display: flex;
@@ -115,4 +115,15 @@
 
 .sign-in-link a:hover {
   text-decoration: underline;
+}
+
+.etapa-formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+.grupo-campos {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
 }

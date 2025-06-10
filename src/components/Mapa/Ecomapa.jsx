@@ -4,9 +4,9 @@ import InputMask from "react-input-mask";
 import axios from "axios";
 import "./buscaMapa.css";
 import { tipoResiduo } from "../../data/materiais";
-
+ 
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
-
+ 
 const Ecomapa = () => {
   /* ---------- estado do formulário ---------- */
   const [formData, setFormData] = useState({
@@ -15,32 +15,32 @@ const Ecomapa = () => {
     classe: "",
     residuo: ""
   });
-
+ 
   /* ---------- estado das destinadoras ---------- */
   const [destinadoras, setDestinadoras] = useState([]);
   const [loadingDest, setLoadingDest] = useState(false);
-
+ 
   /* ---------- map config ---------- */
   const { isLoaded } = useJsApiLoader({ googleMapsApiKey: apiKey });
   const mapContainerStyle = { width: "100%", height: "500px" };
   const defaultCenter = { lat: -23.5123429, lng: -46.889781 };
-
+ 
   /* ---------- handlers ---------- */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
+ 
   const handleSearch = async () => {
     if (!formData.classe || !formData.residuo) return;
-
+ 
     try {
       setLoadingDest(true);
       setDestinadoras([]);
-
+ 
       /* chamada à API */
       const response = await axios.get(
-        "http://localhost:8080/api/v1/destinadoras",
+        "http://localhost:8080/api/v1/usuario/destinadora",
         {
           params: {
             classe: formData.classe,
@@ -49,7 +49,7 @@ const Ecomapa = () => {
           headers: { Accept: "application/json" }
         }
       );
-
+ 
       setDestinadoras(response.data);
     } catch (error) {
       console.error("Erro ao buscar destinadoras:", error);
@@ -58,19 +58,19 @@ const Ecomapa = () => {
       setLoadingDest(false);
     }
   };
-
+ 
   /* ---------- render ---------- */
   return (
     <div className="container">
       <div className="busca-section">
-        
+       
         {/* formulário */}
         <div className="form-area">
           <h2 className="section-title">Buscar Destinadoras</h2>
           <p className="section-description">
             Selecione classe e tipo de resíduo para localizar destinadoras cadastradas.
           </p>
-
+ 
           <div className="form-fields">
             {/* CEP (sem efeito na busca) */}
             <div className="form-group">
@@ -87,10 +87,10 @@ const Ecomapa = () => {
                     />
                   )}
               </InputMask>
-
-
+ 
+ 
             </div>
-
+ 
             {/* (sem efeito na busca) */}
             <div className="form-group">
               <label>Distância</label>
@@ -102,7 +102,7 @@ const Ecomapa = () => {
                 ))}
               </select>
             </div>
-
+ 
             {/* Classe */}
             <div className="form-group">
               <label>Classe</label>
@@ -114,7 +114,7 @@ const Ecomapa = () => {
                 <option value="Classe II (Não Perigosos)">Classe II (Não Perigosos)</option>
               </select>
             </div>
-
+ 
             {/* Tipo de resíduo */}
             <div className="form-group">
               <label>Tipo de Resíduo</label>
@@ -129,14 +129,14 @@ const Ecomapa = () => {
                 ))}
               </select>
             </div>
-
+ 
           </div>
-
+ 
           <button className="search-button" onClick={handleSearch}>
             Buscar
           </button>
         </div>
-
+ 
         {/* mapa apenas visual */}
         <div className="map-area">
           {isLoaded ? (
@@ -150,11 +150,11 @@ const Ecomapa = () => {
           )}
         </div>
       </div>
-
+ 
       {/* resultados */}
       <div className="result-section">
         <h3 className="result-title">Destinadoras Encontradas</h3>
-
+ 
         {loadingDest ? (
           <p>Carregando destinadoras...</p>
         ) : destinadoras.length ? (
@@ -172,13 +172,13 @@ const Ecomapa = () => {
             ))}
           </div>
         ) : (
-          
+         
           <p>Nenhuma destinadora encontrada.</p>
-          
+         
         )}
       </div>
     </div>
   );
 };
-
+ 
 export default Ecomapa;

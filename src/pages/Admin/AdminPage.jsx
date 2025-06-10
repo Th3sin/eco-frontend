@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'; //http://localhost:5173/Admin
-import axios from 'axios'; 
-import './adminPage.css'; 
-
+import axios from 'axios';
+import './adminPage.css';
+ 
 function AdminPage() {
-  const [residuo, setResiduo] = useState({ nome: '', tipo: '', descricao: '' });
+  const [residuo, setResiduo] = useState({ classe: '', grupo: '',descricao: '' });
   const [usuario, setUsuario] = useState({ nome: '', email: '', senha: '', tipoUsuario: '' });
   const [residuosList, setResiduosList] = useState([]);
-
+ 
   useEffect(() => {
     fetchResiduos();
   }, []);
-
+ 
   const fetchResiduos = async () => {
     try {
       const res = await axios.get('/api/residuos');
@@ -20,18 +20,18 @@ function AdminPage() {
       console.error('Erro ao buscar resíduos:', err);
     }
   };
-
+ 
   const handleResiduoSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/residuos', residuo);
+      await axios.post('http://localhost:8080/api/v1/admin/residuo', residuo);
       fetchResiduos();
-      setResiduo({ nome: '', tipo: '', descricao: '' });
+      setResiduo({ classe: '', grupo: '',descricao: '' });
     } catch (err) {
       console.error('Erro ao cadastrar resíduo:', err);
     }
   };
-
+ 
   const handleUsuarioSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -41,20 +41,20 @@ function AdminPage() {
       console.error('Erro ao cadastrar usuário:', err);
     }
   };
-
+ 
   const handleEditarResiduo = (r) => {
     setResiduo(r);
   };
-
+ 
   const handleExcluirResiduo = async (id) => {
     try {
-      await axios.delete(`/api/residuos/${id}`);
+      await axios.delete(`/api/admin/residuos/${id}`);
       fetchResiduos();
     } catch (err) {
       console.error('Erro ao excluir resíduo:', err);
     }
   };
-
+ 
   return (
     <div className="admin-container">
       <div className="form-container">
@@ -62,16 +62,16 @@ function AdminPage() {
         <form onSubmit={handleResiduoSubmit}>
           <input
             type="text"
-            placeholder="Nome do resíduo"
+            placeholder="Classe"
             value={residuo.nome}
-            onChange={(e) => setResiduo({ ...residuo, nome: e.target.value })}
+            onChange={(e) => setResiduo({ ...residuo, classe: e.target.value })}
             required
           />
           <input
             type="text"
-            placeholder="Tipo (Classe I, IIA...)"
+            placeholder="Grupo (Quimico, Radioativo...)"
             value={residuo.tipo}
-            onChange={(e) => setResiduo({ ...residuo, tipo: e.target.value })}
+            onChange={(e) => setResiduo({ ...residuo, grupo: e.target.value })}
             required
           />
           <textarea
@@ -82,7 +82,7 @@ function AdminPage() {
           />
           <button type="submit">Cadastrar/Atualizar Resíduo</button>
         </form>
-
+ 
         <h3>Lista de Resíduos</h3>
         <ul>
           {Array.isArray(residuosList) && residuosList.map((r) => (
@@ -94,7 +94,7 @@ function AdminPage() {
           ))}
         </ul>
       </div>
-
+ 
       <div className="form-container">
         <h2>Cadastrar Usuário</h2>
         <form onSubmit={handleUsuarioSubmit}>
@@ -134,5 +134,5 @@ function AdminPage() {
     </div>
   );
 }
-
+ 
 export default AdminPage;
