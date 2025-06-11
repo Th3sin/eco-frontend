@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .env.localpublic/video/projeto-eco-video.mp4
+
+.src/page/Home/home.css

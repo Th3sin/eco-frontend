@@ -1,102 +1,119 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './header.css';
 import Logo from '../../img/ecoplus05.png';
-import UserPic from '../../img/empresa-ficticia-icon.jpg';
 
 function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/Home';
 
-  const [scrolled, setScrolled] = useState(false); // O useState é um HOOK usado para adicionar estado ao componente
-
-  const location = useLocation(); // O useLocation é um HOOK fornecido pelo React Router que permite acessar a localização da URL atual
-
-  const isHome = location.pathname === '/Home'; // Esta variável será true se a URL for a página "/Home"
+  const menuRef = useRef(null);
 
   useEffect(() => {
-
-    //função apra rolagem da página com base na altura do banner
     const handleScroll = () => {
-      
       const banner = document.querySelector('.banner');
-      const bannerHeight = banner ? banner.offsetHeight : 300; //altura para surgimento do background-collor
-
-      if (window.scrollY > bannerHeight) {
-
-        setScrolled(true);
-
-      } else {
-
-        setScrolled(false); 
-      }
-
-  };
+      const bannerHeight = banner ? banner.offsetHeight : 300;
+      setScrolled(window.scrollY > bannerHeight);
+    };
 
     if (isHome) {
-
-      // timeout para garantir que o DOM já carregou
       const timeout = setTimeout(() => {
-
-        handleScroll(); 
+        handleScroll();
         window.addEventListener('scroll', handleScroll);
       }, 100);
 
       return () => {
-
         clearTimeout(timeout);
         window.removeEventListener('scroll', handleScroll);
-
       };
-
     } else {
-
-      setScrolled(true); // força o header a ter cor em outras páginas
+      setScrolled(true);
     }
-  }, 
-  
-  [isHome]);
+  }, [isHome]);
+
+  // Fecha o menu ao clicar fora
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    }
+
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuOpen]);
+
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
 
   return (
-
     <header className={`${isHome ? 'with-transition transparent' : ''} ${scrolled ? 'scrolled' : ''}`}>
       <nav>
-          <div className='user-profile-picture'>
-            <img
-              src={UserPic} alt='Foto de perfil do usuário' title='Clique para acessar as funcionalidades do seu perfil' />
-          </div>
+        {/* Menu lateral com clique */}
+        <div className="menu-wrapper" ref={menuRef} style={{ position: 'relative' }}>
+          <button
+            className="menu-icon"
+            aria-label="Menu de usuário"
+            onClick={toggleMenu}
+            type="button"
+          >
+            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
 
-          <div className="logo-header">
-            <Link to="/Home">
-              <img src={Logo} alt="Logo Ecoplus" title="Bem-vindo" />
-            </Link>
-          </div>
-
-          <div className='user-name'>
-            <p>RodoSafe Logística Ambiental</p>
-          </div>
-
-          <div className="links-header">
-
-             {/* Dropdown de Serviços */}
-            <div className="dropdown">
-              <span className="abas dropdown-toggle">Serviços</span>
-              <ul className="dropdown-menu">
-                <li><Link to="/Ecomapa">Buscar Destinadoras</Link></li>
-                <li><Link to="/SolicitarColeta">Solicitar Coleta</Link></li>
+          {menuOpen && (
+            <div className="menu-dropdown">
+              <ul>
+                <li><Link to="/Pedidos" onClick={() => setMenuOpen(false)}>Pedidos</Link></li>
+                <li><Link to="/HistoricoSolicitacoes" onClick={() => setMenuOpen(false)}>Histórico</Link></li>
+                <li><Link to="/PainelColeta" onClick={() => setMenuOpen(false)}>Em andamento</Link></li>
+                <li><Link to="/Configuracoes" onClick={() => setMenuOpen(false)}>Configurações</Link></li>
+                <li><Link to="/Sair" onClick={() => setMenuOpen(false)}>Sair</Link></li>
               </ul>
             </div>
+          )}
+        </div>
 
-            <div className="dropdown">
-              <span className="abas dropdown-toggle">Informações</span>
-              <ul className="dropdown-menu">
-                <li><Link to="/">Manual Geradoras</Link></li>
-                <li><Link to="/">Manual Destinadoras</Link></li>
-                <li><Link to="/ManualUsuarios">Manual do Usuário</Link></li>
-              </ul>
-            </div>
+        {/* Logo central */}
+        <div className="logo-header">
+          <Link to="/Home">
+            <img src={Logo} alt="Logo Ecoplus" title="Bem-vindo" />
+          </Link>
+        </div>
 
-            <Link to="/" className="abas" title="Acesse sua conta" >Entre</Link>
-
+        <div className="links-header">
+          <div className="dropdown">
+            <span className="abas dropdown-toggle">Serviços</span>
+            <ul className="dropdown-menu">
+              <li><Link to="/Ecomapa">Buscar Destinadoras</Link></li>
+              <li><Link to="/SolicitarColeta">Solicitar Coleta</Link></li>
+            </ul>
           </div>
+
+          <div className="dropdown">
+            <span className="abas dropdown-toggle">Informações</span>
+            <ul className="dropdown-menu">
+              <li><Link to="/">Manual Geradoras</Link></li>
+              <li><Link to="/">Manual Destinadoras</Link></li>
+              <li><Link to="/ManualUsuarios">Manual do Usuário</Link></li>
+            </ul>
+          </div>
+
+          <Link to="/" className="abas" title="Acesse sua conta">Entre</Link>
+        </div>
       </nav>
     </header>
   );

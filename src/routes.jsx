@@ -5,7 +5,6 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import CadastroDestinador from './pages/Registros/Destinadora/CadastroDestinador';
 import CadastroGerador from './pages/Registros/Geradora/CadastroGerador';
-import Endereco from "./components/Formularios/Endereco";
 import HistoricoSolicitacoes from "./pages/Coleta/Historico/HistoricoSolicitacoes";
 import ColetaForm from "./pages/Coleta/Pedidos/ColetaForm";
 import SolicitarColeta from "./components/Coleta/Solicitacao/SolicitarColeta";
@@ -71,7 +70,6 @@ function RoutesApp() {
                     <Route path="/Registro" element={<Registro />} />
                     <Route path="/CadastroDestinador" element={<CadastroDestinador />} />
                     <Route path="/CadastroGerador" element={<CadastroGerador />} />
-                    <Route path="/Endereco" element={<Endereco />} />
                     <Route path="/Login" element={<Login />} />
                     <Route path="/CadastroResiduo" element={<CadastroResiduo />} />
                     <Route path="/Admin" element={<Admin />} />

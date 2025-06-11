@@ -134,21 +134,15 @@ function Home() {
 
 {/* APENAS PARA NAVEGAÇÃO INTERNA ENTRE AS PÁGINAS QUE ESTÃO SENDO DESENVOLVIDAS */}
 <section className="navegacao-interna">
+    
             <p>Páginas em desenvolvimento</p>
 
             <div>
-                <Link to="/HistoricoSolicitacoes"><button>Solicitações de Coleta p/ Destinador</button></Link>
-                <Link to="/Endereco"><button>FORMULÁRIO DE ENDEREÇO</button></Link>
-                <Link to="/PainelColeta"><button>Painel de Coletas (Coletora)</button></Link>
                 <Link to="/CadastroResiduo"><button>Formulário cadastro Resíduo</button></Link>
-            </div>
-
-            <div>
-                <Link to="/CadastroGerador"><button>Formulário de Cadastro Gerador</button></Link>
+                 <Link to="/CadastroGerador"><button>Formulário de Cadastro Gerador</button></Link>
                 <Link to="/CadastroDestinador"><button>Formulário de Cadastro Destinador</button></Link>
             </div>
         </section>
-        {/*_______________________________________________________________________________*/}
 
             <section className="rodape">
                 <Footer />

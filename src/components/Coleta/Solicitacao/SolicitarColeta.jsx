@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios"; // npm install axios
 import imageCompression from "browser-image-compression"; // npm install browser-image-compression
 import "./solicitarColeta.css";
-import Endereco from "../../Formularios/Endereco";
 import InputMask from "react-input-mask"; // npm install react-input-mask
 
 function SolicitarColeta() {
@@ -302,9 +301,7 @@ function SolicitarColeta() {
             <div className="endereco-coleta">
  
               <div className="coleta-form-full">
-                <h3 className="coleta-etapa-titulo">Etapa 3: Informar Endereço</h3>
- 
-                <Endereco/>
+                <h3 className="coleta-etapa-titulo">Etapa 3: Confirmar Endereço</h3>
 
                 <div className="coleta-form-group">
                   <label>Observação</label>

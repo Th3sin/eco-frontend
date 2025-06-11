@@ -1,35 +1,106 @@
-.container-formulario button {
-    width: 400px;
-    height: 40px;
-    background-color: aquamarine;
+.container-formulario {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #112b2c;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.container-formulario form {
+  width: 100%;
+  max-width: 500px;
+  background-color: #eff0f5;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 30px 20px;
+  backdrop-filter: blur(10px);
+}
+
+.container-formulario h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 28px;
+  color: #218962;
 }
 
 .campo {
-    width: 400px;
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
 }
-  
+
 .campo label {
-    font-size: 15px;
-    margin-bottom: 5px;
+  font-size: 17px;
+  margin-bottom: 5px;
+  color: #173a3b;
 }
 
-.campo input {
-    height: 40px;
-}
-  
+.campo input,
 .campo select {
-    padding-left: 0px;
-    box-sizing: border-box;
-    height: 40px;
-    border-radius: 3px;
-    font-size: 14.5px;
-}  
+  height: 35px;
+  padding: 7px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 1px solid #999;
+  border-radius: 5px;
+  outline: none;
+  background-color: #fff;
+  color: #333;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
 
-.container-formulario button {
-    color: #000000;
-    border: none;
-    background-color: rgba(22, 222, 45, 0.493);
+.campo input:focus,
+.campo select:focus {
+  border: 2px solid #218962;
+  box-shadow: 0 0 5px rgba(33, 137, 98, 0.3);
+}
+
+.campo input::placeholder {
+  font-size: 15px;
+}
+
+.campo select option {
+  background-color: #fff;
+  color: #333;
+}
+
+.container-formulario button[type="submit"] {
+  width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  background: #218962;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  font-size: 16px;
+  color: #fff;
+  transition: background 0.3s ease;
+  margin-top: 15px;
+}
+
+.container-formulario button[type="submit"]:hover {
+  background: #173a3b;
+}
+
+.formulario-cadastro textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 7px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 1px solid #999;
+  border-radius: 5px;
+  outline: none;
+  background-color: #fff;
+  color: #333;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formulario-cadastro textarea:focus {
+  border: 2px solid #218962;
+  box-shadow: 0 0 5px rgba(33, 137, 98, 0.3);
 }

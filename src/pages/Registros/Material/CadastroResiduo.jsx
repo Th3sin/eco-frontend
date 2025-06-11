@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../Css/cadastro.css';
 
 function CadastroResiduo() {
     const [material, setMaterial] = useState({
@@ -12,7 +13,6 @@ function CadastroResiduo() {
     const categorias = ['infectante', 'químico', 'radioativo', 'comum', 'perfurocortante', 'entulho', 'eletrônico'];
     const classes = ['perigosos', 'não perigosos'];
     const grupos = ['A', 'B', 'C', 'D', 'E'];
-    const unidadesMedida = ['kg', 'litros', 'unidades'];
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,7 +24,6 @@ function CadastroResiduo() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         console.log("Dados cadastrados:", material);
 
         setMaterial({
@@ -33,60 +32,80 @@ function CadastroResiduo() {
             categoriaResíduo: '',
             classeResíduo: '',
             grupoResíduo: '',
-            quantidade: '',
-            unidadeMedida: '',
         });
     };
 
     return (
-        <div className="form-cadastroMaterial-container">
-            <h1>Cadastro de Material</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="nomeResíduo">Nome do Resíduo:</label>
-                    <input type="text" id="nomeResíduo" name="nomeResíduo" value={material.nomeResíduo} onChange={handleChange} required />
-                </div>
+        <div className="registro-container">
+            <form className="formulario-cadastro" onSubmit={handleSubmit}>
+                <h2>Cadastro de Material</h2>
 
-                <div className="form-group">
-                    <label htmlFor="descricao">Descrição:</label>
-                    <textarea id="descricao" name="descricao" value={material.descricao} onChange={handleChange} />
-                </div>
+                <label htmlFor="nomeResíduo">Nome do Resíduo:</label>
+                <input
+                    type="text"
+                    id="nomeResíduo"
+                    name="nomeResíduo"
+                    value={material.nomeResíduo}
+                    onChange={handleChange}
+                    required
+                />
 
-                <div className="form-group">
-                    <label htmlFor="categoriaResíduo">Categoria do Resíduo:</label>
-                    <select id="categoriaResíduo" name="categoriaResíduo" value={material.categoriaResíduo} onChange={handleChange} required>
-                        <option value="">Selecione</option>
-                        {categorias.map((categoria, index) => (
-                            <option key={index} value={categoria}>
-                                {categoria}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <label htmlFor="descricao">Descrição:</label>
+                <textarea
+                    id="descricao"
+                    name="descricao"
+                    value={material.descricao}
+                    onChange={handleChange}
+                    className="textarea-descricao"
+                />
 
-                <div className="form-group">
-                    <label htmlFor="classeResíduo">Classe do Resíduo:</label>
-                    <select id="classeResíduo" name="classeResíduo" value={material.classeResíduo} onChange={handleChange} required>
-                        <option value="">Selecione</option>
-                        {classes.map((classe, index) => (
-                            <option key={index} value={classe}>
-                                {classe}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <label htmlFor="categoriaResíduo">Categoria do Resíduo:</label>
+                <select
+                    id="categoriaResíduo"
+                    name="categoriaResíduo"
+                    value={material.categoriaResíduo}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="">Selecione</option>
+                    {categorias.map((categoria, index) => (
+                        <option key={index} value={categoria}>
+                            {categoria}
+                        </option>
+                    ))}
+                </select>
 
-                <div className="form-group">
-                    <label htmlFor="grupoResíduo">Grupo do Resíduo:</label>
-                    <select id="grupoResíduo" name="grupoResíduo" value={material.grupoResíduo} onChange={handleChange} required>
-                        <option value="">Selecione</option>
-                        {grupos.map((grupo, index) => (
-                            <option key={index} value={grupo}>
-                                {grupo}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <label htmlFor="classeResíduo">Classe do Resíduo:</label>
+                <select
+                    id="classeResíduo"
+                    name="classeResíduo"
+                    value={material.classeResíduo}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="">Selecione</option>
+                    {classes.map((classe, index) => (
+                        <option key={index} value={classe}>
+                            {classe}
+                        </option>
+                    ))}
+                </select>
+
+                <label htmlFor="grupoResíduo">Grupo do Resíduo:</label>
+                <select
+                    id="grupoResíduo"
+                    name="grupoResíduo"
+                    value={material.grupoResíduo}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="">Selecione</option>
+                    {grupos.map((grupo, index) => (
+                        <option key={index} value={grupo}>
+                            {grupo}
+                        </option>
+                    ))}
+                </select>
 
                 <button type="submit">Cadastrar Material</button>
             </form>
