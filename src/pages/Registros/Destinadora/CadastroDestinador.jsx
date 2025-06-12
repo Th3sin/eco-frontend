@@ -51,10 +51,12 @@ function CadastroDestinador() {
 
     try {
       // faz a requisição para o backend enviando os dados do formulário
-      const response = await axios.post("http://localhost:8080/api/v1/usuario/destinador", {
+      const response = await axios.post("http://localhost:8080/api/v1/usuario/destinador", 
+      {
         usuarioId: usuario_id,
         ...formData
-      }, {
+      }, 
+      {
         headers: {
           "Content-Type": "application/json",
         },

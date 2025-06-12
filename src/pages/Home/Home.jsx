@@ -138,7 +138,6 @@ function Home() {
             <p>Páginas em desenvolvimento</p>
 
             <div>
-                <Link to="/CadastroResiduo"><button>Formulário cadastro Resíduo</button></Link>
                  <Link to="/CadastroGerador"><button>Formulário de Cadastro Gerador</button></Link>
                 <Link to="/CadastroDestinador"><button>Formulário de Cadastro Destinador</button></Link>
             </div>

@@ -70,6 +70,7 @@ const GeradorEndereco = () => {
     }
 
     try {
+        // faz a requisição para o backend enviando os dados do formulário
       const response = await axios.post(
         "http://localhost:8080/api/v1/usuario/geradora",
         {
@@ -122,7 +123,7 @@ const GeradorEndereco = () => {
             const valor = e.target.value.replace(/\D/g, "").slice(0, 8);
             setCep(valor);
           }}
-          
+
         required
           />
         </div>
