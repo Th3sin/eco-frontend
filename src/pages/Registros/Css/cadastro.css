@@ -104,3 +104,27 @@
   border: 2px solid #218962;
   box-shadow: 0 0 5px rgba(33, 137, 98, 0.3);
 }
+
+.checkbox-group {
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-bottom: 6px;
+  white-space: nowrap; /* Impede quebra de linha no texto */
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+}

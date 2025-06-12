@@ -18,7 +18,7 @@ const GeradorEndereco = () => {
 
   useEffect(() => {
 
-    //api de cep
+    /* ------------------ api de cep ------------------ */
     const cepLimpo = cep.replace(/\D/g, "");
     if (cepLimpo.length === 8) {
 
@@ -99,6 +99,7 @@ const GeradorEndereco = () => {
       setCidade("");
       setUf("");
       setNumero("");
+
     } catch (error) {
 
       alert("Erro ao cadastrar o endereço. Insira um CEP válido.");
@@ -118,9 +119,10 @@ const GeradorEndereco = () => {
           <label>CEP</label>
           <input type="text" value={cep} onChange={(e) => 
           {
-              const valor = e.target.value.replace(/\D/g, "").slice(0, 8);
-              setCep(valor);
+            const valor = e.target.value.replace(/\D/g, "").slice(0, 8);
+            setCep(valor);
           }}
+          
         required
           />
         </div>

@@ -14,6 +14,7 @@ const Registro = () => {
  
   const navigate = useNavigate(); // Hook de navegação
  
+  //decod token
       function getPayloadFromToken(token) {
       if (!token) return null;
  
