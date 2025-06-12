@@ -324,22 +324,6 @@
     }
 }
  
-.navegacao-interna {
-    margin-top: 100px;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-}
- 
-.navegacao-interna button {
-    width: 200px;
-    height: 100px;
-    background-color: rgb(218, 217, 242);
-    border-radius: 10px;
-    border: solid 1px green;
-}
- 
 .navegacao-interna a {
     font-size: 15px;
 }
