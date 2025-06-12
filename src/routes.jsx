@@ -4,7 +4,6 @@ import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import CadastroDestinador from './pages/Registros/Destinadora/CadastroDestinador';
-import CadastroGerador from './pages/Registros/Geradora/CadastroGerador';
 import HistoricoSolicitacoes from "./pages/Coleta/Historico/HistoricoSolicitacoes";
 import ColetaForm from "./pages/Coleta/Pedidos/ColetaForm";
 import SolicitarColeta from "./components/Coleta/Solicitacao/SolicitarColeta";
@@ -18,6 +17,8 @@ import ManualGerador from "./components/Coleta/Manual/ManualEmpresas/ManualGerad
 import Admin from "./pages/Admin/AdminPage";
 import Residuos from "./pages/Blog/Conteudos/Residuos";
 import Sobre from "./pages/Blog/Sobre";
+import EnderecoGerador from "./pages/Registros/Geradora/EnderecoGerador";
+import CadastroGerador from "./pages/Registros/Geradora/CadastroGerador";
 
 function Layout() {
     const location = useLocation();
@@ -31,7 +32,8 @@ function Layout() {
             "/CadastroDestinador",
             "/CadastroGerador",
             "/CadastroResiduo",
-            "/Admin"
+            "/Admin",
+            "/EnderecoGerador"
         ];
 
         setShowHeader(!noHeaderRoutes.includes(location.pathname));
@@ -39,7 +41,7 @@ function Layout() {
 
     return (
         <>
-            {showHeader && <Header />} {/* Aqui estamos controlando a renderização do Header */}
+            {showHeader && <Header />} {/* controle renderização do Header */}
             <main>
                 <Outlet /> {/* Exibe o conteúdo da página */}
             </main>
@@ -73,6 +75,7 @@ function RoutesApp() {
                     <Route path="/Login" element={<Login />} />
                     <Route path="/CadastroResiduo" element={<CadastroResiduo />} />
                     <Route path="/Admin" element={<Admin />} />
+                    <Route path="/EnderecoGerador" element={<EnderecoGerador />} />
                 </Route>
             </Routes>
         </BrowserRouter>
