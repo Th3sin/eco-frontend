@@ -1,66 +1,90 @@
+/* Texto acima do formulário */
+.pagina-cadastro {
+  margin-top: 110px;
+}
+
+.texto-introducao {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.texto-introducao h1 {
+  font-size: 24px;
+  color: #333;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* Container principal do formulário */
 .container-formulario {
   width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #112b2c;
+  background-color: #ffffff;
   padding: 20px;
   box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
+/* Formulário */
 .container-formulario form {
   width: 100%;
   max-width: 500px;
-  background-color: #eff0f5;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  padding: 30px 20px;
-  backdrop-filter: blur(10px);
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
 }
 
+/* Título */
 .container-formulario h2 {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   text-align: center;
   font-size: 28px;
-  color: #218962;
+  color: #333;
 }
 
+/* Campos */
 .campo {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .campo label {
-  font-size: 17px;
-  margin-bottom: 5px;
-  color: #173a3b;
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #333;
+  font-weight: 500;
 }
 
 .campo input,
 .campo select {
-  height: 35px;
-  padding: 7px;
-  font-size: 15px;
+  height: 40px;
+  padding: 10px 15px;
+  font-size: 16px;
   font-family: inherit;
-  border: 1px solid #999;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   outline: none;
-  background-color: #fff;
   color: #333;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s;
 }
 
 .campo input:focus,
 .campo select:focus {
-  border: 2px solid #218962;
-  box-shadow: 0 0 5px rgba(33, 137, 98, 0.3);
+  border-color: #22a73e;
+  box-shadow: 0 0 5px rgba(34, 167, 62, 0.3);
 }
 
 .campo input::placeholder {
   font-size: 15px;
+  color: #aaa;
 }
 
 .campo select option {
@@ -68,49 +92,32 @@
   color: #333;
 }
 
-.container-formulario button[type="submit"] {
-  width: 100%;
-  padding: 10px 0;
-  cursor: pointer;
-  background: #218962;
-  border: none;
-  border-radius: 30px;
-  outline: none;
-  font-size: 16px;
-  color: #fff;
-  transition: background 0.3s ease;
-  margin-top: 15px;
-}
-
-.container-formulario button[type="submit"]:hover {
-  background: #173a3b;
-}
-
+/* Área de texto */
 .formulario-cadastro textarea {
   width: 100%;
   min-height: 80px;
-  padding: 7px;
-  font-size: 15px;
+  padding: 10px 15px;
+  font-size: 16px;
   font-family: inherit;
-  border: 1px solid #999;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   outline: none;
-  background-color: #fff;
   color: #333;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s;
 }
 
 .formulario-cadastro textarea:focus {
-  border: 2px solid #218962;
-  box-shadow: 0 0 5px rgba(33, 137, 98, 0.3);
+  border-color: #22a73e;
+  box-shadow: 0 0 5px rgba(34, 167, 62, 0.3);
 }
 
+/* Grupo de seleção (radio ou checkbox) */
 .checkbox-group {
   max-height: 150px;
   overflow-y: auto;
   border: 1px solid #ccc;
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .checkbox-group label {
@@ -119,12 +126,46 @@
   gap: 8px;
   font-size: 14px;
   margin-bottom: 6px;
-  white-space: nowrap; /* Impede quebra de linha no texto */
+  white-space: nowrap;
 }
 
+.checkbox-group input[type="radio"],
 .checkbox-group input[type="checkbox"] {
   width: 16px;
   height: 16px;
   margin: 0;
   padding: 0;
+  accent-color: #22a73e; 
+}
+
+/* Botão */
+.container-formulario button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #22a73e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.container-formulario button[type="submit"]:hover {
+  background-color: #18782b;
+}
+
+.faixa-copyright-clara {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+    font-size: 14px;
+    border: none;
+    border-top: solid rgb(204, 204, 204) 1px;
+    color: grey;
+    font-family: "Raleway", sans-serif;
+    background-color: #ffffff;
 }

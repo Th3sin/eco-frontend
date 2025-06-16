@@ -43,7 +43,7 @@ function Footer() {
       </div>
 
       <div className="faixa-copyright">
-        <p>© {new Date().getFullYear()} Eco+. Todos os direitos reservados.</p>
+        <p>© {new Date().getFullYear()} eco+. Todos os direitos reservados.</p>
       </div>
     </footer>
   );

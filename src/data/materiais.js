@@ -6,7 +6,7 @@ export const tipoResiduo = [
   "Metais", "Papel", "Agroindustrial", "Inerte", "Tóxico", "Inflamável", 
   "Vegetal", "Pilhas e Baterias", "Medicamentos", "Madeira", 
   "Borracha", "Alumínio", "Isopor", "Óleos", 
-  "Resíduos de Construção Civil", 
+  "Resíduos de Construção Civil", "Perigosos", "Recicláveis" 
 ];
 
 export const materiais = {

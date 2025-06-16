@@ -1,110 +1,168 @@
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import InputMask from 'react-input-mask';
-import axios from 'axios';
-import { tipoResiduo } from '../../../data/materiais';
-import '../Css/cadastro.css';
+import { useState, useEffect } from "react";
+import InputMask from "react-input-mask";
+import { tipoResiduo } from "../../../data/materiais";
+import "../Css/cadastro.css";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import MinimalistHeader from "../../../components/Header/HeaderMinimalist";
 
 function CadastroDestinador() {
-  // hook do React Router para acessar dados passados pela navegação anterior (ID usuário)
   const location = useLocation();
-  // hook do React Router para redirecionar o usuário para outra rota
   const navigate = useNavigate();
-  // eecupera o ID do usuário passado via navegação (após o registro)
-  const usuario_id = location.state?.usuario_id;
 
-  const [formData, setFormData] = useState({
-    telefone: '',
-    cnpj: '',
-    residuoAceito: [],
-
+  const [representanteDestinadora, setRepresentanteDestinadora] = useState({
+    destinadora: null,
   });
 
-  // Adicionando a função handleChange
+  const [formData, setFormData] = useState({
+    telefone: "",
+    nome: "",
+    cnpj: "",
+    ramo: "",
+    residuoAceito: [], //array
+  });
+
+  const handleResiduoChange = (e) => {
+  const { value, checked } = e.target;
+  if (checked) {
+    setFormData({
+      ...formData,
+      residuoAceito: [...formData.residuoAceito, value],
+    });
+    
+  } else {
+    setFormData({
+      ...formData,
+      residuoAceito: formData.residuoAceito.filter((item) => item !== value),
+    });
+  }
+};
+
+  useEffect(() => {
+    try {
+      const email = localStorage.getItem("email");
+      axios
+        .get(`http://localhost:8080/api/v1/usuario?email=${email}`)
+        .then((response) => {
+          localStorage.setItem("usuario_id", response.data.id);
+          setRepresentanteDestinadora(response.data);
+          console.log("Usuário Id:", response.data.id);
+        });
+    } catch (error) {
+      console.error(error);
+      alert("Erro em buscar o usuario");
+    }
+  }, []);
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev, [name]: value
-    }));
-  };
-
-  const handleCheckboxChange = (e, tipo) => {
-    const updatedResiduos = e.target.checked
-      ? [...formData.residuoAceito, tipo]                     // marcado, adiciona ao array o residuo selecionado
-      : formData.residuoAceito.filter(item => item !== tipo); // desmarcado, remove do array o residuo selecionado
-
-    setFormData(prev => ({
-      ...prev,
-      residuoAceito: updatedResiduos
-    }));
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-// verifica se o ID do usuário está presente 
-    if (!usuario_id) {
-      alert("Usuário não identificado. Volte ao registro.");
-      navigate("/Registro"); // redireciona para tela inicial se o ID não existir
+    const cnpj = formData.cnpj;
+    const busca = await axios.get(
+      `http://localhost:8080/api/v1/usuario/destinadora/buscar-cnpj?cnpj=${cnpj}`
+    );
+    if (busca.data.length > 0) {
+      alert("CNPJ já cadastrado.");
       return;
     }
 
     try {
-      // faz a requisição para o backend enviando os dados do formulário
-      const response = await axios.post("http://localhost:8080/api/v1/usuario/destinador", 
-      {
-        usuarioId: usuario_id,
-        ...formData
-      }, 
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const destinadoraResponse = await axios.post(
+        "http://localhost:8080/api/v1/usuario/destinadora",
+        {
+          telefone: formData.telefone,
+          nome: formData.nome,
+          cnpj: formData.cnpj,
+          ramo: formData.ramo,
+          residuoAceito: formData.residuoAceito,
+        }
+      );
 
-      alert("Cadastro de destinador realizado com sucesso.");
-      console.log("Resposta do servidor:", response.data);
-      navigate("/EnderecoDestinador", { state: { usuarioId: usuario_id } });
+      representanteDestinadora.destinadora = destinadoraResponse.data;
 
+      await axios.put(
+        `http://localhost:8080/api/v1/usuario/representante-destinadora/${representanteDestinadora.id}`,
+        representanteDestinadora
+      );
+
+      alert("Dados do Destinadora cadastrados com sucesso!");
+      const destinadoraId = destinadoraResponse.data.id;
+
+      navigate("/EnderecoDestinador", { state: { destinadoraId } });
     } catch (error) {
-      alert("Erro ao cadastrar dados do destinador.");
-      console.error("Erro ao enviar dados:", error.response ? error.response.data : error.message);
+      console.error("Erro ao cadastrar destinador:", error);
+      alert("Erro ao cadastrar os dados. Tente novamente.");
     }
   };
 
   return (
-    <div className='container-formulario'>
-      <form onSubmit={handleSubmit}>
-        <div className="campo">
-          <label htmlFor="cnpj">CNPJ:</label>
-          <InputMask mask="99.999.999/9999-99" id="cnpj" name="cnpj" value={formData.cnpj} onChange={handleChange} placeholder="Digite o CNPJ"
-            required
-          />
-        </div>
 
-        <div className="campo">
-          <label htmlFor="tel">Telefone:</label>
-          <InputMask mask="(99) 99999-9999" id="tel" name="telefone" value={formData.telefone} onChange={handleChange} placeholder="Digite seu Telefone"
-            required
-          />
-        </div>
+    <div className="pagina-cadastro">
+      <MinimalistHeader />
 
-        <div className="campo">
-          <label>Resíduo Aceito:</label>
-          <div className="checkbox-group">
-            {tipoResiduo.map((tipo, idx) => (
+      <div className="texto-introducao">
+        <h1>
+          Para ter acesso completo ao sistema, preencha os dados abaixo e comprove que sua empresa está apta a utilizar a plataforma.
+        </h1>
 
-              <label key={idx}>
-                <input type="checkbox" name="residuoAceito" value={tipo} checked={formData.residuoAceito.includes(tipo)} onChange={(e) => handleCheckboxChange(e, tipo)} />
-                {tipo}
-              </label> 
-            ))}
+      </div>
 
+      <div className="container-formulario">
+        <form onSubmit={handleSubmit}>
+
+          <div className="campo">
+            <label htmlFor="tel">Telefone:</label>
+            <InputMask mask="(99) 99999-9999" id="tel" name="telefone" value={formData.telefone} onChange={handleChange} placeholder="Digite seu Telefone"
+              required
+            />
           </div>
-        </div>
 
-        <button type="submit">Enviar</button>
-      </form>
+          <div className="campo">
+            <label htmlFor="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite o nome da empresa" value={formData.nome} onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="campo">
+            <label htmlFor="cnpj">CNPJ:</label>
+            <InputMask mask="99.999.999/9999-99" id="cnpj" name="cnpj" value={formData.cnpj} onChange={handleChange} placeholder="Digite o CNPJ"
+              required
+            />
+          </div>
+    
+          <div className="campo">
+            <label>Resíduos Aceitos:</label>
+            <div className="checkbox-group">
+              {tipoResiduo.map((tipo, idx) => (
+                <label key={idx}>
+                  <input
+                    type="checkbox"
+                    name="residuoAceito"
+                    value={tipo}
+                    checked={formData.residuoAceito.includes(tipo)}
+                    onChange={handleResiduoChange}
+                    required={formData.residuoAceito.length === 0}
+                  />
+                  {tipo}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <button type="submit">Avançar</button>
+        </form>
+      </div>
+      <div className="faixa-copyright-clara">
+        <p>© {new Date().getFullYear()} eco+. Todos os direitos reservados.</p>
+      </div>
     </div>
   );
 }

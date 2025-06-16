@@ -1,129 +1,106 @@
-.registro-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+/* Container principal da tela de registro */
+.container-elementos-registro {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #112b2c;
+  height: 100vh;
+  width: 100%;
+  font-family: "Segoe UI", sans-serif;
+  background: url("../../img/entulho-foda-login.png") no-repeat center;
+  background-size: cover;
 }
 
-/* Formulário */
-.formulario-cadastro {
-  width: 450px;
-  min-height: 530px;
-  background-color: #eff0f5;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+/* Lado direito - formulário */
+.registro-form {
+  background-color: #fff;
+  padding: 45px;
+  height: 630px;
+  width: 500px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
-.formulario-cadastro h2 {
-  margin-bottom: 20px;
+.h1-registro {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 23px;
   text-align: center;
-  font-size: 30px;
-  color: #218962;
 }
 
-.formulario-cadastro label {
+.registro-form label {
   display: block;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  font-size: 17px;
-  color: #173a3b;
-}
-
-.formulario-cadastro input,
-.formulario-cadastro select {
-  width: 100%;
-  height: 35px;
-  padding: 7px;
-  font-size: 15px;
-  font-family: inherit;
-  border: 1px solid #999;
-  border-radius: 5px;
-  outline: none;
-  background-color: #fff;
+  margin-bottom: 6px;
   color: #333;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 500;
 }
 
-.formulario-cadastro input:focus,
-.formulario-cadastro select:focus {
-  border: 2px solid #218962;
-  box-shadow: 0 0 5px rgba(33, 137, 98, 0.3);
-}
-
-.formulario-cadastro input::placeholder {
-  font-size: 15px;
-  text-align: left;
-}
-
-.formulario-cadastro select option {
-  background-color: #fff;
-  color: #333;
-}
-
-.formulario-cadastro button[type="submit"],
-.formulario-cadastro button[type="button"] {
-  margin-top: 20px;
+.registro-form input,
+.registro-form select {
   width: 100%;
-  padding: 10px 0;
-  cursor: pointer;
-  background: #218962;
-  border: none;
-  border-radius: 30px;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   outline: none;
   font-size: 16px;
-  color: #fff;
-  transition: background 0.3s ease;
+  transition: 0.3s;
 }
 
-.formulario-cadastro button[type="submit"]:hover,
-.formulario-cadastro button[type="button"]:hover {
-  background: #173a3b;
+.registro-form input:focus,
+.registro-form select:focus {
+  border-color: #22a73e;
+}
+
+.input-group {
+  margin-bottom: 20px;
 }
 
 .input-container {
   position: relative;
+  margin-bottom: 20px;
 }
 
 .eyeIcon {
   position: absolute;
+  right: 15px;
   top: 50%;
-  right: 10px;
   transform: translateY(-50%);
+  color: #999;
   cursor: pointer;
-  color: #666;
-  font-size: 17px;
-  z-index: 2;
 }
 
+.eyeIcon:hover {
+  color: #22a73e;
+}
+
+/* Botão */
+.registro-submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #22a73e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 17px;
+}
+
+.registro-submit-button:hover {
+  background-color: #18782b;
+}
+
+/* Link para login */
 .sign-in-link {
-  margin-top: 12px;
-  display: flex;
-  justify-content: center;
+  margin-top: 18px;
+  text-align: center;
 }
 
 .sign-in-link a {
+  color: #1b8a32;
   text-decoration: none;
-  margin-left: 4px;
-  color: #218962;
+  font-weight: 500;
 }
 
 .sign-in-link a:hover {
   text-decoration: underline;
-}
-
-.etapa-formulario {
-  display: flex;
-  flex-direction: column;
-}
-
-.grupo-campos {
-  margin-top: 20px;
-  padding-top: 10px;
-  border-top: 1px solid #ccc;
 }

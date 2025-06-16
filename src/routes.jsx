@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Header from './components/Header/Header'; 
-import Home from './pages/Home/Home';
-import Login from './pages/Login/Login';
-import CadastroDestinador from './pages/Registros/Destinadora/CadastroDestinador';
+import Home from "./pages/Home/Home";
+import Header from "./components/Header/Header"
+import Login from "./pages/Login/Login";
 import HistoricoSolicitacoes from "./pages/Coleta/Historico/HistoricoSolicitacoes";
 import ColetaForm from "./pages/Coleta/Pedidos/ColetaForm";
 import SolicitarColeta from "./components/Coleta/Solicitacao/SolicitarColeta";
@@ -19,6 +18,8 @@ import Residuos from "./pages/Blog/Conteudos/Residuos";
 import Sobre from "./pages/Blog/Sobre";
 import EnderecoGerador from "./pages/Registros/Geradora/EnderecoGerador";
 import CadastroGerador from "./pages/Registros/Geradora/CadastroGerador";
+import EnderecoDestinador from "./pages/Registros/Destinadora/EnderecoDestinador"
+import CadastroDestinador from './pages/Registros/Destinadora/CadastroDestinador';
 
 function Layout() {
     const location = useLocation();
@@ -33,7 +34,8 @@ function Layout() {
             "/CadastroGerador",
             "/CadastroResiduo",
             "/Admin",
-            "/EnderecoGerador"
+            "/EnderecoGerador",
+            "/EnderecoDestinador"
         ];
 
         setShowHeader(!noHeaderRoutes.includes(location.pathname));
@@ -76,6 +78,7 @@ function RoutesApp() {
                     <Route path="/CadastroResiduo" element={<CadastroResiduo />} />
                     <Route path="/Admin" element={<Admin />} />
                     <Route path="/EnderecoGerador" element={<EnderecoGerador />} />
+                    <Route path="/EnderecoDestinador" element={<EnderecoDestinador />} />
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -1,0 +1,24 @@
+.minimal-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    border-bottom: solid rgb(204, 204, 204) 1px;
+    z-index: 1000;
+    padding: 0 150px;
+}
+
+.minimal-logo-header {
+    margin-left: 0;
+    justify-content: flex-start;
+    display: flex;
+}
+
+.minimal-logo-header img {
+    max-height: 50px;
+    height: auto;
+}

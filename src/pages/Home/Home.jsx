@@ -131,18 +131,6 @@ function Home() {
                 <DownloadApp />
             </section>
 
-
-{/* APENAS PARA NAVEGAÇÃO INTERNA ENTRE AS PÁGINAS QUE ESTÃO SENDO DESENVOLVIDAS */}
-<section className="navegacao-interna">
-    
-            <p>Páginas em desenvolvimento</p>
-
-            <div>
-                 <Link to="/CadastroGerador"><button>Formulário de Cadastro Gerador</button></Link>
-                <Link to="/CadastroDestinador"><button>Formulário de Cadastro Destinador</button></Link>
-            </div>
-        </section>
-
             <section className="rodape">
                 <Footer />
             </section>
