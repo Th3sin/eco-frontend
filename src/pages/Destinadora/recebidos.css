@@ -1,0 +1,131 @@
+.pedidos-container {
+  max-width: 900px;
+  margin: 90px auto 40px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
+
+.pedidos-container h1 {
+  margin-bottom: 20px;
+}
+
+.mensagem-sucesso {
+  background-color: #d1e7dd;
+  border: 1px solid #badbcc;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  color: #0f5132;
+}
+
+.sem-pedidos {
+  color: #555;
+  font-size: 1rem;
+}
+
+.tabela-wrapper {
+  overflow-x: auto;
+}
+
+.tabela-pedidos {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+.tabela-pedidos th,
+.tabela-pedidos td {
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabela-pedidos th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+  cursor: default;
+}
+
+.tabela-pedidos tr:hover {
+  background-color: #f9fafb;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Status colors */
+.badge.pendente {
+  background-color: #fef9c3;
+  color: #a16207;
+  border: 1px solid #fde047;
+}
+
+.badge.aceito {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #93c5fd;
+}
+
+.badge.em-andamento {
+  background-color: #ffedd5;
+  color: #c2410c;
+  border: 1px solid #fdba74;
+}
+
+.badge.concluido {
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+
+.badge.cancelado {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+.btn-aceitar,
+.btn-recusar {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+  margin-right: 8px;
+  color: white;
+}
+
+.btn-aceitar {
+  background-color: #22c55e;
+}
+
+.btn-aceitar:hover {
+  background-color: #16a34a;
+}
+
+.btn-recusar {
+  background-color: #ef4444;
+}
+
+.btn-recusar:hover {
+  background-color: #dc2626;
+}
+
+.sem-acoes {
+  color: #888;
+  font-style: italic;
+}

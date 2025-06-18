@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputMask from 'react-input-mask';
-import { tipoResiduo } from '../../../data/materiais';
+import { tipoResiduo } from '../../data/materiais';
 import './coletaForm.css';
 
 function ColetaForm() {

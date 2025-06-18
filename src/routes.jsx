@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header"
 import Login from "./pages/Login/Login";
-import HistoricoSolicitacoes from "./pages/Coleta/Historico/HistoricoSolicitacoes";
-import ColetaForm from "./pages/Coleta/Pedidos/ColetaForm";
+import ColetaForm from "./pages/Coleta/ColetaForm";
 import SolicitarColeta from "./components/Coleta/Solicitacao/SolicitarColeta";
-import PainelColeta from "./pages/Coleta/Painel/PainelColeta";
+import PainelColeta from "./pages/Destinadora/Painel/PainelColeta";
 import CadastroResiduo from "./pages/Registros/Material/CadastroResiduo"
 import ManualUsuarios from "./components/Coleta/Manual/ManualUsuarios";
 import Registro from "./pages/Registros/Registro";
@@ -20,6 +19,9 @@ import EnderecoGerador from "./pages/Registros/Geradora/EnderecoGerador";
 import CadastroGerador from "./pages/Registros/Geradora/CadastroGerador";
 import EnderecoDestinador from "./pages/Registros/Destinadora/EnderecoDestinador"
 import CadastroDestinador from './pages/Registros/Destinadora/CadastroDestinador';
+import PedidosRecebidos from "./pages/Destinadora/PedidosRecebidos";
+import Configuracoes from "./pages/Configuracoes/Configuracoes";
+import HistoricoSolicitacoes from "./pages/Geradora/Painel/HistoricoSolicitacoes";
 
 function Layout() {
     const location = useLocation();
@@ -35,7 +37,8 @@ function Layout() {
             "/CadastroResiduo",
             "/Admin",
             "/EnderecoGerador",
-            "/EnderecoDestinador"
+            "/EnderecoDestinador",
+            "/Configuracoes"
         ];
 
         setShowHeader(!noHeaderRoutes.includes(location.pathname));
@@ -61,7 +64,6 @@ function RoutesApp() {
                     <Route path="/Home" element={<Home />} />
                     <Route path="/Ecomapa" element={<Ecomapa />} />
                     <Route path="/ColetaForm" element={<ColetaForm />} />
-                    <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
                     <Route path="/SolicitarColeta" element={<SolicitarColeta />} />
                     <Route path="/PainelColeta" element={<PainelColeta />} />
                     <Route path="/ManualUsuarios" element={<ManualUsuarios />} />
@@ -69,6 +71,8 @@ function RoutesApp() {
                     <Route path="/ManualDestinador" element={<ManualDestinador />} />
                     <Route path="/Residuos" element={<Residuos />} />
                     <Route path="/Sobre" element={<Sobre />} />
+                    <Route path="/PedidosRecebidos" element={<PedidosRecebidos />} />
+                    <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
 
                     {/* Páginas sem Header */}
                     <Route path="/Registro" element={<Registro />} />
@@ -79,6 +83,7 @@ function RoutesApp() {
                     <Route path="/Admin" element={<Admin />} />
                     <Route path="/EnderecoGerador" element={<EnderecoGerador />} />
                     <Route path="/EnderecoDestinador" element={<EnderecoDestinador />} />
+                    <Route path="/Configuracoes" element={<Configuracoes />} />
                 </Route>
             </Routes>
         </BrowserRouter>

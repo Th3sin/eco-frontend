@@ -5,7 +5,7 @@ import Footer from '../../components/Layout/Footer'
 import ecoTitulo from '../../img/ecotitulo.png'
 import picgera from "../../img/fabrica-exemplo.jpg";
 import picdest from "../../img/centro-exemplo.jpg";
-import ColetaForm from "../Coleta/Pedidos/ColetaForm";
+import ColetaForm from "../Coleta/ColetaForm";
 import DownloadApp from "../../components/Layout/DownloadApp";
 import imageBlog01 from "../../img/blog-image001.jpg";
 import imageBlog02 from "../../img/blog-image002.jpg";
