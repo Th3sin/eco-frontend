@@ -7,22 +7,34 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependências
+node_modules/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Build
+dist/
+dist-ssr/
+
+# Arquivos de ambiente
+.env
+.env.*.local
+.env.local
+
+# Arquivos do sistema
 .DS_Store
+Thumbs.db
+
+# Diretórios e arquivos de editores
+.vscode/
+!.vscode/extensions.json
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
-.env.localpublic/video/projeto-eco-video.mp4
+# Ignorar vídeo pesado no repositório
+public/video/projeto-eco-video.mp4
 
-.src/page/Home/home.css
+# Ignorar CSS específico (somente se não quiser versionar)
+src/page/Home/home.css

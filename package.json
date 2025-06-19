@@ -1,14 +1,16 @@
 {
   "name": "ecoplus",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "description": "Sistema para gestão de ecopontos, promovendo a coleta seletiva de resíduos sólidos.",
+  "main": "server.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@fontsource/raleway": "^5.2.6",
@@ -17,18 +19,12 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@react-google-maps/api": "^2.20.6",
     "axios": "^1.9.0",
-    "body-parser": "^2.2.0",
     "browser-image-compression": "^2.0.2",
     "cors": "^2.8.5",
     "cpf-cnpj-validator": "^1.0.3",
     "express": "^5.1.0",
-    "font-awesome": "^4.7.0",
     "framer-motion": "^12.5.0",
-    "fs": "^0.0.1-security",
-    "js": "^0.1.0",
-    "json-server": "^1.0.0-beta.3",
     "lucide-react": "^0.516.0",
-    "node": "^22.16.0",
     "node-fetch": "^3.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -47,8 +43,6 @@
     "globals": "^15.11.0",
     "vite": "^6.3.3"
   },
-  "description": "Este projeto visa a instalação e gestão de ecopontos, promovendo a coleta seletiva de resíduos sólidos para contribuir com a sustentabilidade ambiental e o cumprimento das normas de reciclagem. Além disso, busca-se incentivar a conscientização da população sobre a importância da destinação correta de resíduos. *descrição do projeto \"pendente\".",
-  "main": "eslint.config.js",
   "keywords": [],
   "author": "",
   "license": "ISC"

@@ -7,7 +7,7 @@ function HistoricoSolicitacoes() {
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState(null);
 
-  const API_BASE_URL = "https://sua-api.com/coletas"; // Ajuste a URL da sua API
+  const API_BASE_URL = "https://sua-api.com/coletas";
 
   useEffect(() => {
     async function fetchPedidos() {
