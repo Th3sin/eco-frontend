@@ -81,7 +81,7 @@ function Header() {
                 <li><Link to="/HistoricoSolicitacoes" onClick={() => setMenuOpen(false)}>Histórico</Link></li>
                 <li><Link to="/PainelColeta" onClick={() => setMenuOpen(false)}>Painel de Acompanhamento</Link></li>
                 <li><Link to="/Configuracoes" onClick={() => setMenuOpen(false)}>Configurações</Link></li>
-                <li><Link to="/Sair" onClick={() => setMenuOpen(false)}>Sair</Link></li>
+                <li><Link to="/Login" onClick={() => setMenuOpen(false)}>Sair</Link></li>
               </ul>
             </div>
           )}

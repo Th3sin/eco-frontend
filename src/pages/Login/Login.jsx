@@ -14,13 +14,6 @@ function Login() {
     setShowPassword(!showPassword);
   };
 
-  // ✅ Validação de senha
-  const validarSenha = (senha) => {
-    const temMinimo8 = senha.length >= 8;
-    const temLetra = /[a-zA-Z]/.test(senha);
-    const temNumero = /\d/.test(senha);
-    return temMinimo8 && temLetra && temNumero;
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,15 +22,7 @@ function Login() {
       alert("Por favor, preencha todos os campos.");
       return;
     }
-
-    // 🔒 Validação da senha antes de enviar
-    if (!validarSenha(password)) {
-      alert(
-        "A senha deve ter no mínimo 8 caracteres, contendo letras e números."
-      );
-      return;
-    }
-
+   
     try {
       const response = await axios.post(
         "http://localhost:8080/api/v1/auth/authenticate",
@@ -51,22 +36,33 @@ function Login() {
 
       localStorage.setItem("token", access_token);
       navigate("/Home");
-    } catch (err) {
-      if (err.response && err.response.status === 401) {
-        alert("Usuário ou senha incorretos.");
-      } else {
-        alert("Erro ao realizar login.");
-      }
-      console.error("Erro de login:", err);
+      
+    } 
+    
+    catch (err) {
+  console.log("Erro recebido no catch:", err);
+  console.log("err.response:", err.response);
+
+  if (err.response) {
+    if (err.response.status === 401) {
+      alert("Usuário ou senha incorretos.");
+    } else if (err.response.status === 400) {
+      alert("Dados enviados estão incorretos.");
+    } else if (err.response.status === 500) {
+      alert("Erro interno no servidor, tente mais tarde.");
+    } else {
+      alert("Erro ao realizar login.");
     }
+  } else {
+    alert("Erro de conexão ou desconhecido.");
+  }
+  console.error("Erro de login:", err);
+}
   };
 
   return (
     <div className="container-elementos-login">
       <div className="container-login">
-        <div className="">
-          <Link to={"/Home"}>HOME</Link>
-        </div>
 
         <form className="login-form" onSubmit={handleSubmit}>
           <h1 className="h1-login" title="Acesse sua conta" alt="Entrar">
@@ -107,9 +103,6 @@ function Login() {
                 onClick={togglePasswordVisibility}
               ></i>
             </div>
-            <small className="password-hint">
-              A senha deve ter no mínimo 8 caracteres, incluindo letras e números.
-            </small>
           </div>
 
           <button className="login-submit-button" type="submit">

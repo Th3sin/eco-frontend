@@ -8,38 +8,38 @@ import { tipoResiduo } from "../../data/materiais";
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
 
 const Ecomapa = () => {
-  /* ---------- estado do formulário ---------- */
   const [formData, setFormData] = useState({
     cep: "",
     distancia: "3",
     classe: "",
-    grupo: "", // <- Nome ajustado para 'grupo'
+    grupo: "",
   });
 
-  /* ---------- estado das destinadoras ---------- */
   const [destinadoras, setDestinadoras] = useState([]);
   const [loadingDest, setLoadingDest] = useState(false);
 
-  /* ---------- map config ---------- */
   const { isLoaded } = useJsApiLoader({ googleMapsApiKey: apiKey });
   const mapContainerStyle = { width: "100%", height: "500px" };
   const defaultCenter = { lat: -23.5123429, lng: -46.889781 };
 
-  /* ---------- handlers ---------- */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSearch = async () => {
-    if (!formData.classe || !formData.grupo) return;
+    if (!formData.classe || !formData.grupo) {
+      alert("Por favor, selecione classe e grupo do resíduo.");
+      return;
+    }
 
     try {
       setLoadingDest(true);
       setDestinadoras([]);
 
+      // URL corrigida para o endpoint correto do backend
       const response = await axios.get(
-        "http://localhost:8080/api/v1/usuario/destinadora",
+        "http://localhost:8080/api/v1/destinadora/buscar",
         {
           params: {
             classe: formData.classe,
@@ -58,11 +58,9 @@ const Ecomapa = () => {
     }
   };
 
-  /* ---------- render ---------- */
   return (
     <div className="container">
       <div className="busca-section">
-        {/* formulário */}
         <div className="form-area">
           <h2 className="section-title">Buscar Destinadoras</h2>
           <p className="section-description">
@@ -70,7 +68,6 @@ const Ecomapa = () => {
           </p>
 
           <div className="form-fields">
-            {/* CEP */}
             <div className="form-group">
               <label>CEP</label>
               <InputMask
@@ -90,7 +87,6 @@ const Ecomapa = () => {
               </InputMask>
             </div>
 
-            {/* Distância */}
             <div className="form-group">
               <label>Distância</label>
               <select
@@ -106,7 +102,6 @@ const Ecomapa = () => {
               </select>
             </div>
 
-            {/* Classe */}
             <div className="form-group">
               <label>Classe</label>
               <select
@@ -122,7 +117,6 @@ const Ecomapa = () => {
               </select>
             </div>
 
-            {/* Grupo (Tipo de resíduo) */}
             <div className="form-group">
               <label>Grupo / Tipo de Resíduo</label>
               <select
@@ -147,7 +141,6 @@ const Ecomapa = () => {
           </button>
         </div>
 
-        {/* mapa */}
         <div className="map-area">
           {isLoaded ? (
             <GoogleMap
@@ -161,7 +154,6 @@ const Ecomapa = () => {
         </div>
       </div>
 
-      {/* resultados */}
       <div className="result-section">
         <h3 className="result-title">Destinadoras Encontradas</h3>
 
@@ -179,7 +171,7 @@ const Ecomapa = () => {
                 <p>E-mail: {dest.email}</p>
                 <p>
                   Resíduo aceito:{" "}
-                  {dest.grupo ? `${dest.grupo} - ${dest.classe}` : "N/A"}
+                  {dest.grupo && dest.classe ? `${dest.grupo} - ${dest.classe}` : "N/A"}
                 </p>
               </div>
             ))}

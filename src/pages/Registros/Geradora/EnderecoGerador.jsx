@@ -58,53 +58,69 @@ const EnderecoGerador = () => {
   }, [cep]);
  
   const handleSubmit = async (e) => {
-    e.preventDefault();
- 
-    if (!geradoraId) {
-      alert("Geradora não identificada. Volte ao registro da geradora.");
-      navigate("/CadastroGerador");
-      return;
-    }
- 
-    try {
-      const response = await axios.put(
-        `http://localhost:8080/api/v1/usuario/geradora/${geradoraId}`,
-        {
-          cep,
-          logradouro,
-          bairro,
-          cidade,
-          uf,
-          num: numero,
+  e.preventDefault();
+
+  if (!geradoraId) {
+    alert("Empresa não identificada.");
+    navigate("/CadastroGerador");
+    return;
+  }
+
+  const cepLimpo = cep.replace(/\D/g, "");
+  if (cepLimpo.length !== 8) {
+    alert("CEP inválido. Deve conter 8 dígitos numéricos.");
+    return;
+  }
+  if (!logradouro || !bairro || !cidade || !uf || !numero) {
+    alert("Por favor, preencha todos os campos do endereço.");
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.put(
+      `http://localhost:8080/api/v1/usuario/geradora/${geradoraId}`,
+      {
+        cep: cepLimpo,
+        logradouro,
+        bairro,
+        cidade,
+        uf,
+        numero,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
- 
-      alert("Endereço cadastrado com sucesso!");
-      console.log("Endereço cadastrado com sucesso:", response.data);
- 
-      // Aqui você pode redirecionar para onde quiser após o cadastro do endereço, exemplo:
-      navigate("/Login");
- 
-      // Limpar formulário
-      setCep("");
-      setLogradouro("");
-      setBairro("");
-      setCidade("");
-      setUf("");
-      setNumero("");
-    } catch (error) {
-      alert("Erro ao cadastrar o endereço. Insira um CEP válido.");
-      console.error(
-        "Erro ao cadastrar endereço:",
-        error.response ? error.response.data : error.message
-      );
-    }
-  };
+      }
+    );
+
+    alert("Cadastrado feito com sucesso!");
+    console.log("Endereço cadastrado com sucesso:", response.data);
+
+    navigate("/Home");
+
+    // Limpar formulário
+    setCep("");
+    setLogradouro("");
+    setBairro("");
+    setCidade("");
+    setUf("");
+    setNumero("");
+    
+  } catch (error) {
+    const msg =
+      error.response?.data?.mensagemErro ||
+      error.response?.data?.message ||
+      error.message ||
+      "Erro ao cadastrar o endereço.";
+    alert(msg);
+    console.error("Erro ao cadastrar endereço:", error.response || error.message);
+  }
+};
+
 
   return (
     <div className="pagina-cadastro">

@@ -12,7 +12,7 @@
 .registro-form {
   background-color: #fff;
   padding: 45px;
-  height: 630px;
+  height: 650px;
   width: 500px;
   margin: auto;
   border-radius: 8px;
@@ -22,7 +22,7 @@
 .h1-registro {
   font-size: 28px;
   color: #333;
-  margin-bottom: 23px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -103,4 +103,16 @@
 
 .sign-in-link a:hover {
   text-decoration: underline;
+}
+
+.password-hint {
+  display: block;
+  margin-left: 5px;
+  font-size: 10.5px;
+  color: #555; 
+}
+
+.aviso-senha {
+  margin-top: -10px;
+  margin-bottom: 15px;
 }

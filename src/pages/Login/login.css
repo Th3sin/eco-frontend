@@ -89,7 +89,8 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 15px;
+  margin-top: 25px;
+  margin-bottom: 10px;
 }
 
 .login-submit-button:hover {
@@ -109,11 +110,4 @@
 
 .signup-link a:hover {
   text-decoration: underline;
-}
-
-.password-hint {
-  display: block;
-  margin-left: 3px;
-  font-size: 10.5px;
-  color: #555; 
 }

@@ -31,19 +31,33 @@ const Registro = () => {
     return JSON.parse(jsonPayload);
   }
  
+  // Validação de senha
+  const validarSenha = (senha) => {
+    const temMinimo8 = senha.length >= 8;
+    const temLetra = /[a-zA-Z]/.test(senha);
+    const temNumero = /\d/.test(senha);
+    return temMinimo8 && temLetra && temNumero;
+  };
+
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
  
   const handleSubmit = async (e) => {
-    e.preventDefault();
- 
-    console.log("Email: " + email);
- 
-    if (password !== confirmarSenha) {
-      alert("As senhas não coincidem!");
-      return;
-    }
+  e.preventDefault();
+
+  if (!validarSenha(password)) {
+    alert(
+      "A senha deve ter no mínimo 8 caracteres, contendo letras e números."
+    );
+    return; 
+  }
+
+  if (password !== confirmarSenha) {
+    alert("As senhas não coincidem!");
+    return;
+  }
  
     try {
       const response = await axios.post(
@@ -75,10 +89,10 @@ const Registro = () => {
       // Redireciona para o próximo passo com usuarioId no state
       if (perfil === "REPRESENTANTECOLETORA") {
         //navigate("/CadastroGerador", { state: { usuario_id } });
-        navigate("/CadastroGerador");
+        navigate("/Login");
       } else if (perfil === "REPRESENTANTEDESTINADORA") {
         // navigate("/CadastroDestinador", { state: { usuario_id } });
-        navigate("/CadastroDestinador");
+        navigate("/Login");
       }
  
       // Limpar formulário
@@ -94,6 +108,7 @@ const Registro = () => {
         error.response ? error.response.data : error.message
       );
     }
+
   };
  
 return (
@@ -166,6 +181,13 @@ return (
             onClick={togglePasswordVisibility}
           ></i>
         </div>
+
+        <div className="aviso-senha">
+          <small className="password-hint">
+              A senha deve ter no mínimo 8 caracteres, incluindo letras e números.
+          </small>
+        </div>
+        
 
         <button
           type="submit"

@@ -101,19 +101,6 @@
     transform: scale(0.98);
 }
  
-.seta-para-baixo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px; 
-}
- 
-.seta-video {
-    position: absolute;
-    width: 70px;
-    height: auto;
-    cursor: pointer;
-}
  
 /* COMPONENTES IMPORTADOS */ 
 .navegacao-home {
@@ -324,4 +311,39 @@
     .banner-informations h2 {
         font-size: 18px;
     }
+}
+
+.aviso-cadastro-incompleto {
+  background-color: #ffcccc;
+  color: #900;
+  padding: 12px 20px;
+  margin: 20px auto;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  font-weight: 600;
+  max-width: 900px;
+  box-sizing: border-box;
+}
+
+.link-cadastro {
+  font-weight: bold;
+  color: #900;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.botao-fechar-aviso {
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  color: #900;
+  line-height: 1;
+  padding: 0;
 }
