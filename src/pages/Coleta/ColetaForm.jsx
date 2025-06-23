@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputMask from 'react-input-mask';
-import { tipoResiduo } from '../../data/materiais';
 import './coletaForm.css';
 
 function ColetaForm() {
@@ -47,7 +46,7 @@ function ColetaForm() {
               </InputMask>
             </div>
 
-            <div className="resumo-coleta-form-group">
+            {/* <div className="resumo-coleta-form-group">
               <label htmlFor="nomeResiduo">Resíduo</label>
               <select name="nomeResiduo" id="nomeResiduo" required onChange={handleInputChange} value={formData.nomeResiduo}>
                 <option value="">Selecione um tipo</option>
@@ -55,7 +54,7 @@ function ColetaForm() {
                   <option key={index} value={tipo}>{tipo}</option>
                 ))}
               </select>
-            </div>
+            </div> */}
 
             <div className="resumo-coleta-form-group">
               <label>Quando deseja a coleta?</label>

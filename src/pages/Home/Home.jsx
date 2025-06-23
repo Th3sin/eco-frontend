@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import "./home.css";
@@ -19,7 +20,8 @@ function Home() {
     const [cadastroCompleto, setCadastroCompleto] = useState(true);
     const [mostrarAviso, setMostrarAviso] = useState(false);
 
-    // Função para rolar a página suavemente para baixo
+    const navigate = useNavigate();
+
     const scrollParaBaixo = () => {
         window.scrollBy({
             top: 600,
@@ -28,50 +30,50 @@ function Home() {
         });
     };
 
-
-    //verificacao de cadastro completo e redirecionamento para o formulário de acordo com o perfil selecionado
-    useEffect(() => {
-        async function checkCadastro() {
-            try {
-                const token = localStorage.getItem("token");
-                if (!token) {
-                    console.log("Token não encontrado, usuário não está autenticado.");
-                    setCadastroCompleto(true);
-                    return;
-                }
-
-                const api = axios.create({
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-
-                const resUsuario = await api.get("/api/v1/usuario/logado");
-                const usuario = resUsuario.data;
-                setUsuario(usuario);
-                setRole(usuario.role);
-
-                let url = null;
-                if (usuario.role === "REPRESENTANTECOLETORA") {
-                    url = "/api/v1/usuario/verificar-cadastro-geradora";
-                } else if (usuario.role === "REPRESENTANTEDESTINADORA") {
-                    url = "/api/v1/usuario/verificar-cadastro-destinadora";
-                } else {
-                    console.log("Role desconhecida:", usuario.role);
-                    return;
-                }
-
-                const res = await api.get(url);
-                setCadastroCompleto(res.data);
-
-                if (!res.data) {
-                    setMostrarAviso(true);
-                }
-            } catch (err) {
-                console.error("Erro ao buscar usuário ou verificar cadastro:", err);
+    const checkCadastro = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                console.log("Token não encontrado.");
+                setCadastroCompleto(true);
+                return;
             }
-        }
 
+            const api = axios.create({
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            const resUsuario = await api.get("/api/v1/usuario/logado");
+            const usuario = resUsuario.data;
+            setUsuario(usuario);
+            setRole(usuario.role);
+
+            let url = null;
+            if (usuario.role === "REPRESENTANTECOLETORA") {
+                url = "/api/v1/usuario/verificar-cadastro-geradora";
+            } else if (usuario.role === "REPRESENTANTEDESTINADORA") {
+                url = "/api/v1/usuario/verificar-cadastro-destinadora";
+            } else {
+                console.log("Role desconhecida:", usuario.role);
+                return;
+            }
+
+            const res = await api.get(url);
+            setCadastroCompleto(res.data);
+
+            if (res.data) {
+                setMostrarAviso(false); 
+            } else {
+                setMostrarAviso(true); 
+            }
+        } catch (err) {
+            console.error("Erro ao buscar usuário ou verificar cadastro:", err);
+        }
+    };
+
+    useEffect(() => {
         checkCadastro();
     }, []);
 
@@ -79,11 +81,10 @@ function Home() {
         setMostrarAviso(false);
     };
 
-    // Retorna a rota do cadastro correto
     const rotaCadastro = () => {
         if (role === "REPRESENTANTECOLETORA") return "/CadastroGerador";
         if (role === "REPRESENTANTEDESTINADORA") return "/CadastroDestinador";
-        return "/"; 
+        return "/";
     };
 
     return (

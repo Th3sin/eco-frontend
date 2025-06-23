@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import InputMask from "react-input-mask";
 import axios from "axios";
 import "./buscaMapa.css";
-import { tipoResiduo } from "../../data/materiais";
 
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
 
@@ -12,11 +11,27 @@ const Ecomapa = () => {
     cep: "",
     distancia: "3",
     classe: "",
-    grupo: "",
+    residuoId: "", // aqui armazenamos o id do resíduo selecionado
   });
 
+  const [todosResiduos, setTodosResiduos] = useState([]);
   const [destinadoras, setDestinadoras] = useState([]);
   const [loadingDest, setLoadingDest] = useState(false);
+
+  // Buscar lista de resíduos sem token
+  useEffect(() => {
+    const fetchResiduos = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/v1/residuo");
+        setTodosResiduos(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar resíduos:", error);
+        alert("Erro ao buscar lista de resíduos.");
+      }
+    };
+
+    fetchResiduos();
+  }, []);
 
   const { isLoaded } = useJsApiLoader({ googleMapsApiKey: apiKey });
   const mapContainerStyle = { width: "100%", height: "500px" };
@@ -28,8 +43,8 @@ const Ecomapa = () => {
   };
 
   const handleSearch = async () => {
-    if (!formData.classe || !formData.grupo) {
-      alert("Por favor, selecione classe e grupo do resíduo.");
+    if (!formData.classe || !formData.residuoId) {
+      alert("Por favor, selecione classe e resíduo.");
       return;
     }
 
@@ -37,17 +52,14 @@ const Ecomapa = () => {
       setLoadingDest(true);
       setDestinadoras([]);
 
-      // URL corrigida para o endpoint correto do backend
-      const response = await axios.get(
-        "http://localhost:8080/api/v1/destinadora/buscar",
-        {
-          params: {
-            classe: formData.classe,
-            grupo: formData.grupo,
-          },
-          headers: { Accept: "application/json" },
-        }
-      );
+      // Envio do id do resíduo no parâmetro 'residuoId' para buscar destinadoras
+      const response = await axios.get("http://localhost:8080/api/v1/destinadora/buscar", {
+        params: {
+          classe: formData.classe,
+          residuoId: formData.residuoId,
+        },
+        headers: { Accept: "application/json" },
+      });
 
       setDestinadoras(response.data);
     } catch (error) {
@@ -64,7 +76,7 @@ const Ecomapa = () => {
         <div className="form-area">
           <h2 className="section-title">Buscar Destinadoras</h2>
           <p className="section-description">
-            Selecione a classe e o grupo (tipo) do resíduo para localizar destinadoras.
+            Selecione a classe e o resíduo para localizar destinadoras.
           </p>
 
           <div className="form-fields">
@@ -89,11 +101,7 @@ const Ecomapa = () => {
 
             <div className="form-group">
               <label>Distância</label>
-              <select
-                name="distancia"
-                value={formData.distancia}
-                onChange={handleChange}
-              >
+              <select name="distancia" value={formData.distancia} onChange={handleChange}>
                 {[3, 7, 10, 15, 20, 25, 30].map((dist) => (
                   <option key={dist} value={dist}>
                     {dist} km
@@ -104,11 +112,7 @@ const Ecomapa = () => {
 
             <div className="form-group">
               <label>Classe</label>
-              <select
-                name="classe"
-                value={formData.classe}
-                onChange={handleChange}
-              >
+              <select name="classe" value={formData.classe} onChange={handleChange}>
                 <option value="" disabled>
                   Selecione a classe
                 </option>
@@ -118,18 +122,14 @@ const Ecomapa = () => {
             </div>
 
             <div className="form-group">
-              <label>Grupo / Tipo de Resíduo</label>
-              <select
-                name="grupo"
-                value={formData.grupo}
-                onChange={handleChange}
-              >
+              <label>Resíduo</label>
+              <select name="residuoId" value={formData.residuoId} onChange={handleChange}>
                 <option value="" disabled>
-                  Selecione o grupo do resíduo
+                  Selecione o resíduo
                 </option>
-                {tipoResiduo.map((res, idx) => (
-                  <option key={idx} value={res}>
-                    {res}
+                {todosResiduos.map((residuo) => (
+                  <option key={residuo.id} value={residuo.id}>
+                    {residuo.nome}
                   </option>
                 ))}
               </select>
@@ -143,11 +143,7 @@ const Ecomapa = () => {
 
         <div className="map-area">
           {isLoaded ? (
-            <GoogleMap
-              mapContainerStyle={mapContainerStyle}
-              center={defaultCenter}
-              zoom={10}
-            />
+            <GoogleMap mapContainerStyle={mapContainerStyle} center={defaultCenter} zoom={10} />
           ) : (
             <div>Carregando Mapa...</div>
           )}
@@ -171,7 +167,7 @@ const Ecomapa = () => {
                 <p>E-mail: {dest.email}</p>
                 <p>
                   Resíduo aceito:{" "}
-                  {dest.grupo && dest.classe ? `${dest.grupo} - ${dest.classe}` : "N/A"}
+                  {dest.residuoNome && dest.classe ? `${dest.residuoNome} - ${dest.classe}` : "N/A"}
                 </p>
               </div>
             ))}

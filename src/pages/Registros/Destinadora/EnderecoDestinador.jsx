@@ -8,7 +8,6 @@ const EnderecoDestinador = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Pega o destinadoraId passado pelo state na navegação anterior
   const destinadoraId = location.state?.destinadoraId;
 
   const [cep, setCep] = useState("");
@@ -18,6 +17,7 @@ const EnderecoDestinador = () => {
   const [uf, setUf] = useState("");
   const [numero, setNumero] = useState("");
 
+  // Busca automática pelo CEP
   useEffect(() => {
     const cepLimpo = cep.replace(/\D/g, "");
 
@@ -34,72 +34,65 @@ const EnderecoDestinador = () => {
             setUf(data.uf || "");
           } else {
             alert("CEP não encontrado.");
-            setLogradouro("");
-            setBairro("");
-            setCidade("");
-            setUf("");
+            limparCamposEndereco();
           }
         })
-        .catch((error) => {
-          console.error("Erro ao buscar CEP:", error);
-          alert("Erro ao buscar endereço. Verifique o CEP.");
-          setLogradouro("");
-          setBairro("");
-          setCidade("");
-          setUf("");
+        .catch(() => {
+          alert("Erro ao buscar o CEP.");
+          limparCamposEndereco();
         });
     } else {
-      setLogradouro("");
-      setBairro("");
-      setCidade("");
-      setUf("");
+      limparCamposEndereco();
     }
   }, [cep]);
+
+  const limparCamposEndereco = () => {
+    setLogradouro("");
+    setBairro("");
+    setCidade("");
+    setUf("");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!destinadoraId) {
-      alert("Destinadora não identificada. Volte ao registro da destinadora.");
+      alert("Destinadora não identificada. Volte ao registro.");
       navigate("/CadastroDestinador");
       return;
     }
 
+    const token = localStorage.getItem("token");
+
     try {
-      const response = await axios.put(
-        `http://localhost:8080/api/v1/usuario/destinadora/${destinadoraId}`,
+      await axios.put(
+        `http://localhost:8080/api/v1/destinadora/${destinadoraId}/endereco`,
         {
           cep,
           logradouro,
           bairro,
           cidade,
           uf,
-          num: numero,
+          numero, // ✔️ Correto, não é 'num'
         },
         {
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
       );
 
       alert("Endereço cadastrado com sucesso!");
-      console.log("Endereço cadastrado com sucesso:", response.data);
-
-      navigate("/Login");
-
-      setCep("");
-      setLogradouro("");
-      setBairro("");
-      setCidade("");
-      setUf("");
-      setNumero("");
+      navigate("/Home");
     } catch (error) {
-      alert("Erro ao cadastrar o endereço. Insira um CEP válido.");
-      console.error(
-        "Erro ao cadastrar endereço:",
-        error.response ? error.response.data : error.message
-      );
+      console.error("Erro ao cadastrar endereço:", error);
+      const msg =
+        error.response?.data?.mensagemErro ||
+        error.response?.data?.message ||
+        error.message ||
+        "Erro ao cadastrar. Verifique os dados.";
+      alert(msg);
     }
   };
 
@@ -121,10 +114,9 @@ const EnderecoDestinador = () => {
             <input
               type="text"
               value={cep}
-              onChange={(e) => {
-                const valor = e.target.value.replace(/\D/g, "").slice(0, 8);
-                setCep(valor);
-              }}
+              onChange={(e) =>
+                setCep(e.target.value.replace(/\D/g, "").slice(0, 8))
+              }
               required
               placeholder="Digite o CEP"
             />
@@ -132,22 +124,42 @@ const EnderecoDestinador = () => {
 
           <div className="campo">
             <label>Logradouro</label>
-            <input type="text" value={logradouro} readOnly placeholder="Logradouro" />
+            <input
+              type="text"
+              value={logradouro}
+              readOnly
+              placeholder="Logradouro"
+            />
           </div>
 
           <div className="campo">
             <label>Bairro</label>
-            <input type="text" value={bairro} readOnly placeholder="Bairro" />
+            <input
+              type="text"
+              value={bairro}
+              readOnly
+              placeholder="Bairro"
+            />
           </div>
 
           <div className="campo">
             <label>Cidade</label>
-            <input type="text" value={cidade} readOnly placeholder="Cidade" />
+            <input
+              type="text"
+              value={cidade}
+              readOnly
+              placeholder="Cidade"
+            />
           </div>
 
           <div className="campo">
             <label>UF</label>
-            <input type="text" value={uf} readOnly placeholder="UF" />
+            <input
+              type="text"
+              value={uf}
+              readOnly
+              placeholder="UF"
+            />
           </div>
 
           <div className="campo">
