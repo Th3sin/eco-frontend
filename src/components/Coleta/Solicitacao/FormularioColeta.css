@@ -1,0 +1,176 @@
+.coleta-container {
+  margin-top: 0;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  box-sizing: border-box; /* garantir que padding não cause overflow */
+  overflow-y: auto; /* caso a tela seja pequena, evita corte */
+}
+
+.coleta-card {
+  position: relative;
+  padding: 40px 50px 60px; /* reduzi o padding-bottom para diminuir espaço embaixo */
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  width: 650px;
+  max-width: 90vw;
+  box-sizing: border-box;
+  max-height: 90vh; /* evitar que extrapole altura da tela */
+  overflow-y: auto; /* scroll interno se necessário */
+}
+
+
+.coleta-etapa-titulo {
+  font-size: 1.25rem;
+  color: #000000;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.coleta-steps {
+  height: 35px;
+  display: none; /* ocultar steps já que form é único */
+  justify-content: space-between;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border-top-right-radius: 0%;
+  background-color: green;
+}
+
+.coleta-step {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.coleta-step.active {
+  background-color: #77c15e74;
+  color: #fff;
+}
+
+.coleta-form-section {
+  display: block;
+  gap: 30px;
+  padding-left: 0;
+}
+
+.coleta-form-full {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: auto;
+}
+
+.coleta-form-full label {
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.coleta-form-full input,
+.coleta-form-full select,
+.coleta-form-full textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  min-height: 40px;
+}
+
+.coleta-form-full input:focus,
+.coleta-form-full select:focus,
+.coleta-form-full textarea:focus {
+  border-color: #007bff;
+}
+
+.coleta-form-full textarea {
+  resize: vertical;
+  height: 140px;
+  min-height: 120px;
+  max-height: 240px;
+}
+
+/* Preview das imagens */
+.preview-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.preview {
+  position: relative;
+  width: 110px;
+  height: 110px;
+}
+
+.preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+
+.preview button {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  font-size: 13px;
+}
+
+/* Ações */
+.coleta-actions {
+  position: relative;
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10px;
+}
+
+.coleta-actions button,
+.coleta-btn-enviar {
+  background-color: #3e6cd9;
+  color: white;
+  border: none;
+  height: 50px;
+  border-radius: 6px;
+  font-size: 17px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-weight: bold;
+  width: 160px;
+  transition: background-color 0.3s ease;
+}
+
+.coleta-actions button:hover,
+.coleta-btn-enviar:hover {
+  background-color: #1952d6;
+}
+
+.coleta-btn-enviar {
+  margin-top: 20px;
+  align-self: flex-end;
+}

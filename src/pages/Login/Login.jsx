@@ -14,51 +14,50 @@ function Login() {
     setShowPassword(!showPassword);
   };
 
-
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!username || !password) {
-      alert("Por favor, preencha todos os campos.");
-      return;
-    }
-   
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/auth/authenticate",
-        {
-          email: username,
-          password: password,
-        }
-      );
-
-      const { access_token } = response.data;
-
-      localStorage.setItem("token", access_token);
-      navigate("/Home");
-      
-    } 
-    
-    catch (err) {
-  console.log("Erro recebido no catch:", err);
-  console.log("err.response:", err.response);
-
-  if (err.response) {
-    if (err.response.status === 401) {
-      alert("Usuário ou senha incorretos.");
-    } else if (err.response.status === 400) {
-      alert("Dados enviados estão incorretos.");
-    } else if (err.response.status === 500) {
-      alert("Erro interno no servidor, tente mais tarde.");
-    } else {
-      alert("Erro ao realizar login.");
-    }
-  } else {
-    alert("Erro de conexão ou desconhecido.");
+  if (!username || !password) {
+    alert("Por favor, preencha todos os campos.");
+    return;
   }
-  console.error("Erro de login:", err);
-}
-  };
+
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/api/v1/auth/authenticate",
+      {
+        email: username,
+        password: password,
+      }
+    );
+
+    const { access_token, tipoUsuario } = response.data;
+
+    localStorage.setItem("token", access_token);
+    localStorage.setItem("tipoUsuario", tipoUsuario); // ✅ SALVA O TIPO
+
+    navigate("/Home");
+
+  } catch (err) {
+    console.log("Erro recebido no catch:", err);
+    console.log("err.response:", err.response);
+
+    if (err.response) {
+      if (err.response.status === 401) {
+        alert("Usuário ou senha incorretos.");
+      } else if (err.response.status === 400) {
+        alert("Dados enviados estão incorretos.");
+      } else if (err.response.status === 500) {
+        alert("Erro interno no servidor, tente mais tarde.");
+      } else {
+        alert("Erro ao realizar login.");
+      }
+    } else {
+      alert("Erro de conexão ou desconhecido.");
+    }
+    console.error("Erro de login:", err);
+  }
+};
 
   return (
     <div className="container-elementos-login">

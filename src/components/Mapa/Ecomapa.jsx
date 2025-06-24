@@ -1,29 +1,52 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 import axios from "axios";
 import "./buscaMapa.css";
 
-const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
-
 const Ecomapa = () => {
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     cep: "",
     distancia: "3",
     classe: "",
-    residuoId: "", // aqui armazenamos o id do resíduo selecionado
+    residuoId: "",
   });
 
+  const [tipoUsuario, setTipoUsuario] = useState("");
   const [todosResiduos, setTodosResiduos] = useState([]);
   const [destinadoras, setDestinadoras] = useState([]);
   const [loadingDest, setLoadingDest] = useState(false);
+  const [residuosPorDest, setResiduosPorDest] = useState({});
 
-  // Buscar lista de resíduos sem token
+  // Recupera tipo do usuário
+  useEffect(() => {
+    const tipo = localStorage.getItem("tipoUsuario");
+    setTipoUsuario(tipo);
+  }, []);
+
+  // Redireciona caso não seja REPRESENTANTECOLETORA
+  useEffect(() => {
+    if (tipoUsuario && tipoUsuario !== "REPRESENTANTECOLETORA") {
+      navigate("/");
+    }
+  }, [tipoUsuario, navigate]);
+
+  // Carrega resíduos
   useEffect(() => {
     const fetchResiduos = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/v1/residuo");
-        setTodosResiduos(response.data);
+        const token = localStorage.getItem("token");
+        if (!token) throw new Error("Token não encontrado.");
+
+        const response = await axios.get("http://localhost:8080/api/v1/residuo", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        setTodosResiduos(response.data || []);
       } catch (error) {
         console.error("Erro ao buscar resíduos:", error);
         alert("Erro ao buscar lista de resíduos.");
@@ -44,27 +67,61 @@ const Ecomapa = () => {
 
   const handleSearch = async () => {
     if (!formData.classe || !formData.residuoId) {
-      alert("Por favor, selecione classe e resíduo.");
+      alert("Por favor, selecione a Classe e o Resíduo.");
       return;
     }
 
     try {
       setLoadingDest(true);
       setDestinadoras([]);
+      setResiduosPorDest({});
 
-      // Envio do id do resíduo no parâmetro 'residuoId' para buscar destinadoras
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Usuário não autenticado. Faça login novamente.");
+        setLoadingDest(false);
+        return;
+      }
+
       const response = await axios.get("http://localhost:8080/api/v1/destinadora/buscar", {
         params: {
           classe: formData.classe,
           residuoId: formData.residuoId,
         },
-        headers: { Accept: "application/json" },
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
 
-      setDestinadoras(response.data);
+      const data = response.data || [];
+      setDestinadoras(data);
+
+      const residuosMap = {};
+      await Promise.all(
+        data.map(async (dest) => {
+          try {
+            const res = await axios.get(
+              `http://localhost:8080/api/v1/destinadora/${dest.id}/residuos`,
+              {
+                headers: {
+                  Accept: "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+            residuosMap[dest.id] = res.data || [];
+          } catch (err) {
+            console.error(`Erro ao buscar resíduos da destinadora ${dest.id}:`, err);
+            residuosMap[dest.id] = [];
+          }
+        })
+      );
+
+      setResiduosPorDest(residuosMap);
     } catch (error) {
       console.error("Erro ao buscar destinadoras:", error);
-      setDestinadoras([]);
+      alert("Erro ao buscar destinadoras.");
     } finally {
       setLoadingDest(false);
     }
@@ -76,7 +133,7 @@ const Ecomapa = () => {
         <div className="form-area">
           <h2 className="section-title">Buscar Destinadoras</h2>
           <p className="section-description">
-            Selecione a classe e o resíduo para localizar destinadoras.
+            Preencha os dados abaixo para localizar empresas destinadoras de resíduos.
           </p>
 
           <div className="form-fields">
@@ -116,8 +173,8 @@ const Ecomapa = () => {
                 <option value="" disabled>
                   Selecione a classe
                 </option>
-                <option value="perigoso">Classe I (Perigoso)</option>
-                <option value="não-perigoso">Classe II (Não Perigoso)</option>
+                <option value="PERIGOSO">Classe I (Perigoso)</option>
+                <option value="NAO_PERIGOSO">Classe II (Não Perigoso)</option>
               </select>
             </div>
 
@@ -129,21 +186,30 @@ const Ecomapa = () => {
                 </option>
                 {todosResiduos.map((residuo) => (
                   <option key={residuo.id} value={residuo.id}>
-                    {residuo.nome}
+                    {residuo.descricao || residuo.nome || `Resíduo ${residuo.id}`}
                   </option>
                 ))}
               </select>
             </div>
           </div>
 
-          <button className="search-button" onClick={handleSearch}>
-            Buscar
+          <button
+            className="search-button"
+            onClick={handleSearch}
+            disabled={loadingDest}
+            type="button"
+          >
+            {loadingDest ? "Buscando..." : "Buscar"}
           </button>
         </div>
 
         <div className="map-area">
           {isLoaded ? (
-            <GoogleMap mapContainerStyle={mapContainerStyle} center={defaultCenter} zoom={10} />
+            <GoogleMap
+              mapContainerStyle={mapContainerStyle}
+              center={defaultCenter}
+              zoom={10}
+            />
           ) : (
             <div>Carregando Mapa...</div>
           )}
@@ -155,20 +221,36 @@ const Ecomapa = () => {
 
         {loadingDest ? (
           <p>Carregando destinadoras...</p>
-        ) : destinadoras.length ? (
+        ) : destinadoras.length > 0 ? (
           <div className="card-list">
-            {destinadoras.map((dest, index) => (
-              <div key={index} className="card">
+            {destinadoras.map((dest) => (
+              <div key={dest.id} className="card-result">
                 <div className="card-header">
                   <h4>{dest.nome}</h4>
                   <span className="status-dot" />
                 </div>
-                <p>Telefone: {dest.telefone}</p>
-                <p>E-mail: {dest.email}</p>
-                <p>
-                  Resíduo aceito:{" "}
-                  {dest.residuoNome && dest.classe ? `${dest.residuoNome} - ${dest.classe}` : "N/A"}
-                </p>
+                <p><strong>Telefone:</strong> {dest.telefone || "N/A"}</p>
+                <p><strong>Endereço:</strong> {dest.logradouro}, {dest.numero} - {dest.bairro}, {dest.cidade}</p>
+
+                <p><strong>Resíduos aceitos:</strong></p>
+                {dest.residuosAceitos && dest.residuosAceitos.length > 0 ? (
+                  <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+                    {dest.residuosAceitos.map((desc, idx) => (
+                      <li key={idx}>{desc}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>Nenhum resíduo listado</p>
+                )}
+
+                {tipoUsuario === "REPRESENTANTECOLETORA" && (
+                  <button
+                    className="btn-coleta"
+                    onClick={() => navigate(`/FormularioColeta?destinadoraId=${dest.id}`)}
+                  >
+                    Fazer Pedido
+                  </button>
+                )}
               </div>
             ))}
           </div>

@@ -76,7 +76,7 @@
 }
 
 .map-area {
-  flex: 1 1 500px;
+  flex: 1 1 550px;
   min-height: 320px;
   border-radius: 16px;
   overflow: hidden;
@@ -84,7 +84,7 @@
 }
 
 .result-section {
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 .result-title {
@@ -96,28 +96,69 @@
 
 .card-list {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
 }
 
-.card {
-  background-color: #f9fafb;
-  padding: 16px;
+.card-result {
+  background-color: white;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.2rem;
+  width: 320px;
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  gap: 0.8rem;
+  font-family: 'Arial', sans-serif;
+  border: 1px solid black;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-result:hover {
+  transform: scale(1.04);
 }
 
 .card-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  justify-content: space-between;
 }
 
 .card-header h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
   margin: 0;
+  margin-bottom: 10px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+  margin-left: 20px;
+}
+
+.card-result p {
+  margin: 0;
+  font-size: 17px;
+  color: #333333;
+}
+
+.card-result ul {
+  list-style: none;
+}
+
+.card-result ul li {
+  font-size: 17px;
+  margin-bottom: 0.3rem;
+  text-decoration: none;
+}
+
+.card-result strong {
   font-weight: 600;
-  font-size: 16px;
 }
 
 .status-dot {
@@ -125,12 +166,6 @@
   height: 10px;
   background-color: #22c55e;
   border-radius: 50%;
-}
-
-.card p {
-  font-size: 14px;
-  margin: 4px 0;
-  color: #374151;
 }
 
 .input-text {
@@ -150,4 +185,17 @@
 
 .input-text::placeholder {
   color: #9ca3af;
+}
+
+.btn-coleta {
+  background-color: #15b928;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-coleta:hover {
+  background-color: #107a1c;
 }

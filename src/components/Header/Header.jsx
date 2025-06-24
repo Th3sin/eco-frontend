@@ -99,7 +99,7 @@ function Header() {
             <span className="abas dropdown-toggle">Serviços</span>
             <ul className="dropdown-menu">
               <li><Link to="/Ecomapa">Buscar Destinadoras</Link></li>
-              <li><Link to="/SolicitarColeta">Solicitar Coleta</Link></li>
+              <li><Link to="/FormularioColeta">Solicitar Coleta</Link></li>
             </ul>
           </div>
 
