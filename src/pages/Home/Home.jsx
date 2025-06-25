@@ -9,10 +9,8 @@ import picgera from "../../img/fabrica-exemplo.jpg";
 import picdest from "../../img/centro-exemplo.jpg";
 import ColetaForm from "../Coleta/ColetaForm";
 import DownloadApp from "../../components/Layout/DownloadApp";
-import imageBlog01 from "../../img/blog-image001.jpg";
-import imageBlog02 from "../../img/blog-image002.jpg";
-import imageBlog03 from "../../img/blog-image003.jpg";
-import imageBlog04 from "../../img/blog-image004.jpg";
+import Conteudos from "../../components/Visual/Conteudos";
+import ODSSection from "../../components/Visual/ODSsection";
 
 function Home() {
     const [usuario, setUsuario] = useState(null);
@@ -165,40 +163,12 @@ function Home() {
                 </div>
             </section>
 
-            {/* BLOG */}
-            <section className="blog" id="blog">
-                <h3 className="titulo-metade-linha">Informações e Dicas</h3>
-                <p>Confira conteúdos sobre descarte correto, legislação ambiental e práticas sustentáveis.</p>
+             <section className="secao-ods">
+                <ODSSection />
+            </section>
 
-                <div className="card-container">
-                    <div className="card">
-                        <h3>Guia de Separação de Resíduos</h3>
-                        <p>Aprenda como separar corretamente os resíduos recicláveis, orgânicos e perigosos.</p>
-                        <img src={imageBlog04} alt="Guia Separação Resíduos" />
-                        <Link to="/Residuos">Ler mais →</Link>
-                    </div>
-
-                    <div className="card">
-                        <h3>Manual para Empresas Geradoras</h3>
-                        <p>Entenda suas responsabilidades legais e operacionais no gerenciamento de resíduos.</p>
-                        <img src={imageBlog01} alt="Manual Empresas Geradoras" />
-                        <a href="/manuais/empresas-geradoras">Acessar manual →</a>
-                    </div>
-
-                    <div className="card">
-                        <h3>Como Funciona a Logística Reversa</h3>
-                        <p>Descubra o papel da logística reversa na sustentabilidade e na economia circular.</p>
-                        <img src={imageBlog03} alt="Logística Reversa" />
-                        <a href="/artigos/logistica-reversa">Saiba mais →</a>
-                    </div>
-
-                    <div className="card">
-                        <h3>Coleta de Resíduos Perigosos</h3>
-                        <p>Normas e procedimentos para o manejo adequado de resíduos perigosos.</p>
-                        <img src={imageBlog02} alt="Resíduos Perigosos" />
-                        <a href="/manuais/empresas-geradoras">Saiba Mais →</a>
-                    </div>
-                </div>
+            <section>
+                <Conteudos className="conteudo-descarte"/>
             </section>
 
             <section className="app-download">

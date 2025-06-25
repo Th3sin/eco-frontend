@@ -100,161 +100,95 @@
 .botao-saiba-mais:active {
     transform: scale(0.98);
 }
- 
- 
-/* COMPONENTES IMPORTADOS */ 
-.navegacao-home {
-    margin-top: 150px;
-}
- 
+
 .secao-formulario {
     margin-top: 10px;
 }
  
-/*SEÇÃO INFORMATIVA*/
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  justify-content: center;
-  padding: 20px;
-}
- 
-.card {
-  background-color: #f3faff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  width: 300px;
-  height: 450px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: box-shadow 0.3s ease;
-}
- 
-.card h3 {
-  font-size: 1.2rem;
-  color: #2e7d32; /* Verde escuro */
-  margin-bottom: 10px;
-}
- 
-.card p {
-  font-size: 0.95rem;
-  color: #555555;
-  flex-grow: 1;
-}
- 
-.card a {
-  margin-top: 15px;
-  font-weight: bold;
-  color: #2e7d32;
-  text-decoration: none;
-}
- 
-.card a:hover {
-  text-decoration: underline;
-}
- 
-.card:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  transform: scale(1.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
- 
-.blog {
-    margin-left: 40px;
-    margin-top: 130px;
-}
-.blog p {
-    font-size: 25px;
-    margin-bottom: 20px;
-}
-.blog h3 {
-    font-size: 35px;
-    color: rgb(0, 0, 0);
-}
- 
 /* ENTIDADES */
 .entidades {
-    padding: 40px;
-    margin-top: 80px;
+  margin-top: 120px;
+  text-align: center;
 }
- 
-.titulo-metade-linha {
+
+.entidades .titulo-metade-linha {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #064e3b;
+  margin-bottom: 40px;
   position: relative;
-  display: inline-block;
-  font-size: 35px;
-  font-weight: bold;
-  padding-bottom: 0.1rem;
-  margin-bottom: 3rem;
-  line-height: 1.2;
 }
- 
-.titulo-metade-linha::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #23901b;
-}
- 
+
 .cards-ent-container {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
-  justify-content: center; 
-  flex-wrap: wrap; 
 }
- 
+
 .card-entidade {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  gap: 50px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  max-width: 800px; 
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   width: 100%;
+  max-width: 900px;
+  display: flex;
+  gap: 24px;
+  padding: 30px;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
- 
-.card-entidade .texto p {
-    font-size: 22px;
-    padding: 5px;
-    text-align: center;
+
+.card-entidade:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
 }
- 
+
+.card-entidade.linha {
+  flex-direction: row;
+}
+
 .card-entidade .imagem {
-  width: 300px;
-  height: auto;
-  margin-left: 20px;
-  border-radius: 8px;
+  width: 280px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
- 
+
+.card-entidade .texto {
+  flex: 1;
+  text-align: left;
+}
+
 .titulo-entidade {
-    color: #275424;
-    font-size: 30px;
-    text-align: center;
-    margin-bottom: 15px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #065f46;
+  margin-bottom: 12px;
 }
- 
-.secao-formulario h2 {
-    margin-left: 40px;
-    margin-top: 70px;
+
+.texto-gerador,
+.texto-destinador {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #000000;
 }
- 
+
 @media (max-width: 768px) {
-  .card-entidade.linha {
+  .card-entidade {
     flex-direction: column;
     text-align: center;
   }
- 
+
   .card-entidade .imagem {
     width: 100%;
-    max-width: 300px;
+    height: auto;
+  }
+
+  .card-entidade .texto {
+    text-align: center;
   }
 }
  

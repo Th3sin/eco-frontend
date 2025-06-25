@@ -79,7 +79,7 @@ function PedidosRecebidos() {
                   <td>{pedido.id}</td>
                   <td>{pedido.empresaGeradora}</td>
                   <td>{pedido.material}</td>
-                  <td>{pedido.quantidade}</td>
+                  <td>{pedido.quantidade}kg</td>
                   <td>{renderBadge(pedido.status)}</td>
                   <td>{pedido.dataPedido}</td>
                   <td>

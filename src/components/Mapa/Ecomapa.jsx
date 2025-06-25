@@ -22,18 +22,26 @@ const Ecomapa = () => {
   const [loadingDest, setLoadingDest] = useState(false);
   const [residuosPorDest, setResiduosPorDest] = useState({});
 
-  // Recupera tipo do usuário
-  useEffect(() => {
-    const tipo = localStorage.getItem("tipoUsuario");
-    setTipoUsuario(tipo);
-  }, []);
+  // Recupera tipo do usuário e controla acesso
+  // useEffect(() => {
+  //   const tipo = localStorage.getItem("tipoUsuario");
+  //   console.log("tipoUsuario do localStorage:", tipo);
 
-  // Redireciona caso não seja REPRESENTANTECOLETORA
-  useEffect(() => {
-    if (tipoUsuario && tipoUsuario !== "REPRESENTANTECOLETORA") {
-      navigate("/");
-    }
-  }, [tipoUsuario, navigate]);
+  //   if (!tipo) {
+  //     console.log("Tipo de usuário não encontrado. Redirecionando para /login");
+  //     navigate("/login");
+  //     return;
+  //   }
+
+  //   setTipoUsuario(tipo);
+
+  //   if (tipo !== "REPRESENTANTECOLETORA") {
+  //     console.log("Usuário não é REPRESENTANTECOLETORA. Redirecionando para /Home");
+  //     navigate("/Home");
+  //   } else {
+  //     console.log("Usuário REPRESENTANTECOLETORA, acesso liberado.");
+  //   }
+  // }, [navigate]);
 
   // Carrega resíduos
   useEffect(() => {
@@ -243,14 +251,14 @@ const Ecomapa = () => {
                   <p>Nenhum resíduo listado</p>
                 )}
 
-                {tipoUsuario === "REPRESENTANTECOLETORA" && (
+                
                   <button
                     className="btn-coleta"
                     onClick={() => navigate(`/FormularioColeta?destinadoraId=${dest.id}`)}
                   >
                     Fazer Pedido
                   </button>
-                )}
+                
               </div>
             ))}
           </div>

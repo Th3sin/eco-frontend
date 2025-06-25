@@ -8,7 +8,6 @@ const EnderecoGerador = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Pega o geradoraId passado pelo state na navegação anterior
   const geradoraId = location.state?.geradoraId;
 
   const [cep, setCep] = useState("");
@@ -20,20 +19,20 @@ const EnderecoGerador = () => {
 
   useEffect(() => {
     const cepLimpo = cep.replace(/\D/g, "");
-
     if (cepLimpo.length === 8) {
       axios
         .get(`https://viacep.com.br/ws/${cepLimpo}/json/`)
         .then((response) => {
           const data = response.data;
-
           if (!data.erro) {
+            // Preenche os campos com os dados da API, mas permite edição manual
             setLogradouro(data.logradouro || "");
             setBairro(data.bairro || "");
             setCidade(data.localidade || "");
             setUf(data.uf || "");
           } else {
             alert("CEP não encontrado.");
+            // Limpa para que usuário possa preencher manualmente
             setLogradouro("");
             setBairro("");
             setCidade("");
@@ -42,14 +41,14 @@ const EnderecoGerador = () => {
         })
         .catch((error) => {
           console.error("Erro ao buscar CEP:", error);
-          alert("Erro ao buscar endereço. Verifique o CEP.");
+          alert("Erro ao buscar endereço. Você pode preencher manualmente.");
           setLogradouro("");
           setBairro("");
           setCidade("");
           setUf("");
         });
     } else {
-      // Limpa os campos caso o CEP esteja incompleto ou inválido
+      // Limpa os campos se o CEP estiver incompleto
       setLogradouro("");
       setBairro("");
       setCidade("");
@@ -71,15 +70,17 @@ const EnderecoGerador = () => {
       alert("CEP inválido. Deve conter 8 dígitos numéricos.");
       return;
     }
-    if (!logradouro || !bairro || !cidade || !uf || !numero) {
-      alert("Por favor, preencha todos os campos do endereço.");
+
+    if (!numero) {
+      alert("Número é obrigatório.");
       return;
     }
+
 
     try {
       const token = localStorage.getItem("token");
 
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:8080/api/v1/usuario/geradora/${geradoraId}`,
         {
           cep: cepLimpo,
@@ -94,17 +95,14 @@ const EnderecoGerador = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          // Aceita 200-299 e 204 como sucesso
-          validateStatus: (status) => (status >= 200 && status < 300) || status === 204,
+          validateStatus: (status) =>
+            (status >= 200 && status < 300) || status === 204,
         }
       );
 
       alert("Cadastro feito com sucesso!");
-      console.log("Endereço cadastrado com sucesso! Status:", response.status);
-
       navigate("/Home");
 
-      // Limpar formulário
       setCep("");
       setLogradouro("");
       setBairro("");
@@ -125,13 +123,11 @@ const EnderecoGerador = () => {
   return (
     <div className="pagina-cadastro">
       <MinimalistHeader />
-
       <div className="texto-introducao">
         <h1>
           Cadastro quase concluído! Insira o endereço da sua empresa para habilitar as solicitações de coleta.
         </h1>
       </div>
-
       <div className="container-formulario">
         <form onSubmit={handleSubmit}>
           <div className="campo">
@@ -147,27 +143,44 @@ const EnderecoGerador = () => {
               placeholder="Digite o CEP"
             />
           </div>
-
           <div className="campo">
             <label>Logradouro</label>
-            <input type="text" value={logradouro} readOnly placeholder="Logradouro" />
+            {/* Agora editável, sem readOnly */}
+            <input
+              type="text"
+              value={logradouro}
+              onChange={(e) => setLogradouro(e.target.value)}
+              placeholder="Logradouro"
+            />
           </div>
-
           <div className="campo">
             <label>Bairro</label>
-            <input type="text" value={bairro} readOnly placeholder="Bairro" />
+            <input
+              type="text"
+              value={bairro}
+              onChange={(e) => setBairro(e.target.value)}
+              placeholder="Bairro"
+            />
           </div>
-
           <div className="campo">
             <label>Cidade</label>
-            <input type="text" value={cidade} readOnly placeholder="Cidade" />
+            <input
+              type="text"
+              value={cidade}
+              onChange={(e) => setCidade(e.target.value)}
+              placeholder="Cidade"
+            />
           </div>
-
           <div className="campo">
             <label>UF</label>
-            <input type="text" value={uf} readOnly placeholder="UF" />
+            <input
+              type="text"
+              value={uf}
+              onChange={(e) => setUf(e.target.value)}
+              placeholder="UF"
+              maxLength={2}
+            />
           </div>
-
           <div className="campo">
             <label>Número</label>
             <input
@@ -178,11 +191,9 @@ const EnderecoGerador = () => {
               placeholder="Número"
             />
           </div>
-
           <button type="submit">Finalizar Cadastro</button>
         </form>
       </div>
-
       <div className="faixa-copyright-clara">
         <p>© {new Date().getFullYear()} eco+. Todos os direitos reservados.</p>
       </div>

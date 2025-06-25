@@ -1,12 +1,14 @@
 import React from "react";
 import "./residuos.css";
+import bannerResiduos from "../../../img/banner-artigo-residuo.jpg";
 
 function Residuos() {
   return (
     <div className="container-blog-residuos">
-      <h1>Resíduos Sólidos</h1>
 
         <section className="tipos-residuos">
+          <img src={bannerResiduos} alt="Banner contendo separadores de resíduos de diferentes classes e grupos" />
+          <h1>Resíduos Sólidos</h1>
             <h2>O que são tipos de resíduos?</h2>
             <p>
                 Resíduos sólidos são produtos não aproveitados das atividades humanas (domésticas, comerciais, industriais e de serviços de saúde) ou aqueles gerados pela natureza, como folhas, galhos, terra, areia, que são retirados das ruas e logradouros pela operação de varrição e enviados para os locais de destinação ou tratamento. Também podemos definir lixo como: os restos das atividades humanas, considerados pelos geradores como inúteis, indesejáveis ou descartáveis. Normalmente, apresentam-se em estado sólido, semissólido ou semilíquido (com conteúdo líquido insuficiente para que este líquido possa fluir livremente).

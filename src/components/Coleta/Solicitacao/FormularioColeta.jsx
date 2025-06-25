@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./FormularioColeta.css";
 
@@ -7,6 +8,7 @@ function FormularioColeta() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const destinadoraId = queryParams.get("destinadoraId"); // pega da URL
+  const navigate = useNavigate();
 
   // Substitua pelo id real do usuário logado
   const geradoraId = 1;
@@ -50,60 +52,57 @@ function FormularioColeta() {
     setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleEnviar = async () => {
-    if (!dataColeta || !quantidade || !residuoId || !destinadoraId) {
-      alert("Preencha todos os campos obrigatórios.");
-      return;
-    }
+ const handleEnviar = async () => {
+  if (!dataColeta || !quantidade || !residuoId || !destinadoraId) {
+    alert("Preencha todos os campos obrigatórios.");
+    return;
+  }
 
-    const confirmar = window.confirm("Deseja realmente enviar a solicitação?");
-    if (!confirmar) return;
+  const confirmar = window.confirm("Deseja realmente enviar a solicitação?");
+  if (!confirmar) return;
 
-    try {
-      const token = localStorage.getItem("token");
+  try {
+    const token = localStorage.getItem("token");
 
-      // Ajustar data para LocalDateTime esperado no backend
-      const dataColetaISO = new Date(dataColeta);
-      dataColetaISO.setHours(12, 0, 0, 0); // evita problemas de timezone
-      const dataColetaFormatada = dataColetaISO.toISOString().slice(0, 19);
+    // Ajustar data para LocalDateTime esperado no backend
+    const dataColetaISO = new Date(dataColeta);
+    dataColetaISO.setHours(12, 0, 0, 0);
+    const dataColetaFormatada = dataColetaISO.toISOString().slice(0, 19);
 
-      const coleta = {
-        status: "PENDENTE",
-        descricao: observacaoFinal || null,
-        qt: Number(quantidade),
-        dataColeta: dataColetaFormatada,
-        codStatus: true,
-        geradora: { id: geradoraId },
-        destinadora: { id: Number(destinadoraId) },
-        residuo: { id: Number(residuoId) },
-        fotoResiduo: null, // não envia imagem para o backend
-      };
+    // Monta o objeto ColetaRequest (não aninhado, só ids)
+    const coletaRequest = {
+      status: "PENDENTE",
+      descricao: observacaoFinal || null,
+      qt: Number(quantidade),
+      fotoResiduo: null, // se quiser enviar, adapte aqui
+      dataColeta: dataColetaFormatada,
+      codStatus: true,
+      geradoraId: geradoraId,
+      destinadoraId: Number(destinadoraId),
+      residuoId: Number(residuoId),
+    };
 
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/geradora/coleta",
-        coleta,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+   const response = await axios.post(
+  "http://localhost:8080/api/v1/coleta",
+  coletaRequest,
+  { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
+);
 
-      alert("Solicitação enviada com sucesso!");
-      console.log(response.data);
+    alert("Solicitação enviada com sucesso!");
+console.log(response.data);
+navigate("/Home");
 
-      // Limpar formulário
-      setQuantidade("");
-      setDataColeta("");
-      setObservacaoFinal("");
-      setResiduoId("");
-      setSelectedFiles([]);
-    } catch (error) {
-      alert("Erro ao enviar solicitação.");
-      console.error("Erro:", error);
-    }
-  };
+    // Limpar formulário
+    setQuantidade("");
+    setDataColeta("");
+    setObservacaoFinal("");
+    setResiduoId("");
+    setSelectedFiles([]);
+  } catch (error) {
+    alert("Erro ao enviar solicitação.");
+    console.error("Erro:", error);
+  }
+};
 
   // Calcula data mínima para agendamento (48h depois da data atual)
   const dataMinima = (() => {
