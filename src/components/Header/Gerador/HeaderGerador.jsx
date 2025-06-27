@@ -34,16 +34,13 @@ function HeaderGerador() {
       .catch(error => console.error('Erro ao buscar nome do usuário:', error));
   }, []);
 
-  const toggleMenu = () => {
-    setMenuOpen((prev) => !prev);
-  };
+  const toggleMenu = () => setMenuOpen(prev => !prev);
 
   return (
-    <header className='header-user'>
+    <header className="header-user">
       <nav>
         <div className="header-left">
-          <div className="usuario-wrapper" ref={menuRef} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            
+          <div className="usuario-wrapper" ref={menuRef}>
             <img
               src={FotoUsuario}
               alt="Usuário"
@@ -51,12 +48,13 @@ function HeaderGerador() {
               onClick={toggleMenu}
               title="Acesso rápido"
             />
-            <p>Bem-vindo, {nomeUsuario}</p>
+            <p className="nome-usuario">Bem-vindo, {nomeUsuario}</p>
 
             {menuOpen && (
               <div className="menu-dropdown">
                 <ul>
-                  <li><Link to="/PedidosRecebidos" onClick={() => setMenuOpen(false)}>Pedidos</Link></li>
+                  <li><Link to="/Ecomapa" onClick={() => setMenuOpen(false)}>Buscar Destinador</Link></li>
+                  <li><Link to="/PedidosFeitos" onClick={() => setMenuOpen(false)}>Pedidos</Link></li>
                   <li><Link to="/HistoricoSolicitacoes" onClick={() => setMenuOpen(false)}>Histórico</Link></li>
                 </ul>
               </div>
@@ -72,13 +70,14 @@ function HeaderGerador() {
 
         <div className="dropdown configuracoes-dropdown">
           <span className="abas dropdown-toggle" title="Configurações">
-            <svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 0 24 24" width="25" fill="white" style={{ marginRight: '8px', verticalAlign: 'middle' }}>
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path d="M19.14,12.94c0.04-0.31,0.06-0.63,0.06-0.94s-0.02-0.63-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.4,0.12-0.61l-1.92-3.32 c-0.12-0.22-0.38-0.3-0.61-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.61-0.94l-0.36-2.54C14.35,2.18,14.18,2,14,2h-4 c-0.18,0-0.35,0.18-0.38,0.36L9.26,4.9C8.68,5.14,8.15,5.46,7.65,5.84L5.26,4.88c-0.23-0.09-0.49,0-0.61,0.22L2.73,8.42 c-0.12,0.21-0.07,0.47,0.12,0.61l2.03,1.58C4.82,11.37,4.8,11.69,4.8,12s0.02,0.63,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.4-0.12,0.61l1.92,3.32c0.12,0.22,0.38,0.3,0.61,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.61,0.94l0.36,2.54 C9.65,21.82,9.82,22,10,22h4c0.18,0,0.35-0.18,0.38-0.36l0.36-2.54c0.58-0.24,1.11-0.56,1.61-0.94l2.39,0.96 c0.23,0.09,0.49,0,0.61-0.22l1.92-3.32c0.12-0.21,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.99,0-3.6-1.61-3.6-3.6 s1.61-3.6,3.6-3.6s3.6,1.61,3.6,3.6S13.99,15.6,12,15.6z" />
+            <svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 0 24 24" width="25" fill="white" className="icone-config">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M19.43 12.98c.04-.32.07-.66.07-1s-.03-.68-.07-1l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46a.5.5 0 00-.6-.22l-2.49 1a7.08 7.08 0 00-1.73-1L14.5 2.5a.5.5 0 00-.5-.5h-4a.5.5 0 00-.5.5l-.38 2.52c-.63.27-1.21.62-1.73 1l-2.49-1a.5.5 0 00-.6.22l-2 3.46a.5.5 0 00.12.64l2.11 1.65c-.05.32-.08.66-.08 1s.03.68.08 1l-2.11 1.65a.5.5 0 00-.12.64l2 3.46c.14.24.45.3.68.18l2.49-1c.52.39 1.1.73 1.73 1l.38 2.52c.05.28.28.5.56.5h4c.28 0 .51-.22.56-.5l.38-2.52c.63-.27 1.21-.62 1.73-1l2.49 1c.23.1.54.04.68-.18l2-3.46a.5.5 0 00-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5S10.07 8.5 12 8.5s3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" />
             </svg>
+
           </span>
           <ul className="dropdown-menu">
-            <li><Link to="/Configuracoes">Preferências</Link></li>
+            <li><Link to="/ConfigGerador">Preferências</Link></li>
             <li><Link to="/Login">Sair</Link></li>
           </ul>
         </div>

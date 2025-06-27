@@ -21,7 +21,8 @@ import CadastroGerador from "./pages/Registros/Geradora/CadastroGerador";
 import EnderecoDestinador from "./pages/Registros/Destinadora/EnderecoDestinador"
 import CadastroDestinador from './pages/Registros/Destinadora/CadastroDestinador';
 import PedidosRecebidos from "./pages/Destinadora/Pedidos/PedidosRecebidos";
-import Configuracoes from "./pages/Configuracoes/Configuracoes";
+import ConfigGerador from "./pages/Geradora/Configuracoes/ConfigGerador";
+import ConfigDestinador from "./pages/Destinadora/Configuracoes/ConfigDestinador";
 import HistoricoSolicitacoes from "./pages/Geradora/Painel/HistoricoSolicitacoes";
 import FormularioColeta from "./components/Coleta/Solicitacao/FormularioColeta";
 
@@ -40,9 +41,13 @@ function Layout() {
             "/Admin",
             "/EnderecoGerador",
             "/EnderecoDestinador",
-            "/Configuracoes",
+            "/ConfigGerador",
             "/FormularioColeta",
-           
+            "/Ecomapa",
+            "/PainelColeta",
+            "/PedidosRecebidos",
+            "/HistoricoSolicitacoes",
+            "/ConfigDestinador"
         ];
 
         setShowHeader(!noHeaderRoutes.includes(location.pathname));
@@ -59,43 +64,46 @@ function Layout() {
 }
 
 function RoutesApp() {
-    return (
-        <BrowserRouter>
-            <Routes>
-            
-            {/* ROTAS FORA DO LAYOUT - sem Header */}
-            <Route path="/" element={<Registro />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Registro" element={<Registro />} />
-            <Route path="/CadastroDestinador" element={<CadastroDestinador />} />
-            <Route path="/CadastroGerador" element={<CadastroGerador />} />
-            <Route path="/CadastroResiduo" element={<CadastroResiduo />} />
-            <Route path="/Admin" element={<Admin />} />
-            <Route path="/EnderecoGerador" element={<EnderecoGerador />} />
-            <Route path="/EnderecoDestinador" element={<EnderecoDestinador />} />
-            <Route path="/Configuracoes" element={<Configuracoes />} />
-            <Route path="/FormularioColeta" element={<FormularioColeta />} />
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* ROTAS SEM HEADER */}
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Registro" element={<Registro />} />
+        <Route path="/CadastroDestinador" element={<CadastroDestinador />} />
+        <Route path="/CadastroGerador" element={<CadastroGerador />} />
+        <Route path="/CadastroResiduo" element={<CadastroResiduo />} />
+        <Route path="/Admin" element={<Admin />} />
+        <Route path="/EnderecoGerador" element={<EnderecoGerador />} />
+        <Route path="/EnderecoDestinador" element={<EnderecoDestinador />} />
 
-            {/* ROTAS COM LAYOUT (com Header) */}
-            <Route element={<Layout />}>
-              <Route path="/Home" element={<Home />} />
-              <Route path="/HomeGerador" element={<HomeGerador />} />
-              <Route path="/HomeDestinador" element={<HomeDestinador />} />
-              <Route path="/Ecomapa" element={<Ecomapa />} />
-              <Route path="/ColetaForm" element={<ColetaForm />} />
-              <Route path="/PainelColeta" element={<PainelColeta />} />
-              <Route path="/ManualUsuarios" element={<ManualUsuarios />} />
-              <Route path="/ManualGerador" element={<ManualGerador />} />
-              <Route path="/ManualDestinador" element={<ManualDestinador />} />
-              <Route path="/Residuos" element={<Residuos />} />
-              <Route path="/Sobre" element={<Sobre />} />
-              <Route path="/PedidosRecebidos" element={<PedidosRecebidos />} />
-              <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
+        {/* ROTAS COM HEADER PÚBLICO - Envolvidas pelo Layout */}
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />  {/* <== Coloque a home raiz aqui */}
+          <Route path="/Home" element={<Home />} />
+          <Route path="/ColetaForm" element={<ColetaForm />} />
+          <Route path="/ManualUsuarios" element={<ManualUsuarios />} />
+          <Route path="/ManualGerador" element={<ManualGerador />} />
+          <Route path="/ManualDestinador" element={<ManualDestinador />} />
+          <Route path="/Residuos" element={<Residuos />} />
+          <Route path="/Sobre" element={<Sobre />} />
+        </Route>
 
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
+        {/* ROTAS COM HEADER GERADOR */}
+        <Route path="/HomeGerador" element={<HomeGerador />} />
+        <Route path="/FormularioColeta" element={<FormularioColeta />} />
+        <Route path="/Ecomapa" element={<Ecomapa />} />
+        <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
+        <Route path="/ConfigGerador" element={<ConfigGerador />} />
+
+        {/* ROTAS COM HEADER DESTINADOR */}
+        <Route path="/HomeDestinador" element={<HomeDestinador />} />
+        <Route path="/PainelColeta" element={<PainelColeta />} />
+        <Route path="/PedidosRecebidos" element={<PedidosRecebidos />} />
+        <Route path="/ConfigDestinador" element={<ConfigDestinador />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default RoutesApp;

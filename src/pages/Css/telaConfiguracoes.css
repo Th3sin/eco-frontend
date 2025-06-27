@@ -1,0 +1,92 @@
+.config-empresa-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #f0f9f4;
+  border-radius: 10px;
+  padding: 2rem 3rem;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1a4d3e;
+}
+
+.config-empresa-container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2f7a5a;
+}
+
+.mensagem {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.config-empresa-form label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+
+.config-empresa-form input[type="text"],
+.config-empresa-form select {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1.8px solid #a3c4aa;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.config-empresa-form input[type="text"]:focus,
+.config-empresa-form select:focus {
+  outline: none;
+  border-color: #3f8e65;
+  background-color: #e6f3ea;
+}
+
+.config-empresa-form input[readonly] {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+  color: #7a7a7a;
+}
+
+.botoes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.btn-salvar,
+.btn-excluir {
+  font-weight: 700;
+  padding: 0.6rem 1.8rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-salvar {
+  background-color: #3f8e65;
+  color: white;
+}
+
+.btn-salvar:hover {
+  background-color: #2f6b49;
+}
+
+.btn-excluir {
+  background-color: #c84a4a;
+  color: white;
+}
+
+.btn-excluir:hover {
+  background-color: #932f2f;
+}

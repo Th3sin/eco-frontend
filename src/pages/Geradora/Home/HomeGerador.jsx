@@ -3,11 +3,10 @@ import HeaderGerador from "../../../components/Header/Gerador/HeaderGerador";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../../../components/Layout/Footer";
-import ecoTitulo from "../../../img/ecotitulo.png";
 import ColetaForm from "../../Coleta/ColetaForm";
 import DownloadApp from "../../../components/Layout/DownloadApp";
-import ODSSection from "../../../components/Visual/ODSsection";
-import "../../Home/home.css"
+import ServicosGerador from '../../../components/Servicos/ServicosGerador';
+import "../../Home/home.css";
 
 function HomeGerador() {
   const [usuario, setUsuario] = useState(null);
@@ -24,8 +23,16 @@ function HomeGerador() {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        const res = await api.get("/api/v1/usuario/verificar-cadastro-geradora");
-        setMostrarAviso(!res.data);
+        // Primeiro, buscar o usuário logado
+        const resUsuario = await api.get("/api/v1/usuario/logado");
+        const user = resUsuario.data;
+        setUsuario(user);
+
+        // Verificar cadastro se for REPRESENTANTECOLETORA
+        if (user.role === "REPRESENTANTECOLETORA") {
+          const res = await api.get("/api/v1/usuario/verificar-cadastro-geradora");
+          setMostrarAviso(!res.data); // true = mostrar aviso
+        }
       } catch (err) {
         console.error("Erro ao verificar cadastro:", err);
       }
@@ -39,24 +46,17 @@ function HomeGerador() {
 
       {mostrarAviso && (
         <div className="aviso-cadastro-incompleto" role="alert">
-          Por favor, complete os dados da sua empresa para continuar. <Link to="/CadastroGerador" className="link-cadastro">Clique aqui</Link>
+          Por favor, complete os dados da sua empresa para continuar.{" "}
+          <Link to="/CadastroGerador" className="link-cadastro">Clique aqui</Link>
         </div>
       )}
 
-      <nav className="navegacao-usuario">
-        <Link to="/solicitar-coleta">Solicitar Coleta</Link>
-        <Link to="/historico-coletas">Histórico de Coletas</Link>
-        <Link to="/configuracoes">Configurações</Link>
-        <Link to="/manual-gerador">Manual do Gerador</Link>
-        <Link to="/logout">Sair</Link>
-      </nav>
+      <section className="servicos-usuarios">
+        <ServicosGerador />
+      </section>
 
       <section className="secao-formulario">
         <ColetaForm />
-      </section>
-
-      <section className="secao-ods">
-        <ODSSection />
       </section>
 
       <section className="app-download">

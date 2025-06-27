@@ -42,7 +42,7 @@ function HeaderDestinador() {
     <header className='header-user'>
       <nav>
         <div className="header-left" ref={menuRef}>
-          <div className="usuario-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div className="usuario-wrapper">
             
             <img
               src={FotoUsuario}
@@ -79,7 +79,7 @@ function HeaderDestinador() {
             </svg>
           </span>
           <ul className="dropdown-menu">
-            <li><Link to="/Configuracoes">Preferências</Link></li>
+            <li><Link to="/ConfigDestinador">Preferências</Link></li>
             <li><Link to="/Login">Sair</Link></li>
           </ul>
         </div>

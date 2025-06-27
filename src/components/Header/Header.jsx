@@ -57,11 +57,17 @@ function Header() {
   };
 
   return (
-    <header className={`${isHome ? 'with-transition transparent' : ''} ${scrolled ? 'scrolled' : ''}`}>
+    <header
+      className={`with-transition ${
+        isHome ? (scrolled ? 'scrolled' : 'transparent') : 'scrolled'
+      }`}
+    >
       <nav>
         {/* Menu lateral com clique */}
         <div>
-          <Link to="/Registro" className="abas" title="Crie um acesso">Crie uma conta</Link>
+          <Link to="/Registro" className="abas" title="Crie um acesso">
+            Crie uma conta
+          </Link>
         </div>
 
         {/* Logo central */}
@@ -75,24 +81,35 @@ function Header() {
           <div className="dropdown">
             <span className="abas dropdown-toggle">Serviços</span>
             <ul className="dropdown-menu">
-              <li><Link to="/Ecomapa">Buscar Destinadoras</Link></li>
-              <li><Link to="/FormularioColeta">Solicitar Coleta</Link></li>
+              <li>
+                <Link to="/Ecomapa">Buscar Destinadoras</Link>
+              </li>
+              <li>
+                <Link to="/FormularioColeta">Solicitar Coleta</Link>
+              </li>
             </ul>
           </div>
 
           <div className="dropdown">
             <span className="abas dropdown-toggle">Informações</span>
             <ul className="dropdown-menu">
-              <li><Link to="/">Manual Geradoras</Link></li>
-              <li><Link to="/">Manual Destinadoras</Link></li>
-              <li><Link to="/ManualUsuarios">Manual do Usuário</Link></li>
+              <li>
+                <Link to="/">Manual Geradoras</Link>
+              </li>
+              <li>
+                <Link to="/">Manual Destinadoras</Link>
+              </li>
+              <li>
+                <Link to="/ManualUsuarios">Manual do Usuário</Link>
+              </li>
             </ul>
           </div>
 
           <div className="menu-wrapper">
-              <li><Link to="/Login">Área do Cliente</Link></li>
+            <li>
+              <Link to="/Login">Área do Cliente</Link>
+            </li>
           </div>
-
         </div>
       </nav>
     </header>
