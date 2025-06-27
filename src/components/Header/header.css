@@ -4,7 +4,7 @@ header {
     height: 78px;
     width: 100%;
     z-index: 1000;
-    background-color: transparent;
+    background-color: transparent; 
 }
 
 header.with-transition {
@@ -24,7 +24,7 @@ header.scrolled {
 
 .logo-header {
     position: absolute;
-    left: 44.1%;
+    left: 42%;
 }
 
 .logo-header img {
@@ -176,4 +176,8 @@ nav a:hover {
 
 .menu-dropdown ul li a:hover {
   text-decoration-line: underline;
+}
+
+.menu-wrapper li {
+  list-style: none;
 }

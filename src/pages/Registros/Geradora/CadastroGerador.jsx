@@ -3,7 +3,7 @@ import InputMask from "react-input-mask";
 import "../Css/cadastro.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import MinimalistHeader from "../../../components/Header/HeaderMinimalist";
+import MinimalistHeader from "../../../components/Header/Minimal/HeaderMinimalist";
 
 function CadastroGerador() {
   const navigate = useNavigate();

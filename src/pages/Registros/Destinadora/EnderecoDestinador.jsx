@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "../Css/cadastro.css";
-import MinimalistHeader from "../../../components/Header/HeaderMinimalist";
+import MinimalistHeader from "../../../components/Header/Minimal/HeaderMinimalist";
 
 const EnderecoDestinador = () => {
   const location = useLocation();

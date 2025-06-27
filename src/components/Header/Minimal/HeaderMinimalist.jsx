@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './minimalistHeader.css';
-import MinimalLogo from '../../img/eco-black-version02.png';
+import MinimalLogo from '../../../img/eco-black-version02.png';
 
 function HeaderMinimalist() {
   return (

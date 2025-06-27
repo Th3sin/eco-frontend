@@ -1,0 +1,29 @@
+.header-user {
+   background-color: #112b2c;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: 10px;
+}
+
+.foto-usuario {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ccc;
+}
+
+.nome-usuario {
+  color: white;
+  font-weight: 500;
+}
+
+.usuario-wrapper {
+  position: relative;
+  color: #ffffff;
+}

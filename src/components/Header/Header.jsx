@@ -60,31 +60,8 @@ function Header() {
     <header className={`${isHome ? 'with-transition transparent' : ''} ${scrolled ? 'scrolled' : ''}`}>
       <nav>
         {/* Menu lateral com clique */}
-        <div className="menu-wrapper" ref={menuRef} style={{ position: 'relative' }}>
-          <button
-            className="menu-icon"
-            aria-label="Menu de usuário"
-            onClick={toggleMenu}
-            type="button"
-          >
-            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          </button>
-
-          {menuOpen && (
-            <div className="menu-dropdown">
-              <ul>
-                <li><Link to="/PedidosRecebidos" onClick={() => setMenuOpen(false)}>Pedidos</Link></li>
-                <li><Link to="/HistoricoSolicitacoes" onClick={() => setMenuOpen(false)}>Histórico</Link></li>
-                <li><Link to="/PainelColeta" onClick={() => setMenuOpen(false)}>Painel de Acompanhamento</Link></li>
-                <li><Link to="/Configuracoes" onClick={() => setMenuOpen(false)}>Configurações</Link></li>
-                <li><Link to="/Login" onClick={() => setMenuOpen(false)}>Sair</Link></li>
-              </ul>
-            </div>
-          )}
+        <div>
+          <Link to="/Registro" className="abas" title="Crie um acesso">Crie uma conta</Link>
         </div>
 
         {/* Logo central */}
@@ -112,7 +89,10 @@ function Header() {
             </ul>
           </div>
 
-          <Link to="/" className="abas" title="Acesse sua conta">Entre</Link>
+          <div className="menu-wrapper">
+              <li><Link to="/Login">Área do Cliente</Link></li>
+          </div>
+
         </div>
       </nav>
     </header>

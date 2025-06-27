@@ -23,6 +23,7 @@ function Login() {
     }
 
     try {
+      // Autenticação para obter token
       const response = await axios.post(
         "http://localhost:8080/api/v1/auth/authenticate",
         {
@@ -31,17 +32,33 @@ function Login() {
         }
       );
 
-      const { access_token, tipoUsuario } = response.data;
+      const { access_token } = response.data;
 
+      // Salva token no localStorage
       localStorage.setItem("token", access_token);
-      localStorage.setItem("tipoUsuario", tipoUsuario); // ✅ agora salva corretamente
 
-      navigate("/Home");
+      // Cria instância axios com token para buscar dados do usuário logado
+      const api = axios.create({
+        headers: { Authorization: `Bearer ${access_token}` },
+      });
+
+      // Busca dados do usuário para obter role real
+      const userResponse = await api.get("http://localhost:8080/api/v1/usuario/logado");
+      const usuario = userResponse.data;
+      const role = usuario.role;
+
+      console.log("Role do usuário:", role);
+
+      // Redireciona conforme role
+      if (role === "REPRESENTANTECOLETORA") {
+        navigate("/HomeGerador");
+      } else if (role === "REPRESENTANTEDESTINADORA") {
+        navigate("/HomeDestinador");
+      } else {
+        navigate("/Home"); // fallback
+      }
 
     } catch (err) {
-      console.log("Erro recebido no catch:", err);
-      console.log("err.response:", err.response);
-
       if (err.response) {
         if (err.response.status === 401) {
           alert("Usuário ou senha incorretos.");
@@ -75,9 +92,7 @@ function Login() {
               placeholder="Digite seu e-mail"
               className="input-email"
               value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
@@ -91,13 +106,11 @@ function Login() {
                 placeholder="Digite a sua senha"
                 className="input-senha"
                 value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <i
-                className={`fas fa-eye${showPassword ? "-slash" : ""} eye-icon`} // ✅ corrigido
+                className={`fas fa-eye${showPassword ? "-slash" : ""} eye-icon`}
                 onClick={togglePasswordVisibility}
               ></i>
             </div>
