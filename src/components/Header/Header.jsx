@@ -7,7 +7,7 @@ function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === '/Home';
+  const isHome = location.pathname === '/';
 
   const menuRef = useRef(null);
 
@@ -78,19 +78,8 @@ function Header() {
         </div>
 
         <div className="links-header">
-          <div className="dropdown">
-            <span className="abas dropdown-toggle">Serviços</span>
-            <ul className="dropdown-menu">
-              <li>
-                <Link to="/Ecomapa">Buscar Destinadoras</Link>
-              </li>
-              <li>
-                <Link to="/FormularioColeta">Solicitar Coleta</Link>
-              </li>
-            </ul>
-          </div>
 
-          <div className="dropdown">
+          {/* <div className="dropdown">
             <span className="abas dropdown-toggle">Informações</span>
             <ul className="dropdown-menu">
               <li>
@@ -103,7 +92,7 @@ function Header() {
                 <Link to="/ManualUsuarios">Manual do Usuário</Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           <div className="menu-wrapper">
             <li>

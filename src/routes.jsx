@@ -80,7 +80,7 @@ function RoutesApp() {
         {/* ROTAS COM HEADER PÚBLICO - Envolvidas pelo Layout */}
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />  {/* <== Coloque a home raiz aqui */}
-          <Route path="/Home" element={<Home />} />
+       
           <Route path="/ColetaForm" element={<ColetaForm />} />
           <Route path="/ManualUsuarios" element={<ManualUsuarios />} />
           <Route path="/ManualGerador" element={<ManualGerador />} />

@@ -10,36 +10,67 @@ import "../../Home/home.css";
 
 function HomeGerador() {
   const [usuario, setUsuario] = useState(null);
+  const [cadastroCompleto, setCadastroCompleto] = useState(true);
   const [mostrarAviso, setMostrarAviso] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const checkCadastro = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) return;
+  const checkCadastro = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                console.log("Token não encontrado.");
+                setCadastroCompleto(true);
+                return;
+            }
 
-        const api = axios.create({
-          headers: { Authorization: `Bearer ${token}` },
-        });
+            const api = axios.create({
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
 
-        // Primeiro, buscar o usuário logado
-        const resUsuario = await api.get("/api/v1/usuario/logado");
-        const user = resUsuario.data;
-        setUsuario(user);
+            const resUsuario = await api.get("/api/v1/usuario/logado");
+            const usuario = resUsuario.data;
+            setUsuario(usuario);
+            setRole(usuario.role);
 
-        // Verificar cadastro se for REPRESENTANTECOLETORA
-        if (user.role === "REPRESENTANTECOLETORA") {
-          const res = await api.get("/api/v1/usuario/verificar-cadastro-geradora");
-          setMostrarAviso(!res.data); // true = mostrar aviso
+            let url = null;
+            if (usuario.role === "REPRESENTANTECOLETORA") {
+                url = "/api/v1/usuario/verificar-cadastro-geradora";
+            } else if (usuario.role === "REPRESENTANTEDESTINADORA") {
+                url = "/api/v1/usuario/verificar-cadastro-destinadora";
+            } else {
+                console.log("Role desconhecida:", usuario.role);
+                return;
+            }
+
+            const res = await api.get(url);
+            setCadastroCompleto(res.data);
+
+            if (res.data) {
+                setMostrarAviso(false); 
+            } else {
+                setMostrarAviso(true); 
+            }
+        } catch (err) {
+            console.error("Erro ao buscar usuário ou verificar cadastro:", err);
         }
-      } catch (err) {
-        console.error("Erro ao verificar cadastro:", err);
-      }
     };
-    checkCadastro();
-  }, []);
 
+    useEffect(() => {
+        checkCadastro();
+    }, []);
+
+    const fecharAviso = () => {
+        setMostrarAviso(false);
+    };
+
+    const rotaCadastro = () => {
+        if (role === "REPRESENTANTECOLETORA") return "/CadastroGerador";
+        if (role === "REPRESENTANTEDESTINADORA") return "/CadastroDestinador";
+        return "/";
+    };
+    
   return (
     <div className="container-home">
       <HeaderGerador />

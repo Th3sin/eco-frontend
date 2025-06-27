@@ -23,7 +23,6 @@ function ColetaForm() {
         });
       } catch (error) {
         console.error("Erro ao buscar dados do usuário:", error);
-        alert("Erro ao buscar informações do usuário logado.");
       }
     };
 

@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Link } from 'react-router-dom';
 import "./home.css";
 import Footer from '../../components/Layout/Footer';
@@ -13,77 +10,6 @@ import Conteudos from "../../components/Visual/Conteudos";
 import ODSSection from "../../components/Visual/ODSsection";
 
 function Home() {
-    const [usuario, setUsuario] = useState(null);
-    const [role, setRole] = useState(null);
-    const [cadastroCompleto, setCadastroCompleto] = useState(true);
-    const [mostrarAviso, setMostrarAviso] = useState(false);
-
-    const navigate = useNavigate();
-
-    const scrollParaBaixo = () => {
-        window.scrollBy({
-            top: 600,
-            left: 0,
-            behavior: 'smooth'
-        });
-    };
-
-    const checkCadastro = async () => {
-        try {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                console.log("Token não encontrado.");
-                setCadastroCompleto(true);
-                return;
-            }
-
-            const api = axios.create({
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-
-            const resUsuario = await api.get("/api/v1/usuario/logado");
-            const usuario = resUsuario.data;
-            setUsuario(usuario);
-            setRole(usuario.role);
-
-            let url = null;
-            if (usuario.role === "REPRESENTANTECOLETORA") {
-                url = "/api/v1/usuario/verificar-cadastro-geradora";
-            } else if (usuario.role === "REPRESENTANTEDESTINADORA") {
-                url = "/api/v1/usuario/verificar-cadastro-destinadora";
-            } else {
-                console.log("Role desconhecida:", usuario.role);
-                return;
-            }
-
-            const res = await api.get(url);
-            setCadastroCompleto(res.data);
-
-            if (res.data) {
-                setMostrarAviso(false); 
-            } else {
-                setMostrarAviso(true); 
-            }
-        } catch (err) {
-            console.error("Erro ao buscar usuário ou verificar cadastro:", err);
-        }
-    };
-
-    useEffect(() => {
-        checkCadastro();
-    }, []);
-
-    const fecharAviso = () => {
-        setMostrarAviso(false);
-    };
-
-    const rotaCadastro = () => {
-        if (role === "REPRESENTANTECOLETORA") return "/CadastroGerador";
-        if (role === "REPRESENTANTEDESTINADORA") return "/CadastroDestinador";
-        return "/";
-    };
 
     return (
         <div className="container-home">
@@ -112,23 +38,6 @@ function Home() {
                     </div>
                 </section>
             </div>
-
-            {/* Mensagem visual se cadastro incompleto */}
-            {mostrarAviso && (
-                <div className="aviso-cadastro-incompleto" role="alert">
-                    Por favor, complete os dados da sua empresa para continuar.{" "}
-                    <Link to={rotaCadastro()} className="link-cadastro">
-                        Clique aqui para completar seu cadastro.
-                    </Link>
-                    <button 
-                        className="botao-fechar-aviso" 
-                        onClick={fecharAviso} 
-                        aria-label="Fechar aviso"
-                    >
-                        ×
-                    </button>
-                </div>
-            )}
 
             <section className="secao-formulario">
                 <ColetaForm />
