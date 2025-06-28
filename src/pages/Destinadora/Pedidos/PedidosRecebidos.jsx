@@ -49,8 +49,6 @@ function PedidosRecebidos() {
     return <span className={`badge ${status}`}>{status.replace("-", " ")}</span>;
   }
 
-
-  console.log(response.data);
   return (
     <div className="pedidos-container">
       <h1>Pedidos Recebidos</h1>
@@ -85,7 +83,7 @@ function PedidosRecebidos() {
                   <td>{renderBadge(pedido.status)}</td>
                   <td>{pedido.dataPedido}</td>
                   <td>
-                    {pedido.status === "pendente" ? (
+                    {pedido.status === "PENDENTE" ? (
                       <>
                         <button
                           className="btn-aceitar"

@@ -73,7 +73,7 @@ const EnderecoDestinador = () => {
           bairro,
           cidade,
           uf,
-          numero, // ✔️ Correto, não é 'num'
+          numero, // 'num'
         },
         {
           headers: {
@@ -84,7 +84,7 @@ const EnderecoDestinador = () => {
       );
 
       alert("Endereço cadastrado com sucesso!");
-      navigate("/Home");
+      navigate("/HomeDestinador");
     } catch (error) {
       console.error("Erro ao cadastrar endereço:", error);
       const msg =

@@ -101,7 +101,7 @@ const EnderecoGerador = () => {
       );
 
       alert("Cadastro feito com sucesso!");
-      navigate("/Home");
+      navigate("/HomeCadastro");
 
       setCep("");
       setLogradouro("");
