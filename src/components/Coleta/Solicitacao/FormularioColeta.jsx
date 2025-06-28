@@ -36,7 +36,7 @@ function FormularioColeta() {
     fetchResiduos();
   }, []);
 
-  const handleFileChange = (event) => {
+    const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
     const currentCount = selectedFiles.length;
     const availableSlots = maxFiles - currentCount;
@@ -90,7 +90,7 @@ function FormularioColeta() {
 
     alert("Solicitação enviada com sucesso!");
 console.log(response.data);
-navigate("/Home");
+navigate("/HomeGeradoor");
 
     // Limpar formulário
     setQuantidade("");

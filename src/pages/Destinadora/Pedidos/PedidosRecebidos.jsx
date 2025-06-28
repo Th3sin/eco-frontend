@@ -49,6 +49,8 @@ function PedidosRecebidos() {
     return <span className={`badge ${status}`}>{status.replace("-", " ")}</span>;
   }
 
+
+  console.log(response.data);
   return (
     <div className="pedidos-container">
       <h1>Pedidos Recebidos</h1>

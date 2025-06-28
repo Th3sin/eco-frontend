@@ -12,6 +12,7 @@ function HomeGerador() {
   const [usuario, setUsuario] = useState(null);
   const [cadastroCompleto, setCadastroCompleto] = useState(true);
   const [mostrarAviso, setMostrarAviso] = useState(false);
+  const [role, setRole] = useState("");
   const navigate = useNavigate();
 
   const checkCadastro = async () => {
@@ -43,6 +44,8 @@ function HomeGerador() {
                 console.log("Role desconhecida:", usuario.role);
                 return;
             }
+
+            
 
             const res = await api.get(url);
             setCadastroCompleto(res.data);

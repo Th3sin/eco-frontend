@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../../Header/CssHeader/headerUser.css';
 import Logo from '../../../img/ecoplus05.png';
-import FotoUsuario from '../../../img/foto-usuario2.jpg';
+import FotoUsuario from '../../../img/foto-usuario02.png';
 
 function HeaderDestinador() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,7 +45,7 @@ function HeaderDestinador() {
           <div className="usuario-wrapper">
             
             <img
-              src={FotoUsuario}
+              src={Logo}
               alt="Usuário"
               className="foto-usuario"
               onClick={toggleMenu}

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../../Header/CssHeader/headerUser.css';
 import Logo from '../../../img/ecoplus05.png';
-import FotoUsuario from '../../../img/foto-usuario.jpg';
+import FotoUsuario from '../../../img/foto-usuario01.png';
 
 function HeaderGerador() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,11 +28,11 @@ function HeaderGerador() {
     };
   }, [menuOpen]);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/usuarios/representante-logado')
-      .then(response => setNomeUsuario(response.data.nome))
-      .catch(error => console.error('Erro ao buscar nome do usuário:', error));
-  }, []);
+  // useEffect(() => {
+  //   axios.get('http://localhost:8080/usuarios/representante-logado')
+  //     .then(response => setNomeUsuario(response.data.nome))
+  //     .catch(error => console.error('Erro ao buscar nome do usuário:', error));
+  // }, []);
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
 
@@ -42,14 +42,13 @@ function HeaderGerador() {
         <div className="header-left">
           <div className="usuario-wrapper" ref={menuRef}>
             <img
-              src={FotoUsuario}
+              src={Logo}
               alt="Usuário"
               className="foto-usuario"
               onClick={toggleMenu}
               title="Acesso rápido"
             />
-            <p className="nome-usuario">Bem-vindo, {nomeUsuario}</p>
-
+            <p className="nome-usuario">Bem-vindo, </p>
             {menuOpen && (
               <div className="menu-dropdown">
                 <ul>
