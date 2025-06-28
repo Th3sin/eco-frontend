@@ -25,6 +25,7 @@ import ConfigGerador from "./pages/Geradora/Configuracoes/ConfigGerador";
 import ConfigDestinador from "./pages/Destinadora/Configuracoes/ConfigDestinador";
 import HistoricoSolicitacoes from "./pages/Geradora/Painel/HistoricoSolicitacoes";
 import FormularioColeta from "./components/Coleta/Solicitacao/FormularioColeta";
+import PedidosFeitos from "./pages/Geradora/Pedidos/PedidosFeitos";
 
 function Layout() {
     const location = useLocation();
@@ -47,7 +48,8 @@ function Layout() {
             "/PainelColeta",
             "/PedidosRecebidos",
             "/HistoricoSolicitacoes",
-            "/ConfigDestinador"
+            "/ConfigDestinador",
+            "/PedidosFeitos"
         ];
 
         setShowHeader(!noHeaderRoutes.includes(location.pathname));
@@ -95,6 +97,7 @@ function RoutesApp() {
         <Route path="/Ecomapa" element={<Ecomapa />} />
         <Route path="/HistoricoSolicitacoes" element={<HistoricoSolicitacoes />} />
         <Route path="/ConfigGerador" element={<ConfigGerador />} />
+        <Route path="/PedidosFeitos" element={<PedidosFeitos />} />
 
         {/* ROTAS COM HEADER DESTINADOR */}
         <Route path="/HomeDestinador" element={<HomeDestinador />} />

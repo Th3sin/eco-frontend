@@ -1,10 +1,6 @@
 .pedidos-container {
-  max-width: 900px;
-  margin: 90px auto 40px;
-  padding: 20px;
-  background-color: white;
+  margin-top: 100px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #222;
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./pedidosFeitos.css"; // mesmo estilo do recebidos
+import "../../Destinadora/Pedidos/recebidos.css";
 import HeaderGerador from "../../../components/Header/Gerador/HeaderGerador";
 import Footer from "../../../components/Layout/Footer";
 

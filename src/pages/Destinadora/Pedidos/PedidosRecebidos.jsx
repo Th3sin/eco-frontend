@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import HeaderDestinador from "../../../components/Header/Destinador/HeaderDestinador";
 import "./recebidos.css";
+import Footer from "../../../components/Layout/Footer";
 
 function PedidosRecebidos() {
   const [pedidos, setPedidos] = useState([]);
@@ -51,6 +53,7 @@ function PedidosRecebidos() {
 
   return (
     <div className="pedidos-container">
+      <HeaderDestinador />
       <h1>Pedidos Recebidos</h1>
 
       {mensagem && <div className="mensagem-sucesso">{mensagem}</div>}
@@ -108,6 +111,8 @@ function PedidosRecebidos() {
           </table>
         </div>
       )}
+      
+      <Footer />
     </div>
   );
 }
