@@ -169,13 +169,12 @@ function FormularioColeta() {
 
           <label>Resíduo</label>
           <select value={residuoId} disabled>
-  <option value="">
-    {residuos.find((r) => r.id === Number(residuoId))?.descricao || "Resíduo não encontrado"}
-  </option>
-</select>
+            <option value="">
+              {residuos.find((r) => r.id === Number(residuoId))?.descricao || "Resíduo não encontrado"}
+            </option>
+          </select>
 
-
-          <label>Anexar Foto (não será enviada)</label>
+          <label>Anexar Foto</label>
           <input
             type="file"
             accept="image/*"

@@ -28,7 +28,6 @@ useEffect(() => {
   fetchUsuarios();
 }, []);
 
-
   // --- RESÍDUOS ---
   const fetchResiduos = async () => {
     try {
@@ -173,8 +172,8 @@ useEffect(() => {
                 <td>{r.classe}</td>
                 <td>{r.descricao}</td>
                 <td>
-                  <button onClick={() => handleEditarResiduo(r)}>Editar</button>
-                  <button onClick={() => handleExcluirResiduo(r.id)}>Excluir</button>
+                  {/* <button onClick={() => handleEditarResiduo(r)}>Editar</button>
+                  <button onClick={() => handleExcluirResiduo(r.id)}>Excluir</button> */}
                 </td>
               </tr>
             ))}

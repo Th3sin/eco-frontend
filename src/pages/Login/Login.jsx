@@ -58,11 +58,10 @@ if (role === "REPRESENTANTECOLETORA") {
 } else if (role === "REPRESENTANTEDESTINADORA") {
   navigate("/HomeDestinador");
 } else if (role === "ADMIN") {
-  navigate("/AdminPage"); // Ou a rota que seu admin usa
+  navigate("/Admin"); // Ou a rota que seu admin usa
 } else {
-  navigate("/Home"); // fallback para qualquer outro caso
+  navigate("/"); // fallback para qualquer outro caso
 }
-
 
     } catch (err) {
       if (err.response) {
