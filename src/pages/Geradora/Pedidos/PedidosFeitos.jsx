@@ -72,10 +72,10 @@ function PedidosFeitos() {
                     <td>{pedido.id}</td>
                     <td>{pedido.geradora?.nome || "N/D"}</td>
                     <td>{pedido.material || "N/D"}</td>
-                    {/* No DTO, a quantidade provavelmente está em 'qt' */}
+                 
                     <td>{pedido.qt ?? pedido.quantidade} kg</td>
                     <td>{renderBadge(pedido.status)}</td>
-                    {/* Ajuste na data - se seu DTO tem dataColeta */}
+                
                     <td>{pedido.dataColeta ? new Date(pedido.dataColeta).toLocaleDateString() : "N/D"}</td>
                     <td>
                       {pedido.geradora
