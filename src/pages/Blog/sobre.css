@@ -1,43 +1,124 @@
+/* Fundo suave verde claro */
+.pagina-sobre {
+  min-height: 100vh;
+  margin-top: ;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1b3a1b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Container centralizado com sombra e cantos arredondados */
 .saiba-mais-container {
-  max-width: 800px;
-  margin: 0 auto;
-  margin-top: 75px;
-  padding: 40px 20px;
-  font-family: Arial, sans-serif;
-  color: #333;
+  background: #f0fbf0;
+  max-width: 900px;
+  width: 100%;
+  border-radius: 15px;
+  padding: 3rem 4rem;
+  box-shadow: 0 8px 20px rgba(34, 139, 34, 0.25);
+  text-align: left;
+  animation: fadeInUp 1s ease forwards;
 }
 
+/* Título principal bem grande, bold e com sombra leve */
 .titulo-sobre {
-  text-align: center;
-  font-size: 2.5em;
-  margin-bottom: 20px;
+  font-size: 3.6rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  color: #2c6b2c;
+  text-shadow: 2px 2px 4px #8fc78f;
 }
 
+/* Parágrafos principais */
 .descricao-sobre {
-  font-size: 1.2em;
-  margin-bottom: 30px;
-  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  color: #3a6b3a;
 }
 
+/* Seções */
 .secao-sobre {
-  margin-bottom: 30px;
+  margin-bottom: 3rem;
+  padding-left: 1rem;
+  border-left: 6px solid #4caf50;
+  animation: fadeIn 1.2s ease forwards;
 }
 
 .secao-sobre h2 {
-  font-size: 1.5em;
-  color: #2a7ae2;
-  margin-bottom: 10px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #256925;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
 }
 
-.secao-sobre p,
-.secao-sobre ol {
-  font-size: 1em;
+.secao-sobre p, .secao-sobre ol {
+  font-size: 1.3rem;
   line-height: 1.6;
+  color: #2f562f;
+  margin-left: 1rem;
 }
 
+/* Lista ordenada */
+.secao-sobre ol {
+  padding-left: 1.5rem;
+}
+
+.secao-sobre li {
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+/* Rodapé do conteúdo */
 .rodape-sobre {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f4d1f;
+  border-top: 1px solid #a1d3a1;
+  padding-top: 1.8rem;
   text-align: center;
-  margin-top: 50px;
-  font-style: italic;
-  color: #666;
+}
+
+/* Animações sutis para entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .saiba-mais-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .titulo-sobre {
+    font-size: 2.8rem;
+  }
+
+  .secao-sobre h2 {
+    font-size: 1.8rem;
+  }
+
+  .descricao-sobre, .secao-sobre p, .secao-sobre ol {
+    font-size: 1.1rem;
+  }
 }

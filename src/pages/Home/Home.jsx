@@ -30,7 +30,7 @@ function Home() {
                         <p> Nossa plataforma conecta empresas geradoras de resíduos a destinadoras especializadas, promovendo práticas sustentáveis que geram impacto positivo para o meio ambiente e para os negócios. </p>
                     </div>
                     <div>
-                        <Link to="/Sobre">
+                        <Link to="/Aviso">
                             <button className="botao-saiba-mais">
                                 Saiba Mais
                             </button>

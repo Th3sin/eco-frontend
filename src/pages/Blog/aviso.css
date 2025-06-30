@@ -1,0 +1,24 @@
+.aviso-container-producao {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2rem 3rem;
+  border-radius: 8px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+.aviso-container-producao h1 {
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+}
+
+.aviso-container-producao p {
+  font-size: 1.2rem;
+  color: #555;
+}

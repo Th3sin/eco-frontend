@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../../Header/CssHeader/headerUser.css';
 import Logo from '../../../img/ecotitulo.png';
-import picture from '../../../img/jack.jpg';
+import picture from '../../../img/perfil-usuario-avatar.png';
 
 function HeaderDestinador() {
   const [menuOpen, setMenuOpen] = useState(false);

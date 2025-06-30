@@ -13,10 +13,10 @@ function Footer() {
           <nav className="footer-nav" aria-label="Navegação do site">
             <h3>Navegação</h3>
             <ul>
-              <li><a href="/Home">Home</a></li>
-              <li><a href="/quem-somos">Quem Somos</a></li>
-              <li><a href="/servicos">Serviços e Soluções</a></li>
-              <li><a href="/informacoes">Informações</a></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/Aviso">Quem Somos</a></li>
+              <li><a href="/Aviso">Serviços e Soluções</a></li>
+              <li><a href="/Aviso">Informações</a></li>
             </ul>
           </nav>
 

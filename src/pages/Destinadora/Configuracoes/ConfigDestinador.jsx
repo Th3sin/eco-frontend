@@ -110,7 +110,7 @@ function ConfigDestinador() {
 
   return (
     <div className="config-empresa-container">
-      <h1>Configurações da Empresa Destinadora</h1>
+      <h1>Configurações do Perfil</h1>
 
       {mensagem && <div className="mensagem">{mensagem}</div>}
 

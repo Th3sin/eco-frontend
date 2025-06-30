@@ -21,10 +21,9 @@
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 3px 12px rgba(0, 128, 0, 0.1);
-  border-left: 6px solid #81c784;
 }
 .tipos-residuos img {
-  height: 500px;
+  height: 450px;
 }
 
 .tipos-residuos h2,

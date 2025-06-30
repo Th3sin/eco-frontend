@@ -24,21 +24,21 @@ const Conteudos = () => {
           <h4>Manual para Empresas Geradoras</h4>
           <p>Entenda suas responsabilidades legais e operacionais no gerenciamento de resíduos.</p>
           <img src={imageBlog01} alt="Manual Empresas Geradoras" />
-          <Link to="/Residuos">Acessar manual →</Link>
+          <Link to="/Aviso">Acessar manual →</Link>
         </div>
 
         <div className="card-blog">
           <h4>Como Funciona a Logística Reversa</h4>
           <p>Descubra o papel da logística reversa na sustentabilidade e na economia circular.</p>
           <img src={imageBlog03} alt="Logística Reversa" />
-           <Link to="/Residuos">Saiba mais →</Link>
+           <Link to="/Aviso">Saiba mais →</Link>
         </div>
 
         <div className="card-blog">
           <h4>Coleta de Resíduos Perigosos</h4>
           <p>Normas e procedimentos para o manejo adequado de resíduos perigosos.</p>
           <img src={imageBlog02} alt="Resíduos Perigosos" />
-          <Link to="/Residuos">Saiba mais →</Link>
+          <Link to="/Aviso">Saiba mais →</Link>
         </div>
       </div>
     </section>
