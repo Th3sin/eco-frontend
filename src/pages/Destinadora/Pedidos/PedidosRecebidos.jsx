@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import HeaderDestinador from "../../../components/Header/Destinador/HeaderDestinador";
 import "./recebidos.css";
-import Footer from "../../../components/Layout/Footer";
+// import Footer from "../../../components/Layout/Footer";
 
 function PedidosRecebidos() {
   const [pedidos, setPedidos] = useState([]);
@@ -48,7 +48,7 @@ function PedidosRecebidos() {
   }
 
   function renderBadge(status) {
-    return <span className={`badge ${status}`}>{status.replace("-", " ")}</span>;
+    return <span className={`badge ${status.toLowerCase()}`}>{status.replace("-", " ")}</span>;
   }
 
   return (
@@ -65,54 +65,61 @@ function PedidosRecebidos() {
       ) : (
         <div className="tabela-wrapper">
           <table className="tabela-pedidos">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Empresa Geradora</th>
-                <th>Material</th>
-                <th>Quantidade</th>
-                <th>Status</th>
-                <th>Data Pedido</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pedidos.map((pedido) => (
-                <tr key={pedido.id}>
-                  <td>{pedido.id}</td>
-                  <td>{pedido.empresaGeradora}</td>
-                  <td>{pedido.material}</td>
-                  <td>{pedido.quantidade}kg</td>
-                  <td>{renderBadge(pedido.status)}</td>
-                  <td>{pedido.dataPedido}</td>
-                  <td>
-                    {pedido.status === "PENDENTE" ? (
-                      <>
-                        <button
-                          className="btn-aceitar"
-                          onClick={() => alterarStatusPedido(pedido.id, "aceito")}
-                        >
-                          Aceitar
-                        </button>
-                        <button
-                          className="btn-recusar"
-                          onClick={() => alterarStatusPedido(pedido.id, "cancelado")}
-                        >
-                          Recusar
-                        </button>
-                      </>
-                    ) : (
-                      <em className="sem-acoes">Sem ações</em>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Empresa Geradora</th>
+      <th>Telefone</th> {/* NOVA COLUNA */}
+      <th>Material</th>
+      <th>Quantidade</th>
+      <th>Data Pedido</th>
+      <th>Endereço da Empresa</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {pedidos.map((pedido) => (
+      <tr key={pedido.id}>
+        <td>{pedido.id}</td>
+        <td>{pedido.geradora?.nome || "N/D"}</td>
+        <td>{pedido.geradora?.telefone || "N/D"}</td> {/* NOVA CÉLULA */}
+        <td>{pedido.material}</td>
+        <td>{pedido.quantidade} kg</td>
+        <td>{new Date(pedido.dataPedido || pedido.dataColeta).toLocaleDateString()}</td>
+        <td>
+          {pedido.geradora
+            ? `${pedido.geradora.logradouro}, ${pedido.geradora.numero} - ${pedido.geradora.bairro}, ${pedido.geradora.cidade}/${pedido.geradora.uf}`
+            : "N/D"}
+        </td>
+        <td>
+          {pedido.status === "PENDENTE" ? (
+            <>
+              <button
+                className="btn-aceitar"
+                onClick={() => alterarStatusPedido(pedido.id, "aceito")}
+              >
+                Aceitar
+              </button>
+              <button
+                className="btn-recusar"
+                onClick={() => alterarStatusPedido(pedido.id, "cancelado")}
+              >
+                Recusar
+              </button>
+            </>
+          ) : (
+            <em className="sem-acoes">Sem ações</em>
+          )}
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
         </div>
       )}
-      
-      <Footer />
+
+      {/* <Footer /> */}
     </div>
   );
 }

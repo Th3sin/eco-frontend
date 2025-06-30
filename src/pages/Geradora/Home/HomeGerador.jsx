@@ -3,98 +3,156 @@ import HeaderGerador from "../../../components/Header/Gerador/HeaderGerador";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../../../components/Layout/Footer";
-import ColetaForm from "../../Coleta/ColetaForm";
-import DownloadApp from "../../../components/Layout/DownloadApp";
-import ServicosGerador from '../../../components/Servicos/ServicosGerador';
-import "../../Home/home.css";
+import "../../Css/homeClientes.css"
 
 function HomeGerador() {
+
   const [usuario, setUsuario] = useState(null);
-  const [cadastroCompleto, setCadastroCompleto] = useState(true);
   const [mostrarAviso, setMostrarAviso] = useState(false);
-  const [role, setRole] = useState("");
+  const [cadastroCompleto, setCadastroCompleto] = useState(true);
   const navigate = useNavigate();
 
-  const checkCadastro = async () => {
-        try {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                console.log("Token não encontrado.");
-                setCadastroCompleto(true);
-                return;
-            }
+  useEffect(() => {
+    const checkCadastro = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) return;
 
-            const api = axios.create({
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+        const api = axios.create({
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
-            const resUsuario = await api.get("/api/v1/usuario/logado");
-            const usuario = resUsuario.data;
-            setUsuario(usuario);
-            setRole(usuario.role);
+        const resUsuario = await api.get("/api/v1/usuario/logado");
+        const user = resUsuario.data;
+        setUsuario(user);
 
-            let url = null;
-            if (usuario.role === "REPRESENTANTECOLETORA") {
-                url = "/api/v1/usuario/verificar-cadastro-geradora";
-            } else if (usuario.role === "REPRESENTANTEDESTINADORA") {
-                url = "/api/v1/usuario/verificar-cadastro-destinadora";
-            } else {
-                console.log("Role desconhecida:", usuario.role);
-                return;
-            }
+        if (user.role === "REPRESENTANTECOLETORA") {
+          const res = await api.get("/api/v1/usuario/verificar-cadastro-geradora");
+          setCadastroCompleto(res.data);
+          setMostrarAviso(!res.data); // true = mostrar aviso
+          console.log("Cadastro completo?", res.data);
+          console.log("Mostrar aviso?", !res.data);
 
-            
-
-            const res = await api.get(url);
-            setCadastroCompleto(res.data);
-
-            if (res.data) {
-                setMostrarAviso(false); 
-            } else {
-                setMostrarAviso(true); 
-            }
-        } catch (err) {
-            console.error("Erro ao buscar usuário ou verificar cadastro:", err);
         }
+      } catch (err) {
+        console.error("Erro ao verificar cadastro:", err);
+      }
     };
 
-    useEffect(() => {
-        checkCadastro();
-    }, []);
+    checkCadastro();
+  }, []);
 
-    const fecharAviso = () => {
-        setMostrarAviso(false);
-    };
+  const bloquearSeIncompleto = (callback) => {
+    if (!cadastroCompleto) {
+      alert("Complete os dados da sua empresa para acessar esta funcionalidade.");
+    } else {
+      callback();
+    }
+  };
 
-    const rotaCadastro = () => {
-        if (role === "REPRESENTANTECOLETORA") return "/CadastroGerador";
-        if (role === "REPRESENTANTEDESTINADORA") return "/CadastroDestinador";
-        return "/";
-    };
-    
   return (
-    <div className="container-home">
-      <HeaderGerador />
 
+    <div className="container-home-clientes">
+
+      <HeaderGerador /> 
       {mostrarAviso && (
         <div className="aviso-cadastro-incompleto" role="alert">
-          Por favor, complete os dados da sua empresa para continuar.{" "}
-          <Link to="/CadastroGerador" className="link-cadastro">Clique aqui</Link>
+         Por favor, complete os dados da sua empresa para continuar.{" "}
+         <Link to="/CadastroGerador" className="link-cadastro">Clique aqui</Link>
+        </div> )}
+
+      {/* SERVIÇOS DO GERADOR */}
+      <section className="servicos-entity" id="servicos-entity">
+        <div className="servicos-entity__cards">
+          <div className="servicos-entity__card">
+            <h4>Busca por Empresas Destinadoras</h4>
+            <p>Localize rapidamente empresas certificadas para tratamento e destinação de resíduos.</p>
+            <div
+              className="servicos-entity__link"
+              onClick={() => bloquearSeIncompleto(() => navigate("/Ecomapa"))}
+            >Acessar mapa →</div>
+          </div>
+
+          <div className="servicos-entity__card">
+            <h4>Manual de Solicitação de Coleta</h4>
+            <p>Guia rápido e prático para solicitar a coleta de resíduos com segurança.</p>
+            <div
+              className="servicos-entity__link"
+              onClick={() => bloquearSeIncompleto(() => navigate("/ManualGerador"))}
+            >Acessar manual →</div>
+          </div>
+
+          <div className="servicos-entity__card">
+            <h4>Ferramenta de Classificação de Resíduos</h4>
+            <p>Classifique corretamente seus resíduos conforme a NBR 10004.</p>
+            <div
+              className="servicos-entity__link"
+              onClick={() => bloquearSeIncompleto(() => navigate("/ClassificaResiduo"))}
+            >Usar ferramenta →</div>
+          </div>
+
+          <div className="servicos-entity__card">
+            <h4>Transporte de Resíduos Perigosos</h4>
+            <p>Encontre empresas licenciadas para transportar resíduos Classe I (perigosos).</p>
+            <div
+              className="servicos-entity__link"
+              onClick={() => bloquearSeIncompleto(() => navigate("/residuos"))}
+            >Saiba mais →</div>
+          </div>
         </div>
-      )}
-
-      <section className="servicos-usuarios">
-        <ServicosGerador />
       </section>
 
-      <section className="secao-formulario">
-        <ColetaForm />
+      <section className='dashboard-gerador'>
+        <div className='card-dashboard'>
+          <h3>Coletas realizadas</h3>
+          <p>17</p>
+        </div>
+        <div className='card-dashboard'>
+          <h3>Última coleta</h3>
+          <p>12/06/2025</p>
+        </div>
+        <div className='card-dashboard'>
+          <h3>Resíduos enviados</h3>
+          <p>982 kg</p>
+        </div>
+        <div className='card-dashboard'>
+          <h3>Impacto ambiental</h3>
+          <p>🌱 +9.8 pontos</p>
+        </div>
       </section>
 
-      <section className="app-download">
-        <DownloadApp />
+      <section className='atalhos-gerador'>
+        <button className='botao-atalho' onClick={() => bloquearSeIncompleto(() => navigate("/NovaSolicitacao"))}>Nova Solicitação</button>
+        <button className='botao-atalho' onClick={() => bloquearSeIncompleto(() => navigate("/HistoricoColetas"))}>Histórico de Coletas</button>
+        <button className='botao-atalho' onClick={() => bloquearSeIncompleto(() => navigate("/ConfigGerador"))}>Editar Perfil</button>
+        <button className='botao-atalho' onClick={() => bloquearSeIncompleto(() => navigate("/EmpresasRecomendadas"))}>Empresas Recomendadas</button>
+      </section>
+
+      <section className='alertas-lembretes'>
+        <h3>Alertas e Lembretes</h3>
+        <ul>
+          <li>📅 Próxima coleta agendada para 01/07/2025</li>
+          <li>⚠️ Solicitação pendente de aceite pela destinadora</li>
+          <li>🕐 Verifique seu histórico para regularizações</li>
+        </ul>
+      </section>
+
+      <section className='avalie-coleta'>
+        <h3>Avalie uma coleta recente</h3>
+        <p>Coleta nº 2207 - 24/06/2025</p>
+        <div className='estrelas'>
+          ★★★★☆
+        </div>
+        <textarea placeholder='Deixe um comentário...'></textarea>
+        <button className='botao-enviar-avaliacao'>Enviar Avaliação</button>
+      </section>
+
+      <section className='manual-rapido'>
+        <h3>Manual Rápido</h3>
+        <p>
+          Veja como usar o sistema em poucos passos. Ideal para novos usuários ou para revisão rápida.
+        </p>
+        <a className='link-manual' href='#'>Acessar Manual</a>
       </section>
 
       <Footer />

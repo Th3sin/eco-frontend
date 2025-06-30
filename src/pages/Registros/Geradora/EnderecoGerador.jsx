@@ -101,7 +101,7 @@ const EnderecoGerador = () => {
       );
 
       alert("Cadastro feito com sucesso!");
-      navigate("/HomeCadastro");
+      navigate("/HomeGerador");
 
       setCep("");
       setLogradouro("");
@@ -124,9 +124,8 @@ const EnderecoGerador = () => {
     <div className="pagina-cadastro">
       <MinimalistHeader />
       <div className="texto-introducao">
-        <h1>
-          Cadastro quase concluído! Insira o endereço da sua empresa para habilitar as solicitações de coleta.
-        </h1>
+        <h1>Cadastro quase concluído!
+          Por favor, insira o endereço onde as futuras coletas serão realizadas</h1>
       </div>
       <div className="container-formulario">
         <form onSubmit={handleSubmit}>

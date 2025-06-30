@@ -1,41 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import InputMask from 'react-input-mask';
-import axios from 'axios';
 import './coletaForm.css';
 
 function ColetaForm() {
   const navigate = useNavigate();
-  const [usuario, setUsuario] = useState({ nome: '', email: '', telefone: '' });
+
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
   const [residuoSelecionado, setResiduoSelecionado] = useState('');
 
-  useEffect(() => {
-    const fetchUsuario = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:8080/api/v1/usuario/logado", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setUsuario({
-          nome: response.data.nome || '',
-          email: response.data.email || '',
-          telefone: response.data.telefone || '',
-        });
-      } catch (error) {
-        console.error("Erro ao buscar dados do usuário:", error);
-      }
-    };
-
-    fetchUsuario();
-  }, []);
-
   const handleSubmit = () => {
-    if (!residuoSelecionado) {
-      alert("Selecione um resíduo antes de enviar.");
+    if (!residuoSelecionado || !nome || !email || !telefone) {
       return;
     }
-    // Passa o resíduo como parâmetro para o mapa
-    navigate(`/Ecomapa?residuo=${encodeURIComponent(residuoSelecionado)}`);
+
+    alert("Para enviar sua solicitação, você precisa acessar a área de clientes.");
+    navigate("/Login");
   };
 
   return (
@@ -45,20 +27,36 @@ function ColetaForm() {
           <form>
             <div className="resumo-coleta-form-group">
               <label>Gerador(a)</label>
-              <input type="text" name="nome" value={usuario.nome} readOnly />
+              <input
+                type="text"
+                name="nome"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                placeholder="Nome completo ou da empresa"
+                required
+              />
             </div>
 
             <div className="resumo-coleta-form-group">
               <label>E-mail</label>
-              <input type="email" name="email" value={usuario.email} readOnly />
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="email@exemplo.com"
+                required
+              />
             </div>
 
             <div className="resumo-coleta-form-group">
               <label>Telefone</label>
               <InputMask
                 mask="(99) 99999-9999"
-                value={usuario.telefone}
-                readOnly
+                value={telefone}
+                onChange={(e) => setTelefone(e.target.value)}
+                placeholder="(00) 00000-0000"
+                required
               >
                 {(inputProps) => <input {...inputProps} type="tel" />}
               </InputMask>
@@ -71,6 +69,7 @@ function ColetaForm() {
                 id="nomeResiduo"
                 value={residuoSelecionado}
                 onChange={(e) => setResiduoSelecionado(e.target.value)}
+                required
               >
                 <option value="">Selecione</option>
                 <option>Orgânico</option>
@@ -104,7 +103,7 @@ function ColetaForm() {
             </div>
 
             <div className="resumo-botoes-solicitacao">
-              <button type="button" onClick={handleSubmit}>Enviar pedido</button>
+              <button type="button" onClick={handleSubmit}>Enviar Pedido</button>
             </div>
           </form>
         </section>

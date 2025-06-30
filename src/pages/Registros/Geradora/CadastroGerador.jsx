@@ -172,6 +172,7 @@ function CadastroGerador() {
               <option value="industrial">Industrial</option>
               <option value="comercial">Comercial</option>
               <option value="servicos">Serviços</option>
+              <option value="hospitalar">Hospitalar</option>
             </select>
           </div>
 

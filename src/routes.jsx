@@ -49,7 +49,8 @@ function Layout() {
             "/PedidosRecebidos",
             "/HistoricoSolicitacoes",
             "/ConfigDestinador",
-            "/PedidosFeitos"
+            "/PedidosFeitos",
+            "Ecomapa"
         ];
 
         setShowHeader(!noHeaderRoutes.includes(location.pathname));

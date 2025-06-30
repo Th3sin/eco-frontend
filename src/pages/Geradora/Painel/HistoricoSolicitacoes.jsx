@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./historico.css";
+import HeaderGerador from "../../../components/Header/Gerador/HeaderGerador";
 
 function HistoricoSolicitacoes() {
   const [pedidos, setPedidos] = useState([]);
@@ -33,6 +34,8 @@ function HistoricoSolicitacoes() {
 
   return (
     <div className="historico-container">
+      <HeaderGerador />
+    
       <button
         className="btn-voltar"
         onClick={() => window.history.back()}

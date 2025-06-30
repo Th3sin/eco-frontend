@@ -3,6 +3,7 @@ import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 import axios from "axios";
+import HeaderGerador from "../Header/Gerador/HeaderGerador";
 import "./buscaMapa.css";
 
 const Ecomapa = () => {
@@ -136,7 +137,8 @@ const Ecomapa = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container-mapa">
+      <HeaderGerador />
       <div className="busca-section">
         <div className="form-area">
           <h2 className="section-title">Buscar Destinadoras</h2>
@@ -253,11 +255,16 @@ const Ecomapa = () => {
 
                 
                   <button
-                    className="btn-coleta"
-                    onClick={() => navigate(`/FormularioColeta?destinadoraId=${dest.id}`)}
-                  >
-                    Fazer Pedido
-                  </button>
+  className="btn-coleta"
+  onClick={() =>
+    navigate(
+      `/FormularioColeta?destinadoraId=${dest.id}&residuoId=${formData.residuoId}`
+    )
+  }
+>
+  Fazer Pedido
+</button>
+
                 
               </div>
             ))}

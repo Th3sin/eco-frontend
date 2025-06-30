@@ -1,11 +1,13 @@
 .footer {
     color: white;
     margin-top: 100px;
-    font-family: Arial, sans-serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    width: 100%;
+    font-size: 18px;
 }
  
 .informacoes-site {
-    background-color: #112b2c;
+    background-color: #0a220a;
     min-height: 300px;
     padding: 40px 20px;
 }
@@ -20,14 +22,14 @@
 }
 
 .footer-logo img {
-    margin-top: 75px;
+    margin-top: 60px;
     width: 100px;
+    margin-right: 80px;
 }
 
 .footer-nav {
     flex: 1 1 180px;
     display: block; 
-    margin-top: -15.5px;
 }
 
 .footer-contact,

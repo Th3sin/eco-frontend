@@ -1,5 +1,5 @@
 .pagina-cadastro {
-  margin-top: 110px;
+  padding-top: 80px; /* ou a altura exata do seu header fixo */
 }
 
 .texto-introducao {
@@ -17,10 +17,9 @@
   font-weight: 500;
 }
 
-/* Container principal do formulário */
 .container-formulario {
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; --> remova isso */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +39,6 @@
   padding: 40px 30px;
 }
 .container-formulario h2 {
-  margin-bottom: 0px;
   text-align: center;
   font-size: 28px;
   color: #333;
@@ -154,7 +152,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 90px;
+    margin-top: 10px;
     font-size: 14px;
     border: none;
     border-top: solid rgb(204, 204, 204) 1px;

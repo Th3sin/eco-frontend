@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./painelAcompanhamento.css";
+import HeaderDestinador from "../../../components/Header/Destinador/HeaderDestinador";
 import {
   Eye,
   RotateCcw,
@@ -183,6 +184,7 @@ export default function PainelAcompanhamento() {
 
   return (
     <div className="painel-container">
+      <HeaderDestinador />
       {toast && <div className={`toast ${toast.type}`}>{toast.message}</div>}
 
       <h2 className="painel-title">Resumo das Coletas</h2>

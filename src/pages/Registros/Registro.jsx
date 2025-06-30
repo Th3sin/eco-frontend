@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./registro.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import logoEco from "../../img/novo-logo.png";
+import background from "../../img/trabalhadores-residuos.png";
  
 const Registro = () => {
   const [nome, setNome] = useState("");
@@ -111,103 +113,116 @@ const Registro = () => {
 
   };
  
-return (
-  <div className="container-elementos-registro">
-    <div className="container-registro"></div>
-
-    <div className="registro-form">
-      <h1 className="h1-registro" title="Faça seu primeiro acesso!" alt="Criar uma nova conta">Crie uma conta</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="nome">Nome</label>
-        <input
-          type="text"
-          id="nome"
-          placeholder="Digite seu nome completo"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-          required
-        />
-
-        <label htmlFor="email">E-mail</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Digite o seu e-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        <label htmlFor="perfil">Escolha seu perfil de usuário</label>
-        <select
-          id="perfil"
-          value={perfil}
-          onChange={(e) => setPerfil(e.target.value)}
-          required
-        >
-          <option value="">Selecione</option>
-          <option value="REPRESENTANTECOLETORA">Gerador</option>
-          <option value="REPRESENTANTEDESTINADORA">Destinador</option>
-        </select>
-
-        <label htmlFor="senha">Senha</label>
-        <div className="input-container">
-          <input
-            id="senha"
-            type={showPassword ? "text" : "password"}
-            placeholder="Crie uma senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <i
-            className={`fas fa-eye${showPassword ? "-slash" : ""} eyeIcon`}
-            onClick={togglePasswordVisibility}
-          ></i>
+ return (
+    <div className="container-elementos-registro">
+      <div className="container-registro">
+        <div className="logo-registro">
+          <Link to="/"><img src={logoEco} alt="logo-eco-plus" /></Link>
         </div>
 
-        <label htmlFor="confirmPassword">Confirmar senha</label>
-        <div className="input-container">
-          <input
-            id="confirmPassword"
-            type={showPassword ? "text" : "password"}
-            placeholder="Confirme a sua senha"
-            value={confirmarSenha}
-            onChange={(e) => setConfirmarSenha(e.target.value)}
-            required
-          />
-          <i
-            className={`fas fa-eye${showPassword ? "-slash" : ""} eyeIcon`}
-            onClick={togglePasswordVisibility}
-          ></i>
-        </div>
+       <div className="registro-form">
+        <h1 className="h1-registro">
+          {/* <Link to="/Login" className="voltar-link">
+            <i className="fas fa-long-arrow-alt-left"></i>
+          </Link> */}
+          Gera ou destina resíduos? Crie sua conta!
+        </h1>
 
-        <div className="aviso-senha">
+        <form className="registro-campos" onSubmit={handleSubmit}>
+          <div className="campo-formulario">
+            <label htmlFor="nome">Nome</label>
+            <input
+              type="text"
+              id="nome"
+              placeholder="Digite seu nome completo"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="campo-formulario">
+            <label htmlFor="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Digite o seu e-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="campo-formulario">
+            <label htmlFor="perfil">Perfil de usuário</label>
+            <select
+              id="perfil"
+              value={perfil}
+              onChange={(e) => setPerfil(e.target.value)}
+              required
+            >
+              <option value="">Selecione</option>
+              <option value="REPRESENTANTECOLETORA">Gerador</option>
+              <option value="REPRESENTANTEDESTINADORA">Destinador</option>
+            </select>
+          </div>
+
+          <div className="campo-formulario">
+            <label htmlFor="senha">Senha</label>
+            <div className="input-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="senha"
+                placeholder="Crie uma senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <i
+                className={`fas fa-eye${showPassword ? "-slash" : ""} eyeIcon`}
+                onClick={togglePasswordVisibility}
+              ></i>
+            </div>
+          </div>
+
+          <div className="campo-formulario">
+            <label htmlFor="confirmPassword">Confirmar senha</label>
+            <div className="input-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="confirmPassword"
+                placeholder="Confirme sua senha"
+                value={confirmarSenha}
+                onChange={(e) => setConfirmarSenha(e.target.value)}
+                required
+              />
+              <i
+                className={`fas fa-eye${showPassword ? "-slash" : ""} eyeIcon`}
+                onClick={togglePasswordVisibility}
+              ></i>
+            </div>
+          </div>
+
           <small className="password-hint">
-              A senha deve ter no mínimo 8 caracteres, incluindo letras e números.
+            A senha deve ter no mínimo 8 caracteres, incluindo letras e números.
           </small>
-        </div>
-        
 
-        <button
-          type="submit"
-          className="registro-submit-button"
-          alt="botão de cadastrar usuário no sistema"
-          title="Clique para finalizar seu cadastro"
-        >
-          Cadastrar
-        </button>
+          <button type="submit" className="registro-submit-button">
+            Cadastrar
+          </button>
 
-        <div className="sign-in-link">
-          <p>
+          <div className="sign-in-link">
             Já possui uma conta? <Link to="/Login">Faça login</Link>
-          </p>
+          </div>
+        </form>
         </div>
-      </form>
-    </div>
-  </div>
-);
+      </div>
 
+      <div className="background-registro">
+        <img src={background} title="" alt="Coleta de resíduos" />
+      </div>
+    </div>
+  );
 };
 
 export default Registro;

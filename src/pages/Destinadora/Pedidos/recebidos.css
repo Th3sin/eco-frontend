@@ -1,8 +1,8 @@
 .pedidos-container {
-  margin-top: 100px;
-  border-radius: 8px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #222;
+  margin-top: 80px; 
+  height: 100vh;
+  margin-bottom: 80px;
+  padding: 80px;
 }
 
 .pedidos-container h1 {

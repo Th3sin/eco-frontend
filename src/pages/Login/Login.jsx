@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import axios from "axios";
+import logoEco from "../../img/novo-logo.png";
+import background from "../../img/entulho-foda-login.png";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -76,13 +78,12 @@ function Login() {
     }
   };
 
-  return (
+return (
     <div className="container-elementos-login">
       <div className="container-login">
+        <div className="logo-login"><Link to="/"><img src={logoEco} title="Área do cliente" alt="logo-eco-plus"/></Link></div>
         <form className="login-form" onSubmit={handleSubmit}>
-          <h1 className="h1-login" title="Acesse sua conta" alt="Entrar">
-            Login
-          </h1>
+          <h1 className="h1-login" alt="Entrar">Login</h1>
 
           <div className="user-container">
             <label htmlFor="email">Usuário</label>
@@ -116,9 +117,7 @@ function Login() {
             </div>
           </div>
 
-          <button className="login-submit-button" type="submit">
-            Entrar
-          </button>
+          <button className="login-submit-button" type="submit">Entrar</button>
 
           <div className="signup-link">
             <p>
@@ -126,6 +125,10 @@ function Login() {
             </p>
           </div>
         </form>
+      </div>
+
+      <div className="background-login">
+        <img src={background} alt="Fundo do login" />
       </div>
     </div>
   );

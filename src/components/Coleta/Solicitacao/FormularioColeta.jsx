@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./FormularioColeta.css";
 
 function FormularioColeta() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const destinadoraId = queryParams.get("destinadoraId"); // pega da URL
+  const destinadoraId = queryParams.get("destinadoraId");
+  const selectedResiduoId = queryParams.get("residuoId"); // <- vindo da URL
   const navigate = useNavigate();
-
-  // Substitua pelo id real do usuário logado
   const geradoraId = 1;
 
   const [quantidade, setQuantidade] = useState("");
   const [dataColeta, setDataColeta] = useState("");
   const [observacaoFinal, setObservacaoFinal] = useState("");
   const [residuos, setResiduos] = useState([]);
-  const [residuoId, setResiduoId] = useState("");
+  const [residuoId, setResiduoId] = useState(selectedResiduoId || "");
   const [selectedFiles, setSelectedFiles] = useState([]);
   const maxFiles = 2;
 
@@ -36,83 +34,106 @@ function FormularioColeta() {
     fetchResiduos();
   }, []);
 
-    const handleFileChange = (event) => {
+  const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
-    const currentCount = selectedFiles.length;
-    const availableSlots = maxFiles - currentCount;
+    const availableSlots = maxFiles - selectedFiles.length;
     if (availableSlots <= 0) {
       alert("Você já atingiu o limite máximo de 2 anexos.");
       return;
     }
-    const filesToAdd = files.slice(0, availableSlots);
-    setSelectedFiles((prev) => [...prev, ...filesToAdd]);
+    setSelectedFiles((prev) => [...prev, ...files.slice(0, availableSlots)]);
   };
 
   const removeFile = (index) => {
     setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
- const handleEnviar = async () => {
-  if (!dataColeta || !quantidade || !residuoId || !destinadoraId) {
-    alert("Preencha todos os campos obrigatórios.");
-    return;
-  }
+  const handleEnviar = async () => {
+    // Validações detalhadas:
+    if (!dataColeta) {
+      alert("Por favor, preencha a data da coleta.");
+      return;
+    }
+    if (!quantidade || isNaN(Number(quantidade)) || Number(quantidade) <= 0) {
+      alert("Por favor, preencha uma quantidade válida.");
+      return;
+    }
+    if (Number(quantidade) > 70000) {
+      alert("A quantidade máxima permitida é 70 toneladas (70000 kg).");
+      return;
+    }
+    if (!residuoId) {
+      alert("Resíduo não selecionado.");
+      return;
+    }
+    if (!destinadoraId) {
+      alert("Destinadora inválida.");
+      return;
+    }
 
-  const confirmar = window.confirm("Deseja realmente enviar a solicitação?");
-  if (!confirmar) return;
+    const confirmar = window.confirm("Deseja realmente enviar a solicitação?");
+    if (!confirmar) return;
 
-  try {
-    const token = localStorage.getItem("token");
+    try {
+      const token = localStorage.getItem("token");
+      const dataColetaISO = new Date(dataColeta);
+      dataColetaISO.setHours(12, 0, 0, 0);
+      const dataColetaFormatada = dataColetaISO.toISOString().slice(0, 19);
 
-    // Ajustar data para LocalDateTime esperado no backend
-    const dataColetaISO = new Date(dataColeta);
-    dataColetaISO.setHours(12, 0, 0, 0);
-    const dataColetaFormatada = dataColetaISO.toISOString().slice(0, 19);
+      const coletaRequest = {
+        status: "PENDENTE",
+        descricao: observacaoFinal || null,
+        qt: Number(quantidade),
+        fotoResiduo: null,
+        dataColeta: dataColetaFormatada,
+        codStatus: true,
+        geradoraId,
+        destinadoraId: Number(destinadoraId),
+        residuoId: Number(residuoId),
+      };
 
-    // Monta o objeto ColetaRequest (não aninhado, só ids)
-    const coletaRequest = {
-      status: "PENDENTE",
-      descricao: observacaoFinal || null,
-      qt: Number(quantidade),
-      fotoResiduo: null, // se quiser enviar, adapte aqui
-      dataColeta: dataColetaFormatada,
-      codStatus: true,
-      geradoraId: geradoraId,
-      destinadoraId: Number(destinadoraId),
-      residuoId: Number(residuoId),
-    };
+      await axios.post("http://localhost:8080/api/v1/coleta", coletaRequest, {
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      });
 
-   const response = await axios.post(
-  "http://localhost:8080/api/v1/coleta",
-  coletaRequest,
-  { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
-);
+      alert("Solicitação enviada com sucesso!");
+      navigate("/PedidosFeitos");
 
-    alert("Solicitação enviada com sucesso!");
-console.log(response.data);
-navigate("/HomeGeradoor");
+      setQuantidade("");
+      setDataColeta("");
+      setObservacaoFinal("");
+      setSelectedFiles([]);
+    } catch (error) {
+      alert("Erro ao enviar solicitação.");
+      console.error("Erro:", error);
+    }
+  };
 
-    // Limpar formulário
-    setQuantidade("");
-    setDataColeta("");
-    setObservacaoFinal("");
-    setResiduoId("");
-    setSelectedFiles([]);
-  } catch (error) {
-    alert("Erro ao enviar solicitação.");
-    console.error("Erro:", error);
-  }
-};
-
-  // Calcula data mínima para agendamento (48h depois da data atual)
+  // Limites de datas: de 48h até 30 dias
   const dataMinima = (() => {
     const date = new Date();
     date.setDate(date.getDate() + 2);
     return date.toISOString().split("T")[0];
   })();
 
+  const dataMaxima = (() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 30);
+    return date.toISOString().split("T")[0];
+  })();
+
   return (
     <div className="coleta-container">
+
+      {/*CAIXA DE AVISO*/}
+              <div className="coleta-form-alert">
+                  <div className="coleta-alert-box">
+                    <p><strong>Alguma dúvida?</strong> Não deixe de checar nossas instruções.</p>
+                      <br />
+                    <p><strong>Data:</strong> A coleta deve ser agendada com no mínimo 48h de antecedência.</p>
+                  </div>
+              </div>
+              
       <div className="coleta-card">
         <div className="coleta-form-full">
           <h3 className="coleta-etapa-titulo">Solicitação de Coleta</h3>
@@ -124,30 +145,35 @@ navigate("/HomeGeradoor");
             onChange={(e) => setDataColeta(e.target.value)}
             required
             min={dataMinima}
+            max={dataMaxima}
           />
 
-          <label>Quantidade</label>
+          <label>Quantidade (em kg, máx. 70000)</label>
           <input
             type="number"
             value={quantidade}
-            onChange={(e) => setQuantidade(e.target.value)}
+            onChange={(e) => {
+              const val = e.target.value;
+              // Permite vazio ou número inteiro de 1 a 70000
+              if (val === "" || (/^\d+$/.test(val) && Number(val) <= 70000)) {
+                setQuantidade(val);
+              }
+            }}
+            onWheel={(e) => e.target.blur()} // evita scroll mudar valor
             placeholder="Ex: 500"
             min="1"
+            max="70000"
+            step="1"
+            inputMode="numeric"
           />
 
           <label>Resíduo</label>
-          <select
-            value={residuoId}
-            onChange={(e) => setResiduoId(e.target.value)}
-            required
-          >
-            <option value="">Selecione</option>
-            {residuos.map((r) => (
-              <option key={r.id} value={r.id}>
-                {r.descricao}
-              </option>
-            ))}
-          </select>
+          <select value={residuoId} disabled>
+  <option value="">
+    {residuos.find((r) => r.id === Number(residuoId))?.descricao || "Resíduo não encontrado"}
+  </option>
+</select>
+
 
           <label>Anexar Foto (não será enviada)</label>
           <input
@@ -168,12 +194,12 @@ navigate("/HomeGeradoor");
           )}
 
           <label>Observações</label>
-            <textarea
-              value={observacaoFinal}
-              onChange={(e) => setObservacaoFinal(e.target.value)}
-              placeholder="INSIRA AQUI OBSERVAÇÕES SOBRE LOCAL DA COLETA, RESÍDUO E TRANSPORTES SE NECESSÁRIO."
-              rows="5"
-            />
+          <textarea
+            value={observacaoFinal}
+            onChange={(e) => setObservacaoFinal(e.target.value)}
+            placeholder="insira aqui observações sobre local da coleta, resíduo e transportes, se necessário."
+            rows="5"
+          />
 
           <button className="coleta-btn-enviar" onClick={handleEnviar}>
             Enviar

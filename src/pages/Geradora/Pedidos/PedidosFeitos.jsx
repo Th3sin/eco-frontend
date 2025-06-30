@@ -9,15 +9,13 @@ function PedidosFeitos() {
   const [mensagem, setMensagem] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const API_BASE_URL = "http://localhost:8080/api/v1/coletas/gerador";
+  // Usar a URL do endpoint DTO
+  const API_BASE_URL = "http://localhost:8080/api/v1/geradora/coleta/dto";
 
   async function fetchPedidos() {
     setLoading(true);
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(API_BASE_URL, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(API_BASE_URL);
       setPedidos(response.data);
     } catch (error) {
       console.error(error);
@@ -34,7 +32,11 @@ function PedidosFeitos() {
   }, []);
 
   function renderBadge(status) {
-    return <span className={`badge ${status}`}>{status.replace("-", " ")}</span>;
+    return (
+      <span className={`badge ${status.toLowerCase()}`}>
+        {status.replace("-", " ")}
+      </span>
+    );
   }
 
   return (
@@ -56,6 +58,7 @@ function PedidosFeitos() {
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Empresa Geradora</th>
                   <th>Material</th>
                   <th>Quantidade</th>
                   <th>Status</th>
@@ -67,13 +70,17 @@ function PedidosFeitos() {
                 {pedidos.map((pedido) => (
                   <tr key={pedido.id}>
                     <td>{pedido.id}</td>
-                    <td>{pedido.material}</td>
-                    <td>{pedido.quantidade}kg</td>
+                    <td>{pedido.geradora?.nome || "N/D"}</td>
+                    <td>{pedido.material || "N/D"}</td>
+                    {/* No DTO, a quantidade provavelmente está em 'qt' */}
+                    <td>{pedido.qt ?? pedido.quantidade} kg</td>
                     <td>{renderBadge(pedido.status)}</td>
-                    <td>{new Date(pedido.dataSolicitacao).toLocaleDateString()}</td>
+                    {/* Ajuste na data - se seu DTO tem dataColeta */}
+                    <td>{pedido.dataColeta ? new Date(pedido.dataColeta).toLocaleDateString() : "N/D"}</td>
                     <td>
-                      {pedido.endereco?.logradouro}, {pedido.endereco?.numero}<br />
-                      {pedido.endereco?.bairro} - {pedido.endereco?.cidade}/{pedido.endereco?.estado}
+                      {pedido.geradora
+                        ? `${pedido.geradora.logradouro}, ${pedido.geradora.numero} - ${pedido.geradora.bairro}, ${pedido.geradora.cidade}/${pedido.geradora.uf}`
+                        : "N/D"}
                     </td>
                   </tr>
                 ))}

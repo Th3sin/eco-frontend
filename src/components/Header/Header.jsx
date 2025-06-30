@@ -1,15 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './header.css';
-import Logo from '../../img/ecoplus05.png';
+import Logo from '../../img/logo-white-eco.png';
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
-
-  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,70 +30,37 @@ function Header() {
     }
   }, [isHome]);
 
-  // Fecha o menu ao clicar fora
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setMenuOpen(false);
-      }
-    }
-
-    if (menuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [menuOpen]);
-
-  const toggleMenu = () => {
-    setMenuOpen((prev) => !prev);
-  };
-
   return (
     <header
       className={`with-transition ${
         isHome ? (scrolled ? 'scrolled' : 'transparent') : 'scrolled'
       }`}
     >
-      <nav>
-        {/* Menu lateral com clique */}
-        <div>
-          <Link to="/Registro" className="abas" title="Crie um acesso">
-            Crie uma conta
-          </Link>
-        </div>
-
-        {/* Logo central */}
+      <nav className="nav-container">
+        {/* Logo à esquerda */}
         <div className="logo-header">
-          <Link to="/Home">
+          <Link to="/">
             <img src={Logo} alt="Logo Ecoplus" title="Bem-vindo" />
           </Link>
         </div>
 
+        {/* Links à direita */}
         <div className="links-header">
-
-          {/* <div className="dropdown">
-            <span className="abas dropdown-toggle">Informações</span>
+          <div className="dropdown">
+            <span className="abas dropdown-toggle">Conteúdos</span>
             <ul className="dropdown-menu">
-              <li>
-                <Link to="/">Manual Geradoras</Link>
-              </li>
-              <li>
-                <Link to="/">Manual Destinadoras</Link>
-              </li>
-              <li>
-                <Link to="/ManualUsuarios">Manual do Usuário</Link>
-              </li>
+              <li><Link to="/">Manual Geradoras</Link></li>
+              <li><Link to="/">Manual Destinadoras</Link></li>
+              <li><Link to="/ManualUsuarios">Manual do Usuário</Link></li>
             </ul>
-          </div> */}
+          </div>
 
           <div className="menu-wrapper">
+            <li><Link to="/Login">Área do Cliente</Link></li>
             <li>
-              <Link to="/Login">Área do Cliente</Link>
+              <div className="botao-novo-acesso">
+                <Link to="/Registro" className="abas" title="Crie um acesso">Crie uma conta</Link>
+              </div>
             </li>
           </div>
         </div>
