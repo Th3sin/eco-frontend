@@ -52,13 +52,17 @@ function Login() {
       console.log("Role do usuário:", role);
 
       // Redireciona conforme role
-      if (role === "REPRESENTANTECOLETORA") {
-        navigate("/HomeGerador");
-      } else if (role === "REPRESENTANTEDESTINADORA") {
-        navigate("/HomeDestinador");
-      } else {
-        navigate("/Home"); // fallback
-      }
+      // Redireciona conforme role
+if (role === "REPRESENTANTECOLETORA") {
+  navigate("/HomeGerador");
+} else if (role === "REPRESENTANTEDESTINADORA") {
+  navigate("/HomeDestinador");
+} else if (role === "ADMIN") {
+  navigate("/AdminPage"); // Ou a rota que seu admin usa
+} else {
+  navigate("/Home"); // fallback para qualquer outro caso
+}
+
 
     } catch (err) {
       if (err.response) {

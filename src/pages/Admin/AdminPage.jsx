@@ -9,10 +9,25 @@ function AdminPage() {
   const [usuario, setUsuario] = useState({ nome: "", email: "", senha: "", tipoUsuario: "" });
   const [usuariosList, setUsuariosList] = useState([]);
 
-  useEffect(() => {
-    fetchResiduos();
-    fetchUsuarios();
-  }, []);
+  // Protege a página - apenas ADMIN
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "/Login";
+    return;
+  }
+
+  const payload = JSON.parse(atob(token.split(".")[1]));
+  if (payload.role !== "ADMIN") {
+    alert("Acesso não autorizado.");
+    window.location.href = "/Login";
+    return;
+  }
+
+  fetchResiduos();
+  fetchUsuarios();
+}, []);
+
 
   // --- RESÍDUOS ---
   const fetchResiduos = async () => {
@@ -95,7 +110,20 @@ function AdminPage() {
       setUsuario({ nome: "", email: "", senha: "", tipoUsuario: "" });
       fetchUsuarios();
     } catch (err) {
+      alert("Erro ao cadastrar usuário");
       console.error("Erro ao cadastrar usuário:", err);
+    }
+  };
+
+  const handleExcluirUsuario = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(`http://localhost:8080/api/v1/admin/usuarios/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      fetchUsuarios();
+    } catch (err) {
+      console.error("Erro ao excluir usuário:", err);
     }
   };
 
@@ -114,7 +142,7 @@ function AdminPage() {
           />
           <input
             type="text"
-            placeholder="Grupo (Químico, Orgânico...)"
+            placeholder="Grupo"
             value={residuo.grupo}
             onChange={(e) => setResiduo({ ...residuo, grupo: e.target.value })}
             required
@@ -125,24 +153,33 @@ function AdminPage() {
             onChange={(e) => setResiduo({ ...residuo, descricao: e.target.value })}
             required
           />
-          <button type="submit">
-            {residuo.id ? "Atualizar Resíduo" : "Cadastrar Resíduo"}
-          </button>
+          <button type="submit">{residuo.id ? "Atualizar" : "Cadastrar"}</button>
         </form>
 
         <h3>Lista de Resíduos</h3>
-        <ul>
-          {residuosList.map((r) => (
-            <li key={r.id}>
-              <strong>{r.grupo}</strong> - {r.classe}
-              <br />
-              <em>{r.descricao}</em>
-              <br />
-              <button onClick={() => handleEditarResiduo(r)}>Editar</button>
-              <button onClick={() => handleExcluirResiduo(r.id)}>Excluir</button>
-            </li>
-          ))}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Grupo</th>
+              <th>Classe</th>
+              <th>Descrição</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {residuosList.map((r) => (
+              <tr key={r.id}>
+                <td>{r.grupo}</td>
+                <td>{r.classe}</td>
+                <td>{r.descricao}</td>
+                <td>
+                  <button onClick={() => handleEditarResiduo(r)}>Editar</button>
+                  <button onClick={() => handleExcluirResiduo(r.id)}>Excluir</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       {/* USUÁRIOS */}
@@ -184,15 +221,28 @@ function AdminPage() {
         </form>
 
         <h3>Usuários Cadastrados</h3>
-        <ul>
-          {usuariosList.map((u) => (
-            <li key={u.id}>
-              <strong>{u.nome}</strong> — {u.email}
-              <br />
-              <span>Tipo: {u.role}</span>
-            </li>
-          ))}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Perfil</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {usuariosList.map((u) => (
+              <tr key={u.id}>
+                <td>{u.nome}</td>
+                <td>{u.email}</td>
+                <td>{u.role}</td>
+                <td>
+                  <button onClick={() => handleExcluirUsuario(u.id)}>Excluir</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

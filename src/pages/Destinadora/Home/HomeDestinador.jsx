@@ -94,39 +94,22 @@ function HomeDestinador() {
       <section className='resumo-operacoes'>
         <div className='item-operacao'>
           <h3>Solicitações disponíveis</h3>
-          <p>11</p>
+          <p>0</p>
         </div>
 
         <div className='item-operacao'>
           <h3>Coletas em andamento</h3>
-          <p>3</p>
+          <p>0</p>
         </div>
 
         <div className='item-operacao'>
           <h3>Resíduos recebidos</h3>
-          <p>8.720 kg</p>
+          <p>0kg</p>
         </div>
 
         <div className='item-operacao'>
           <h3>Empresas atendidas</h3>
-          <p>5</p>
-        </div>
-      </section>
-
-      <section className='desempenho-indicator'>
-        <div className='item-indicador'>
-          <h3>Tempo médio de resposta</h3>
-          <p>2.4 h</p>
-        </div>
-          
-        <div className='item-indicador'>
-          <h3>Satisfação dos geradores</h3>
-          <p>★★★★★</p>
-        </div>
-          
-        <div className='item-indicador'>
-          <h3>Volume total de resíduos</h3>
-          <p>15.6 t</p>
+          <p>0</p>
         </div>
       </section>
           

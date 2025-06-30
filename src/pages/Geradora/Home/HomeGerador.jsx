@@ -81,22 +81,13 @@ function HomeGerador() {
               onClick={() => bloquearSeIncompleto(() => navigate("/ManualGerador"))}
             >Acessar manual →</div>
           </div>
-
-          <div className="servicos-entity__card">
-            <h4>Ferramenta de Classificação de Resíduos</h4>
-            <p>Classifique corretamente seus resíduos conforme a NBR 10004.</p>
-            <div
-              className="servicos-entity__link"
-              onClick={() => bloquearSeIncompleto(() => navigate("/ClassificaResiduo"))}
-            >Usar ferramenta →</div>
-          </div>
-
+  
           <div className="servicos-entity__card">
             <h4>Transporte de Resíduos Perigosos</h4>
             <p>Encontre empresas licenciadas para transportar resíduos Classe I (perigosos).</p>
             <div
               className="servicos-entity__link"
-              onClick={() => bloquearSeIncompleto(() => navigate("/residuos"))}
+              onClick={() => bloquearSeIncompleto(() => navigate("/Aviso"))}
             >Saiba mais →</div>
           </div>
         </div>
@@ -105,19 +96,19 @@ function HomeGerador() {
       <section className='dashboard-gerador'>
         <div className='card-dashboard'>
           <h3>Coletas realizadas</h3>
-          <p>17</p>
+          <p>0</p>
         </div>
         <div className='card-dashboard'>
           <h3>Última coleta</h3>
-          <p>12/06/2025</p>
+          <p>-</p>
         </div>
         <div className='card-dashboard'>
           <h3>Resíduos enviados</h3>
-          <p>982 kg</p>
+          <p>0 kg</p>
         </div>
         <div className='card-dashboard'>
           <h3>Impacto ambiental</h3>
-          <p>🌱 +9.8 pontos</p>
+          <p>🌱 +0.0 pontos</p>
         </div>
       </section>
 
@@ -125,34 +116,15 @@ function HomeGerador() {
         <button className='botao-atalho' onClick={() => bloquearSeIncompleto(() => navigate("/NovaSolicitacao"))}>Nova Solicitação</button>
         <button className='botao-atalho' onClick={() => bloquearSeIncompleto(() => navigate("/HistoricoColetas"))}>Histórico de Coletas</button>
         <button className='botao-atalho' onClick={() => bloquearSeIncompleto(() => navigate("/ConfigGerador"))}>Editar Perfil</button>
-        <button className='botao-atalho' onClick={() => bloquearSeIncompleto(() => navigate("/EmpresasRecomendadas"))}>Empresas Recomendadas</button>
       </section>
 
-      <section className='alertas-lembretes'>
-        <h3>Alertas e Lembretes</h3>
-        <ul>
-          <li>📅 Próxima coleta agendada para 01/07/2025</li>
-          <li>⚠️ Solicitação pendente de aceite pela destinadora</li>
-          <li>🕐 Verifique seu histórico para regularizações</li>
-        </ul>
-      </section>
-
-      <section className='avalie-coleta'>
-        <h3>Avalie uma coleta recente</h3>
-        <p>Coleta nº 2207 - 24/06/2025</p>
-        <div className='estrelas'>
-          ★★★★☆
-        </div>
-        <textarea placeholder='Deixe um comentário...'></textarea>
-        <button className='botao-enviar-avaliacao'>Enviar Avaliação</button>
-      </section>
 
       <section className='manual-rapido'>
         <h3>Manual Rápido</h3>
         <p>
           Veja como usar o sistema em poucos passos. Ideal para novos usuários ou para revisão rápida.
         </p>
-        <a className='link-manual' href='#'>Acessar Manual</a>
+        <a className='link-manual' href='/Aviso'>Acessar Manual</a>
       </section>
 
       <Footer />
